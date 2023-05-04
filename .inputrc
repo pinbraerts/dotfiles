@@ -1,0 +1,13 @@
+set show-mode-in-prompt on
+set vi-cmd-mode-string "\1\e\[2 q\2"
+set vi-ins-mode-string "\1\e\[6 q\2"
+set colored-stats on
+set colored-completion-prefix on
+
+set keymap vi-command
+"q": "iconfirm exit\n"
+"n": "in"
+"ciw": "bce"
+"diw": "bde"
+"ciW": "BcE"
+"diW": "BdE"
