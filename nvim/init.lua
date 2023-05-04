@@ -1,0 +1,6 @@
+vim.cmd.source('~/.config/.vimrc')
+require('plugins')
+require('lsp')
+require('themes')
+require('keymap')
+require('signs')
