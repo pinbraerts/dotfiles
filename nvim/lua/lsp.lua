@@ -43,15 +43,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local maps = {
 			{           'hover',  'K' },
 			{          'rename', '/r' },
-			{      'codeAction', '/a' },
+			-- {      'codeAction', '/a' },
 			{      'definition', '/j' },
-			{      'references', '/e' },
+			-- {      'references', '/e' },
 			{     'declaration', '/u' },
 			{   'signatureHelp', '/k' },
-			{  'documentSymbol', '/d' },
+			-- {  'documentSymbol', '/d' },
 			{  'implementation', '/i' },
 			{  'typeDefinition', '/o' },
-			{ 'workspaceSymbol', '/f' },
+			-- { 'workspaceSymbol', '/f' },
 		}
 		for _, map in ipairs(maps) do
 			local key  = map[2]:gsub('/', '<leader>')
