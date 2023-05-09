@@ -54,7 +54,7 @@ let g:NERDToggleCheckAllLines = 1
 nnoremap Y yg$
 nnoremap <silent> <esc> :nohls<cr>
 inoremap <c-v> <c-c>"*pa
-inoremap jk <esc>
+inoremap <space><space> <esc>
 vnoremap R "_dP
 nnoremap <c-j> kJ
 nnoremap gr gT
@@ -106,7 +106,6 @@ nnoremap <silent> <leader>1 :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>2 :w<bar>:source %<cr>
 nnoremap <silent> <leader>3 :w<bar>:!%<cr>
 nnoremap <silent> <leader>4 :w<bar>:silent !%<cr>
-nnoremap <leader>w <c-w>
  noremap <leader>p "*p
  noremap <leader>P "*P
  noremap <leader>y "*y
