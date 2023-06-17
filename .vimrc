@@ -24,7 +24,35 @@ set relativenumber
 set shiftwidth=2
 set splitright
 set tabstop=2
+set scrolloff=10
 nohls
+
+function! SetCmd()
+	let &shell="cmd"
+	let &shellcmdflag="/c"
+	let &shellredir='>%s 2>&2'
+	set shellquote= shellxescape=
+	set shellxquote=
+	let $TMP="C:\\tmp"
+endfunction
+
+function! SetPwsh()
+	let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	set shellquote= shellxquote=
+endfunction
+
+function! SetShell()
+	let &shell="sh"
+	let &shellcmdflag="-c"
+	let &shellredir='>%s 2>&2'
+	set shellquote= shellxescape=
+	set shellxquote=
+	" let $TMP="~/AppData/Local/Temp"
+	let $TMP="/tmp"
+endfunction
 
 if exists(":GuiFont")
 	GuiFont! JetBrains Mono:h11
@@ -49,16 +77,26 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
+" camel case word
  noremap <a-w> /\u<cr>
  noremap <a-b> ?\u<cr>
+
+ " yank to end of line
 nnoremap Y yg$
+
+" disable highlight
 nnoremap <silent> <esc> :nohls<cr>
+
+" paste from clipboard while typing
 inoremap <c-v> <c-c>"*pa
-inoremap <space><space> <esc>
+
+" replace without overriding register
 vnoremap R "_dP
-nnoremap <c-j> kJ
+
+" go to previous tab
 nnoremap gr gT
 
+" enter maps
 nnoremap <enter> i<cr><c-c>
 nnoremap <silent> <s-enter>	       :call append(line('.')-1,'')<cr>
 nnoremap <silent> <c-enter>	       :call append(line('.')  ,'')<cr>
@@ -67,6 +105,7 @@ inoremap <silent> <c-enter> <c-c>  :call append(line('.')  ,'')<cr>a
 vnoremap <silent> <s-enter> <c-c>`<:call append(line('.')-1,'')<cr>gv
 vnoremap <silent> <c-enter> <c-c>`>:call append(line('.')  ,'')<cr>gv
 
+" move lines on alt
 nnoremap <silent> <a-k>      :m-2<cr>==
 nnoremap <silent> <a-j>      :m+1<cr>==
 vnoremap <silent> <a-j>      :m'>+1<cr>gv=gv
@@ -74,11 +113,11 @@ vnoremap <silent> <a-k>      :m'<-2<cr>gv=gv
 inoremap <silent> <a-j> <c-c>:m+1<cr>==a
 inoremap <silent> <a-k> <c-c>:m-2<cr>==a
 
+" select double quotes
 onoremap aq a"
 onoremap iq i"
 xnoremap aq a"
 xnoremap iq i"
-nnoremap dq va"
 
 function! ToggleStyle()
 	if &list
@@ -91,23 +130,33 @@ function! ToggleStyle()
 	set invlist
 endfunction
 
-nnoremap q <nop>
-nnoremap qq q
-nnoremap <silent> qw :bdelete!<cr>
-nnoremap <silent> qe :close!<cr>
-nnoremap <silent> qr :tabclose!<cr>
-nnoremap <silent> qt :q<cr>
-nnoremap <silent> qy :wqa<cr>
-nnoremap \ i<space><c-c>r
-
 let mapleader=" "
 nnoremap <silent> <leader>m :call ToggleStyle()<cr>
 nnoremap <silent> <leader>1 :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>2 :w<bar>:source %<cr>
 nnoremap <silent> <leader>3 :w<bar>:!%<cr>
 nnoremap <silent> <leader>4 :w<bar>:silent !%<cr>
+nnoremap <silent> <leader>' :Lex<cr>
+
+" clipboard maps
  noremap <leader>p "*p
  noremap <leader>P "*P
  noremap <leader>y "*y
  noremap <leader>Y "*Y
 
+" scroll buffers
+nnoremap <silent> [b :bp<cr>
+nnoremap <silent> ]b :bn<cr>
+
+" scroll quickfix
+nnoremap <silent> [q :cp<cr>
+nnoremap <silent> ]q :cn<cr>
+
+" fastcmd maps
+nnoremap \ :
+nnoremap <silent> \q :q<cr>
+nnoremap <silent> \w :w<cr>
+nnoremap <silent> \e :e<cr>
+nnoremap <silent> \s :so<cr>
+nnoremap <silent> \g :G<cr>
+nnoremap <silent> \a :Lex<cr>
