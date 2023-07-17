@@ -1,7 +1,8 @@
 # .bashrc
 set -o vi
 pwln=$'\ue0b0'
-PS1="\[\033[1;42;37m\] \H \[\033[0;32;44m\]$pwln\[\033[1;37m\] \w \[\033[00;34m\]$pwln\[\033[00m\] "
+# PS1="\[\033[1;42;37m\] \H \[\033[0;32;44m\]$pwln\[\033[1;37m\]
+# \w \[\033[00;34m\]$pwln\[\033[00m\] "
 
 alias ..="cd .."
 alias ...="cd ..."
@@ -16,9 +17,10 @@ fi
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    PATH="$HOME/.local/bin:$HOME/bin:/c/Programs/GnuWin32/bin:$PATH"
 fi
 export PATH
+export M4=`which m4`
 
 function confirm() {
     read -p "Are you sure to $*? " -n 1 -s -r
@@ -30,4 +32,4 @@ function confirm() {
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-source /home/common/studtscm02/miniconda3/etc/profile.d/conda.sh
+# source /home/common/studtscm02/miniconda3/etc/profile.d/conda.sh

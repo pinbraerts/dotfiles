@@ -2,19 +2,93 @@ vim.keymap.set({ 'n', 'v' }, '<leader>c', '<Plug>NERDCommenterToggle')
 local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 telescope.load_extension('dap')
--- telescope.load_extension('airline')
--- telescope.load_extension('colorscheme')
-local datscope = telescope.extensions.dap
-local vks = vim.keymap.set
-vks('n', '<leader>f', builtin.lsp_dynamic_workspace_symbols, {})
-vks('n', '<leader>d', builtin.lsp_document_symbols, {})
-vks('n', '<leader>e', builtin.lsp_references, {})
-vks('n', '<leader>s', builtin.find_files, {})
-vks('n', '<leader>q', builtin.quickfix, {})
-vks('n', '<leader>a', builtin.git_files, {})
-vks('n', '<leader>g', builtin.live_grep, {})
-vks('n', '<leader>b', builtin.buffers, {})
-vks('n', '<leader>h', builtin.help_tags, {})
-vks('n', '<leader>h', builtin.help_tags, {})
-vks('n', '<leader>n', datscope.configurations, {})
--- vim.keymap.set('n', '<leader>m', datscope.breakpoints, {})
+local d = telescope.extensions.dap
+local g = require 'gitsigns'
+map_leader {
+    ['/'] = t.search_history,
+    ['1'] = t.keymaps,
+    ['2'] = t.registers,
+    [';'] = t.command_history,
+    ['['] = t.tagstack,
+    [']'] = t.current_buffer_fuzzy_find,
+    f = t.find_files,
+    d = t.current_buffer_tags,
+    a = t.tags,
+    b = t.buffers,
+    c = t.colorscheme,
+    r = l.rename,
+
+    s = { g.stage_hunk, function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
+    x = { g.reset_hunk, function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
+    u = g.undo_stage_hunk,
+    v = function ()
+        local current_line = vim.api.nvim_win_get_cursor(0)[1]
+        for _, hunk in ipairs(g.get_hunks()) do
+            if current_line >= hunk.added.start and current_line <= hunk.added.start + hunk.added.count then
+                if hunk.added.count + hunk.removed.count > 4 then
+                    g.preview_hunk()
+                else
+                    g.preview_hunk_inline()
+                end
+            end
+        end
+    end,
+    S = g.stage_buffer,
+    X = g.reset_buffer,
+    gv = g.preview_hunk,
+    gb = t.git_branches,
+    gc = t.git_bcommits,
+    gs = t.git_status,
+    gg = t.live_grep,
+    gl = t.git_commits,
+    gh = t.git_stash,
+    gd = g.diffthis,
+    gk = g.toggle_current_line_blame,
+    F = t.find_files,
+    la = t.lsp_dynamic_workspace_symbols,
+    ld = t.lsp_document_symbols,
+    li = t.lsp_incoming_calls,
+    lo = t.lsp_outgoing_calls,
+    lr = t.lsp_references,
+    ls = t.lsp_workspace_symbols,
+    lt = t.lsp_type_definitions,
+
+    f = t.find_files,
+    h = t.help_tags,
+    i = t.jumplist,
+    m = t.marks,
+    n = d.configurations,
+    o = t.jumplist,
+    q = t.quickfix,
+    tb = t.builtin,
+    tc = t.commands,
+    tf = t.oldfiles,
+    to = t.vim_options,
+    tp = t.pickers,
+    tq = t.quickfixhistory,
+    td = t.diagnostics,
+    tr = t.resume,
+    w = t.grep_string,
+}
+
+local v = vim.diagnostic
+local vs = v.severity
+local list_maps = {
+    d = { v.goto_prev, v.goto_next },
+    e = { v.goto_prev, v.goto_next, severity = vs.ERROR },
+    w = { v.goto_prev, v.goto_next, severity = vs.WARNING },
+}
+for k, f in pairs(list_maps) do
+    local _g = f[1]
+    local _h = f[2]
+    f[1] = nil
+    f[2] = nil
+    if next(f) ~= nil then
+        local g1 = _g
+        local h1 = _h
+        function _g() g1(f) end
+        function _h() h1(f) end
+    end
+    vim.keymap.set('n', '['..k, _g)
+    vim.keymap.set('n', ']'..k, _h)
+end

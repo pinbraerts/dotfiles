@@ -1,4 +1,5 @@
 scriptencoding utf-8
+language en_US.utf8
 filetype plugin indent on
 syntax on
 let &t_EI = "\e[2 q"
@@ -21,10 +22,12 @@ set noswapfile
 set nowrap
 set number
 set relativenumber
-set shiftwidth=2
 set splitright
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
+set expandtab
 set scrolloff=10
+set signcolumn=yes
 nohls
 
 function! SetCmd()
@@ -68,7 +71,6 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_section_b = '%{strftime("%H:%M")}'
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -78,23 +80,21 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 " camel case word
- noremap <a-w> /\u<cr>
- noremap <a-b> ?\u<cr>
+ noremap <silent> <a-w> /\u<cr>
+ noremap <silent> <a-b> ?\u<cr>
 
  " yank to end of line
 nnoremap Y yg$
 
 " disable highlight
 nnoremap <silent> <esc> :nohls<cr>
+vnoremap <esc> <c-c>
 
 " paste from clipboard while typing
 inoremap <c-v> <c-c>"*pa
 
 " replace without overriding register
 vnoremap R "_dP
-
-" go to previous tab
-nnoremap gr gT
 
 " enter maps
 nnoremap <enter> i<cr><c-c>
@@ -131,12 +131,12 @@ function! ToggleStyle()
 endfunction
 
 let mapleader=" "
-nnoremap <silent> <leader>m :call ToggleStyle()<cr>
-nnoremap <silent> <leader>1 :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>= :call ToggleStyle()<cr>
 nnoremap <silent> <leader>2 :w<bar>:source %<cr>
 nnoremap <silent> <leader>3 :w<bar>:!%<cr>
 nnoremap <silent> <leader>4 :w<bar>:silent !%<cr>
-nnoremap <silent> <leader>' :Lex<cr>
+nnoremap <silent> <leader>; A;<c-c>
+nnoremap <silent> <leader>, A,<c-c>
 
 " clipboard maps
  noremap <leader>p "*p
@@ -158,5 +158,23 @@ nnoremap <silent> \q :q<cr>
 nnoremap <silent> \w :w<cr>
 nnoremap <silent> \e :e<cr>
 nnoremap <silent> \s :so<cr>
-nnoremap <silent> \g :G<cr>
 nnoremap <silent> \a :Lex<cr>
+nnoremap <silent> \G :G<cr>
+nnoremap <silent> \gs :vert G<cr>
+nnoremap <silent> \gc :G commit<cr>
+nnoremap <silent> \gp :G push<cr>
+nnoremap <silent> \gP :G push --force-with-lease<cr>
+nnoremap <silent> \gf :G fetch --all --prune<cr>
+nnoremap \gr :G rebase 
+
+" window maps
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" command line remaps
+cnoremap <c-h> <left>
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-l> <right>
