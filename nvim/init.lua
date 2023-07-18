@@ -1,8 +1,9 @@
 vim.cmd.source('~/.config/.vimrc')
-require('lsp_config')
-require('plugins')
-require('remap')
-require('style')
-require('signs')
-require('treesitter')
+require 'plugins'
+require 'treesitter'
+require 'lsp_config'
+require 'debugging'
+require 'telescope_setup'
+require 'remap'
+require 'style'
 

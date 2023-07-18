@@ -1,9 +1,12 @@
-function RestoreTheme()
-	vim.cmd.set("background=dark")
-	vim.cmd.colorscheme('tokyonight')
-	vim.g.airline_theme = 'zenburn'
-	-- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
-end
-
-RestoreTheme()
-vim.keymap.set("n", "<leader>z", RestoreTheme)
+vim.cmd.set("background=dark")
+vim.cmd.colorscheme('tokyonight')
+vim.g.airline_theme = 'zenburn'
+vim.fn.sign_define('DapBreakpoint'         , { text = '🔴', texhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '🟤', texhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected' , { text = '⭕', texhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint'           , { text = '🟣', texhl = 'DapLogPooint'  })
+vim.fn.sign_define('DapStopped'            , { text = '🟡', texhl = 'DapStopped'    })
+vim.fn.sign_define('DiagnosticSignError'   , { text = '❗' })
+vim.fn.sign_define('DiagnosticSignWarn'    , { text = '⚠️ ' })
+vim.fn.sign_define('DiagnosticSignInfo'    , { text = 'ℹ️' })
+vim.fn.sign_define('DiagnosticSignHint'    , { text = '💡' })

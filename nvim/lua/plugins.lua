@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'mtdl9/vim-log-highlighting'
 	use 'neovim/nvim-lspconfig'
+    use 'simrat39/rust-tools.nvim'
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'saadparwaiz1/cmp_luasnip'
