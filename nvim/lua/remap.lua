@@ -1,22 +1,35 @@
-vim.keymap.set({ 'n', 'v' }, '<leader>c', '<Plug>NERDCommenterToggle')
-local builtin = require('telescope.builtin')
-local telescope = require('telescope')
-telescope.load_extension('dap')
-local d = telescope.extensions.dap
+local t = require 'telescope.builtin'
+local td = require 'telescope'.extensions.dap
 local g = require 'gitsigns'
-map_leader {
+local d = require 'dap'
+vim.keymap.set('n', 'gb', t.buffers)
+vim.keymap.set('n', 'g/', t.search_history)
+vim.keymap.set('n', 'gh', function() vim.cmd("ClangdSwitchSourceHeader") end)
+vim.keymap.set('v', '<c-[>', vim.lsp.buf.definition)
+vim.keymap.set({ 'o', 'x' }, 'ih', ':<c-u>Gitsigns select_hunk<cr>')
+vim.keymap.set({ 'n', 'v' }, '<c-/>', '<Plug>NERDCommenterToggle')
+vim.keymap.set('v', 'gs', function() g.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
+vim.keymap.set('v', 'gx', function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
+vim.keymap.set('n', 'cd', function ()
+    if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.root then
+        vim.cmd.cd(vim.b.gitsigns_status_dict.root)
+    elseif #vim.lsp.get_active_clients() then
+        vim.cmd.cd(vim.lsp.get_active_clients()[1].config.root_dir)
+    end
+end)
+for key, func in pairs {
     ['/'] = t.search_history,
     ['1'] = t.keymaps,
     ['2'] = t.registers,
     [';'] = t.command_history,
-    ['['] = t.tagstack,
+    ['['] = t.current_buffer_tags,
     [']'] = t.current_buffer_fuzzy_find,
     a = t.tags,
     c = t.colorscheme,
-    r = l.rename,
+    r = vim.lsp.rename,
 
-    s = { g.stage_hunk, function() g.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
-    x = { g.reset_hunk, function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
+    s = g.stage_hunk,
+    x = g.reset_hunk,
     u = g.undo_stage_hunk,
     v = function ()
         local current_line = vim.api.nvim_win_get_cursor(0)[1]
@@ -30,6 +43,7 @@ map_leader {
             end
         end
     end,
+    V = g.preview_hunk,
     S = g.stage_buffer,
     X = g.reset_buffer,
     gv = g.preview_hunk,
@@ -55,10 +69,10 @@ map_leader {
     h = t.help_tags,
     i = t.jumplist,
     m = t.marks,
-    n = d.configurations,
+    n = td.configurations,
     o = t.jumplist,
     q = t.quickfix,
-    tb = t.builtin,
+    tt = t.builtin,
     tc = t.commands,
     tf = t.oldfiles,
     to = t.vim_options,
@@ -67,7 +81,9 @@ map_leader {
     td = t.diagnostics,
     tr = t.resume,
     w = t.grep_string,
-}
+} do
+    vim.keymap.set('n', '<leader>'..key, func)
+end
 
 local v = vim.diagnostic
 local vs = v.severity
