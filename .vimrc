@@ -147,14 +147,12 @@ nnoremap <silent> ]q <cmd>cn<cr>
 
 " fastcmd maps
 nnoremap \\ :
-nnoremap <silent> \q <cmd>q<cr>
-nnoremap <silent> \w <cmd>w<cr>
-nnoremap <silent> \e <cmd>e<cr>
-nnoremap <silent> \a <cmd>Lex<cr>
-nnoremap <silent> \G <cmd>G<cr>
-nnoremap <silent> \gs <cmd>vert G<cr>
-nnoremap <silent> \gc <cmd>G commit<cr>
-nnoremap <silent> \gc <cmd>G commit<cr>
+nnoremap <silent> \q  <cmd>q<cr>
+nnoremap <silent> \w  <cmd>w<cr>
+nnoremap <silent> \e  <cmd>e<cr>
+nnoremap <silent> \a  <cmd>30Lex!<cr>
+nnoremap <silent> \gg <cmd>vert G<cr>
+nnoremap <silent>  gc <cmd>G commit<cr>
 nnoremap <silent> \gp <cmd>G push<cr>
 nnoremap <silent> \gP <cmd>G push --force-with-lease<cr>
 nnoremap <silent> \gf <cmd>G fetch --all --prune<cr>
