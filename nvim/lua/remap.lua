@@ -11,10 +11,7 @@ map_leader {
     [';'] = t.command_history,
     ['['] = t.tagstack,
     [']'] = t.current_buffer_fuzzy_find,
-    f = t.find_files,
-    d = t.current_buffer_tags,
     a = t.tags,
-    b = t.buffers,
     c = t.colorscheme,
     r = l.rename,
 
@@ -45,6 +42,7 @@ map_leader {
     gd = g.diffthis,
     gk = g.toggle_current_line_blame,
     F = t.find_files,
+
     la = t.lsp_dynamic_workspace_symbols,
     ld = t.lsp_document_symbols,
     li = t.lsp_incoming_calls,
