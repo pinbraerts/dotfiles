@@ -27,7 +27,7 @@ for key, func in pairs {
     [']'] = t.current_buffer_fuzzy_find,
     a = t.tags,
     c = t.colorscheme,
-    r = vim.lsp.rename,
+    r = vim.lsp.buf.rename,
 
     s = g.stage_hunk,
     x = g.reset_hunk,
