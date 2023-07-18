@@ -11,14 +11,6 @@ local telescope = require 'telescope'
 telescope.load_extension('dap')
 telescope.setup {
     defaults = {
-        vimgrep_arguments = {
-            'rg',
-            '--no-heading',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
-        },
         mappings = {
             i = {
                 ['<c-j>'] = {
