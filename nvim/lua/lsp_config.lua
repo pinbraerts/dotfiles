@@ -86,59 +86,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end
             end, options)
         end
-        if capabilities.documentFormattingProvider then
-            vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
-            vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
-        end
-	end,
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-        local options = { buffer = args.buf }
-		local capabilities = client.server_capabilities
-		if capabilities.completionProvider then
-			vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-		end
-		if capabilities.definitionProvider then
-			vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
-            vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, options)
-		end
-        if capabilities.declarationProvider then
-            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
-        end
-        if capabilities.implementationProvider then
-            vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, options)
-        end
-        if capabilities.documentSymbolProvider then
-            vim.keymap.set('n', '<leader>[', t.lsp_document_symbols, options)
-        end
-        if capabilities.workspaceSymbolProvider then
-            vim.keymap.set('n', '<leader>p', t.lsp_dynamic_workspace_symbols, options)
-            vim.keymap.set('n', '<leader>a', t.lsp_workspace_symbols, options)
-        end
-        if capabilities.referencesProvider then
-            vim.keymap.set('n', '<leader>]', t.lsp_references, options)
-        end
-        if capabilities.codeActionProvider then
-            vim.keymap.set('n', '<leader><space>', function ()
-                vim.lsp.buf.code_action {
-                    filter = function(action) return action.isPreferred end,
-                    apply = true,
-                }
-            end, options)
-        end
-        if capabilities.hoverProvider then
-            vim.keymap.set('n', 'K', function ()
-                if d.status() ~= "" then
-                    dui.hover()
-                else
-                    vim.lsp.buf.hover()
-                end
-            end, options)
-        end
         if capabilities.formattingProvider then
             vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
             vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
