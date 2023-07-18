@@ -160,6 +160,12 @@ nnoremap <silent> \gP :G push --force-with-lease<cr>
 nnoremap <silent> \gf :G fetch --all --prune<cr>
 nnoremap \gr :G rebase 
 
+augroup single_file_launch
+    au!
+    au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
+    au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
+augroup END
+
 " window maps
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
