@@ -146,7 +146,7 @@ nnoremap <silent> [q <cmd>cp<cr>
 nnoremap <silent> ]q <cmd>cn<cr>
 
 " fastcmd maps
-nnoremap \ :
+nnoremap \\ :
 nnoremap <silent> \q <cmd>q<cr>
 nnoremap <silent> \w <cmd>w<cr>
 nnoremap <silent> \e <cmd>e<cr>

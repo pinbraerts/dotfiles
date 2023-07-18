@@ -90,3 +90,46 @@ for k, f in pairs(list_maps) do
     vim.keymap.set('n', '['..k, _g)
     vim.keymap.set('n', ']'..k, _h)
 end
+
+g.setup {
+    on_attach = function(buffer)
+        vim.o.signcolumn = 'yes'
+        local options = { buffer = buffer }
+
+        vim.keymap.set('n', '<esc>', function ()
+            for _, id in ipairs(vim.api.nvim_list_wins()) do
+                if vim.api.nvim_win_get_config(id).relative ~= "" then
+                    vim.api.nvim_win_close(id, false)
+                end
+            end
+            vim.cmd.nohls()
+        end, options)
+
+        options.expr = true
+        vim.keymap.set('n', ']c', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(g.next_hunk)
+            return '<Ignore>'
+        end, options)
+        vim.keymap.set('n', '[c', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(g.prev_hunk)
+            return '<Ignore>'
+        end, options)
+    end
+}
+
+vim.api.nvim_create_autocmd('DirChanged', {
+    group = vim.api.nvim_create_augroup('git', { clear = true }),
+    callback = function ()
+        if vim.fs.dir('.git')() then
+            vim.keymap.set('n', '<leader>f', t.git_files)
+            vim.keymap.set('n', 'gs', t.git_status) -- default go to sleep
+        else
+            vim.keymap.set('n', '<leader>f', t.find_files)
+            vim.keymap.set('n', 'gs', function () end)
+            vim.keymap.del('n', 'gs') -- default go to sleep
+        end
+    end,
+})
+
