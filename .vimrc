@@ -83,7 +83,7 @@ let g:NERDToggleCheckAllLines = 1
 nnoremap Y yg$
 
 " disable highlight
-nnoremap <silent> <esc> :nohls<cr>
+nnoremap <silent> <esc> <cmd>nohls<cr>
 vnoremap <esc> <c-c>
 
 " paste from clipboard while typing
@@ -94,20 +94,20 @@ vnoremap R "_dP
 
 " enter maps
 nnoremap <enter> i<cr><c-c>
-nnoremap <silent> <s-enter>	       :call append(line('.')-1,'')<cr>
-nnoremap <silent> <c-enter>	       :call append(line('.')  ,'')<cr>
-inoremap <silent> <s-enter> <c-c>  :call append(line('.')-1,'')<cr>a
-inoremap <silent> <c-enter> <c-c>  :call append(line('.')  ,'')<cr>a
-vnoremap <silent> <s-enter> <c-c>`<:call append(line('.')-1,'')<cr>gv
-vnoremap <silent> <c-enter> <c-c>`>:call append(line('.')  ,'')<cr>gv
+nnoremap <silent> <s-enter>	       <cmd>call append(line('.')-1,'')<cr>
+nnoremap <silent> <c-enter>	       <cmd>call append(line('.')  ,'')<cr>
+inoremap <silent> <s-enter> <c-c>  <cmd>call append(line('.')-1,'')<cr>a
+inoremap <silent> <c-enter> <c-c>  <cmd>call append(line('.')  ,'')<cr>a
+vnoremap <silent> <s-enter> <c-c>`<<cmd>call append(line('.')-1,'')<cr>gv
+vnoremap <silent> <c-enter> <c-c>`><cmd>call append(line('.')  ,'')<cr>gv
 
 " move lines on alt
-nnoremap <silent> <a-k>      :m-2<cr>==
-nnoremap <silent> <a-j>      :m+1<cr>==
-vnoremap <silent> <a-j>      :m'>+1<cr>gv=gv
-vnoremap <silent> <a-k>      :m'<-2<cr>gv=gv
-inoremap <silent> <a-j> <c-c>:m+1<cr>==a
-inoremap <silent> <a-k> <c-c>:m-2<cr>==a
+nnoremap <silent> <a-k>      <cmd>m-2<cr>==
+nnoremap <silent> <a-j>      <cmd>m+1<cr>==
+vnoremap <silent> <a-j>      <cmd>m'>+1<cr>gv=gv
+vnoremap <silent> <a-k>      <cmd>m'<-2<cr>gv=gv
+inoremap <silent> <a-j> <c-c><cmd>m+1<cr>==a
+inoremap <silent> <a-k> <c-c><cmd>m-2<cr>==a
 
 " select double quotes
 onoremap aq a"
@@ -138,26 +138,26 @@ nnoremap <silent> <leader>, A,<c-c>
  noremap <leader>Y "*Y
 
 " scroll buffers
-nnoremap <silent> [b :bp<cr>
-nnoremap <silent> ]b :bn<cr>
+nnoremap <silent> [b <cmd>bp<cr>
+nnoremap <silent> ]b <cmd>bn<cr>
 
 " scroll quickfix
-nnoremap <silent> [q :cp<cr>
-nnoremap <silent> ]q :cn<cr>
+nnoremap <silent> [q <cmd>cp<cr>
+nnoremap <silent> ]q <cmd>cn<cr>
 
 " fastcmd maps
 nnoremap \ :
-nnoremap <silent> \q :q<cr>
-nnoremap <silent> \w :w<cr>
-nnoremap <silent> \e :e<cr>
-nnoremap <silent> \s :so<cr>
-nnoremap <silent> \a :Lex<cr>
-nnoremap <silent> \G :G<cr>
-nnoremap <silent> \gs :vert G<cr>
-nnoremap <silent> \gc :G commit<cr>
-nnoremap <silent> \gp :G push<cr>
-nnoremap <silent> \gP :G push --force-with-lease<cr>
-nnoremap <silent> \gf :G fetch --all --prune<cr>
+nnoremap <silent> \q <cmd>q<cr>
+nnoremap <silent> \w <cmd>w<cr>
+nnoremap <silent> \e <cmd>e<cr>
+nnoremap <silent> \a <cmd>Lex<cr>
+nnoremap <silent> \G <cmd>G<cr>
+nnoremap <silent> \gs <cmd>vert G<cr>
+nnoremap <silent> \gc <cmd>G commit<cr>
+nnoremap <silent> \gc <cmd>G commit<cr>
+nnoremap <silent> \gp <cmd>G push<cr>
+nnoremap <silent> \gP <cmd>G push --force-with-lease<cr>
+nnoremap <silent> \gf <cmd>G fetch --all --prune<cr>
 nnoremap \gr :G rebase 
 
 augroup single_file_launch
