@@ -76,10 +76,14 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 " camel case word
- noremap <silent> <a-w> /\u<cr>
- noremap <silent> <a-b> ?\u<cr>
+noremap <silent> <a-w> /\u<cr>
+noremap <silent> <a-b> ?\u<cr>
 
- " yank to end of line
+" start, end = 0, -
+noremap - $
+vnoremap - g_
+
+" yank to end of line
 nnoremap Y yg$
 
 " disable highlight
