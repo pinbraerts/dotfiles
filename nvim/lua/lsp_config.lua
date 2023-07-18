@@ -16,6 +16,7 @@ lspconfig.lua_ls.setup {
 			telemetry = { enable = false },
 		},
 	},
+    single_file_support = true,
 	capabilities = cmp_capabilities,
 }
 lspconfig.pylsp.setup {
@@ -23,6 +24,17 @@ lspconfig.pylsp.setup {
 }
 lspconfig.clangd.setup {
 	capabilities = cmp_capabilities,
+}
+lspconfig.powershell_es.setup {
+    capabilities = cmp_capabilities,
+    single_file_support = true,
+    bundle_path = 'D:/PowerShellEditorServices',
+}
+require 'rust-tools'.setup {
+    single_file_support = true,
+    server = {
+        standalone = true,
+    },
 }
 
 local t = require 'telescope.builtin'
