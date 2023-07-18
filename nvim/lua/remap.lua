@@ -105,25 +105,12 @@ end
 
 local v = vim.diagnostic
 local vs = v.severity
-local list_maps = {
-    d = { v.goto_prev, v.goto_next },
-    e = { v.goto_prev, v.goto_next, severity = vs.ERROR },
-    w = { v.goto_prev, v.goto_next, severity = vs.WARNING },
-}
-for k, f in pairs(list_maps) do
-    local _g = f[1]
-    local _h = f[2]
-    f[1] = nil
-    f[2] = nil
-    if next(f) ~= nil then
-        local g1 = _g
-        local h1 = _h
-        function _g() g1(f) end
-        function _h() h1(f) end
-    end
-    vim.keymap.set('n', '['..k, _g)
-    vim.keymap.set('n', ']'..k, _h)
-end
+vim.keymap.set('n', '[d', v.goto_prev)
+vim.keymap.set('n', ']d', v.goto_next)
+vim.keymap.set('n', '[e', function () v.goto_prev { severity = vs.ERROR } end)
+vim.keymap.set('n', ']e', function () v.goto_next { severity = vs.ERROR } end)
+vim.keymap.set('n', '[w', function () v.goto_prev { severity = vs.WARNING } end)
+vim.keymap.set('n', ']w', function () v.goto_next { severity = vs.WARNING } end)
 
 g.setup {
     on_attach = function(buffer)
