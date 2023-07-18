@@ -10,6 +10,7 @@ vim.keymap.set({ 'o', 'x' }, 'ih', ':<c-u>Gitsigns select_hunk<cr>')
 vim.keymap.set({ 'n', 'v' }, '<c-/>', '<Plug>NERDCommenterToggle')
 vim.keymap.set('v', 'gs', function() g.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
 vim.keymap.set('v', 'gx', function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
+vim.keymap.set('i', '<c-s>', t.symbols)
 vim.keymap.set('n', 'cd', function ()
     if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.root then
         vim.cmd.cd(vim.b.gitsigns_status_dict.root)
@@ -80,6 +81,7 @@ for key, func in pairs {
     tq = t.quickfixhistory,
     td = t.diagnostics,
     tr = t.resume,
+    ts = t.symbols,
     w = t.grep_string,
 } do
     vim.keymap.set('n', '<leader>'..key, func)

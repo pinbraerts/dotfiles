@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		requires = { { 'nvim-lua/plenary.nvim' } },
 	}
+	use 'nvim-telescope/telescope-symbols.nvim'
 	use {
 		'nvim-telescope/telescope-dap.nvim',
 		requires = {
