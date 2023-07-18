@@ -127,10 +127,7 @@ function! ToggleStyle()
 endfunction
 
 let mapleader=" "
-nnoremap <silent> <leader>= :call ToggleStyle()<cr>
-nnoremap <silent> <leader>2 :w<bar>:source %<cr>
-nnoremap <silent> <leader>3 :w<bar>:!%<cr>
-nnoremap <silent> <leader>4 :w<bar>:silent !%<cr>
+nnoremap <silent> <leader>= <cmd>call ToggleStyle()<cr>
 nnoremap <silent> <leader>; A;<c-c>
 nnoremap <silent> <leader>, A,<c-c>
 
