@@ -139,7 +139,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end
             end, options)
         end
-        if capabilities.documentFormattingProvider then
+        if capabilities.formattingProvider then
             vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
             vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
         end

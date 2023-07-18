@@ -1,4 +1,4 @@
-local languages = { "c", "cpp", "python", "lua", "cuda", "tex", "vimdoc", "vimscript" }
+local languages = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'tex', 'vimdoc', 'vimscript' }
 require 'nvim-treesitter.configs'.setup {
 	enable = true,
 
