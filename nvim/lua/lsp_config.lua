@@ -25,59 +25,112 @@ lspconfig.clangd.setup {
 	capabilities = cmp_capabilities,
 }
 
-local vd = vim.diagnostic
-local vks = vim.keymap.set
-local vds = vim.diagnostic.severity
-vks('n', '[d', vd.goto_prev)
-vks('n', ']d', vd.goto_next)
-vks('n', '[e', function () vd.goto_prev { severity = vds.ERROR } end)
-vks('n', ']e', function () vd.goto_next { severity = vds.ERROR } end)
-vks('n', '[w', function () vd.goto_prev { severity = vds.WARNING } end)
-vks('n', ']w', function () vd.goto_next { severity = vds.WARNING } end)
-
-local lsp_group = vim.api.nvim_create_augroup('lsp', { clear = false })
+local t = require 'telescope.builtin'
+local d = require 'dap'
+local dui = require 'dap.ui'
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = lsp_group,
+	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function(args)
-		vim.treesitter.start(args.buf, args.filetype)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local options = { buffer = args.buf }
 		local capabilities = client.server_capabilities
 		if capabilities.completionProvider then
 			vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
 		if capabilities.definitionProvider then
 			vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+            vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, options)
 		end
-		local maps = {
-			{           'hover',  'K' },
-			{          'rename', '/r' },
-			-- {      'codeAction', '/a' },
-			{      'definition', '/j' },
-			-- {      'references', '/e' },
-			{     'declaration', '/u' },
-			{   'signatureHelp', '/k' },
-			-- {  'documentSymbol', '/d' },
-			{  'implementation', '/i' },
-			{  'typeDefinition', '/o' },
-			-- { 'workspaceSymbol', '/f' },
-		}
-		for _, map in ipairs(maps) do
-			local key  = map[2]:gsub('/', '<leader>')
-			local mode = map[4] or 'n'
-			if not key or not mode then
-				goto continue
-			end
-			local name = map[1]:gsub('([a-z])([A-Z])', '%1_%2'):lower()
-			local func = map[3] or vim.lsp.buf[name]
-			if not capabilities[map[1] .. 'Provider'] or not func then
-				func = function ()
-					print(map[1] .. " not supported")
-				end
-			end
-			vks(mode, key, func, { buffer = args.buf })
-			::continue::
+        if capabilities.declarationProvider then
+            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
+        end
+        if capabilities.implementationProvider then
+            vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, options)
+        end
+        if capabilities.documentSymbolProvider then
+            vim.keymap.set('n', '<leader>[', t.lsp_document_symbols, options)
+        end
+        if capabilities.workspaceSymbolProvider then
+            vim.keymap.set('n', '<leader>p', t.lsp_dynamic_workspace_symbols, options)
+            vim.keymap.set('n', '<leader>a', t.lsp_workspace_symbols, options)
+        end
+        if capabilities.referencesProvider then
+            vim.keymap.set('n', '<leader>]', t.lsp_references, options)
+        end
+        if capabilities.codeActionProvider then
+            vim.keymap.set('n', '<leader><space>', function ()
+                vim.lsp.buf.code_action {
+                    filter = function(action) return action.isPreferred end,
+                    apply = true,
+                }
+            end, options)
+        end
+        if capabilities.hoverProvider then
+            vim.keymap.set('n', 'K', function ()
+                if d.status() ~= "" then
+                    dui.hover()
+                else
+                    vim.lsp.buf.hover()
+                end
+            end, options)
+        end
+        if capabilities.documentFormattingProvider then
+            vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
+            vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
+        end
+	end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local options = { buffer = args.buf }
+		local capabilities = client.server_capabilities
+		if capabilities.completionProvider then
+			vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
-		vks('n', 'gh', function () vim.cmd("ClangdSwitchSourceHeader") end)
+		if capabilities.definitionProvider then
+			vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+            vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, options)
+		end
+        if capabilities.declarationProvider then
+            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
+        end
+        if capabilities.implementationProvider then
+            vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, options)
+        end
+        if capabilities.documentSymbolProvider then
+            vim.keymap.set('n', '<leader>[', t.lsp_document_symbols, options)
+        end
+        if capabilities.workspaceSymbolProvider then
+            vim.keymap.set('n', '<leader>p', t.lsp_dynamic_workspace_symbols, options)
+            vim.keymap.set('n', '<leader>a', t.lsp_workspace_symbols, options)
+        end
+        if capabilities.referencesProvider then
+            vim.keymap.set('n', '<leader>]', t.lsp_references, options)
+        end
+        if capabilities.codeActionProvider then
+            vim.keymap.set('n', '<leader><space>', function ()
+                vim.lsp.buf.code_action {
+                    filter = function(action) return action.isPreferred end,
+                    apply = true,
+                }
+            end, options)
+        end
+        if capabilities.hoverProvider then
+            vim.keymap.set('n', 'K', function ()
+                if d.status() ~= "" then
+                    dui.hover()
+                else
+                    vim.lsp.buf.hover()
+                end
+            end, options)
+        end
+        if capabilities.documentFormattingProvider then
+            vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
+            vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
+        end
 	end,
 })
 
