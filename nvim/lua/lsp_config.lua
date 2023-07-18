@@ -185,6 +185,8 @@ cmp.setup {
 		['<s-tab>'] = snip_prev,
 		['<c-n>'] = snip_next,
 		['<c-p>'] = snip_prev,
+		['<c-j>'] = snip_next,
+		['<c-k>'] = snip_prev,
 		['<c-space>'] = cmp.mapping.complete(),
 		['<cr>'] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
