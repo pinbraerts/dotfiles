@@ -18,7 +18,7 @@ map_leader {
     c = t.colorscheme,
     r = l.rename,
 
-    s = { g.stage_hunk, function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
+    s = { g.stage_hunk, function() g.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
     x = { g.reset_hunk, function() g.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end },
     u = g.undo_stage_hunk,
     v = function ()
