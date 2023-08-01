@@ -1,3 +1,5 @@
+History/
+ElevatedDiagnostics/
 Citrix/
 Comms/
 ConnectedDevicesPlatform/
@@ -20,7 +22,7 @@ Programs/
 Publishers/
 Rufus/
 Sentry/
-Temp/
+Temp*
 Thunderbird/
 ToastNotificationManagerCompat/
 TrueConf/
@@ -34,4 +36,22 @@ nvim/plugin/
 pip/
 pylint/
 speech/
+AMD*
+Obsidian/
+clangd/
+Application Data/
+coc/
+CMakeTools/
+CEF/
+.Identity*
+Resmon*
+GitExtensions/
+Far Manager/
+Cisco/
+Coati Software/
+Identity*
+obsidian-updater/
+audacity/
+VsVim/
+ServiceHub/
 IconCache.db
