@@ -1,4 +1,5 @@
 local languages = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'tex', 'vimdoc', 'vimscript' }
+require 'nvim-treesitter.install'.compilers = { 'cl.exe' }
 require 'nvim-treesitter.configs'.setup {
 	enable = true,
 
