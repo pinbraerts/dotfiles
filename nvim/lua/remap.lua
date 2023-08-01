@@ -1,5 +1,7 @@
 local t = require 'telescope.builtin'
-local td = require 'telescope'.extensions.dap
+local te = require 'telescope'.extensions
+local td = te.dap
+local tf = te.file_browser
 local g = require 'gitsigns'
 local d = require 'dap'
 vim.keymap.set('n', 'gb', t.buffers)
@@ -56,7 +58,6 @@ for key, func in pairs {
     gh = t.git_stash,
     gd = g.diffthis,
     gk = g.toggle_current_line_blame,
-    F = t.find_files,
 
     la = t.lsp_dynamic_workspace_symbols,
     ld = t.lsp_document_symbols,
@@ -82,7 +83,7 @@ for key, func in pairs {
     dd = d.run_to_cursor,
     dq = d.close,
 
-    f = t.find_files,
+    f = tf.file_browser,
     h = t.help_tags,
     i = t.jumplist,
     m = t.marks,
@@ -143,11 +144,9 @@ g.setup {
 vim.api.nvim_create_autocmd('DirChanged', {
     group = vim.api.nvim_create_augroup('git', { clear = true }),
     callback = function ()
-        if vim.fs.dir('.git')() then
-            vim.keymap.set('n', '<leader>f', t.git_files)
+        if vim.fs.dir('.git') then
             vim.keymap.set('n', 'gs', t.git_status) -- default go to sleep
         else
-            vim.keymap.set('n', '<leader>f', t.find_files)
             vim.keymap.set('n', 'gs', function () end)
             vim.keymap.del('n', 'gs') -- default go to sleep
         end
