@@ -39,7 +39,7 @@ require 'rust-tools'.setup {
 
 local t = require 'telescope.builtin'
 local d = require 'dap'
-local dui = require 'dap.ui'
+local dui = require 'dap.ui.widgets'
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function(args)
