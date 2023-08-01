@@ -8,9 +8,11 @@ local function delete_file(prompt_bufnr)
 end
 
 local telescope = require 'telescope'
-telescope.load_extension('dap')
 telescope.setup {
     defaults = {
+        layout_config = {
+            preview_width = 80,
+        },
         mappings = {
             i = {
                 ['<c-j>'] = {
@@ -30,7 +32,7 @@ telescope.setup {
             },
             n = {
                 d = delete_file,
-                v = 'select_vertical',
+                v = 'toggle_selection',
                 l = 'select_vertical',
                 h = 'select_horizontal',
                 q = 'close',
@@ -73,5 +75,16 @@ telescope.setup {
             },
         },
     },
+    extensions = {
+        file_browser = {
+            hijack_netrw = true,
+            layout_config = {
+                preview_width = 0.5,
+            },
+        },
+    },
 }
+telescope.load_extension 'dap'
+telescope.load_extension 'shell'
+telescope.load_extension 'file_browser'
 
