@@ -1,4 +1,4 @@
-vim.cmd.source('~/.config/.vimrc')
+vim.cmd.source('~/config/.vimrc')
 require 'plugins'
 require 'treesitter'
 require 'lsp_config'
