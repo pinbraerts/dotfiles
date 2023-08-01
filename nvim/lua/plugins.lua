@@ -1,6 +1,9 @@
 vim.cmd [[packadd packer.nvim]]
+local packer = require 'packer'
 
-return require('packer').startup(function(use)
+vim.keymap.set('n', '\\p', packer.sync)
+
+return packer.startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'wbthomason/packer.nvim'
 	use 'vim-airline/vim-airline'
@@ -30,6 +33,18 @@ return require('packer').startup(function(use)
 			'nvim-telescope/telescope.nvim',
 			'mfussenegger/nvim-dap',
 			'nvim-treesitter/nvim-treesitter',
-		}
+		},
 	}
+    use 'pinbraerts/shell.vim'
+    use 'nvim-tree/nvim-web-devicons'
+    use {
+        'rcarriga/nvim-dap-ui',
+        requires = {
+            'mfussenegger/nvim-dap',
+        },
+    }
+    use {
+		'nvim-telescope/telescope-file-browser.nvim',
+        requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    }
 end)
