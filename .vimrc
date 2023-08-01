@@ -30,37 +30,6 @@ set scrolloff=10
 set signcolumn=yes
 nohls
 
-function! SetCmd()
-	let &shell="cmd"
-	let &shellcmdflag="/c"
-	let &shellredir='>%s 2>&2'
-	set shellquote= shellxescape=
-	set shellxquote=
-	let $TMP="C:\\tmp"
-endfunction
-
-function! SetPwsh()
-	let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-	set shellquote= shellxquote=
-endfunction
-
-function! SetShell()
-	let &shell="sh"
-	let &shellcmdflag="-c"
-	let &shellredir='>%s 2>&2'
-	set shellquote= shellxescape=
-	set shellxquote=
-	" let $TMP="~/AppData/Local/Temp"
-	let $TMP="/tmp"
-endfunction
-
-if exists(":GuiFont")
-	GuiFont! JetBrains Mono:h11
-endif
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:airline_left_sep = ''
