@@ -128,8 +128,6 @@ cmp.setup {
 	mapping = cmp.mapping.preset.insert {
 		['<c-u>'] = cmp.mapping.scroll_docs(-4),
 		['<c-d>'] = cmp.mapping.scroll_docs(4),
-		['<tab>'] = snip_next,
-		['<s-tab>'] = snip_prev,
 		['<c-n>'] = snip_next,
 		['<c-p>'] = snip_prev,
 		['<c-j>'] = snip_next,

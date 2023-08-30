@@ -28,6 +28,7 @@ set tabstop=4
 set expandtab
 set scrolloff=10
 set signcolumn=yes
+set noshowmode
 nohls
 
 let g:netrw_banner = 0
@@ -120,16 +121,19 @@ nnoremap <silent> ]q <cmd>cn<cr>
 
 " fastcmd maps
 nnoremap \\ :
-nnoremap <silent> \q  <cmd>q<cr>
-nnoremap <silent> \w  <cmd>w<cr>
-nnoremap <silent> \e  <cmd>e<cr>
-nnoremap <silent> \a  <cmd>30Lex!<cr>
-nnoremap <silent> \gg <cmd>vert G<cr>
-nnoremap <silent>  gc <cmd>G commit<cr>
-nnoremap <silent> \gp <cmd>G push<cr>
-nnoremap <silent> \gP <cmd>G push --force-with-lease<cr>
-nnoremap <silent> \gf <cmd>G fetch --all --prune<cr>
+nnoremap \q  <cmd>q<cr>
+nnoremap \w  <cmd>w<cr>
+nnoremap \e  <cmd>e<cr>
+nnoremap \a  <cmd>30Lex!<cr>
+nnoremap \gs <cmd>vert G<cr>
+nnoremap  gc <cmd>G commit<cr>
+nnoremap \gp <cmd>G push<cr>
+nnoremap \gP <cmd>G push --force-with-lease<cr>
+nnoremap \gf <cmd>G fetch<cr>
+nnoremap \gF <cmd>G fetch --all --prune<cr>
+nnoremap \gu <cmd>G submodule update --recursive<cr>
 nnoremap \gr :G rebase 
+nnoremap \go :G checkout 
 
 augroup single_file_launch
     au!

@@ -1,13 +1,6 @@
 local a = require 'telescope.actions'
-local as = require 'telescope.actions.state'
-local function delete_file(prompt_bufnr)
-    local picker = as.get_current_picker(prompt_bufnr)
-    picker:delete_selection(function (selection)
-        vim.fn.delete(selection.path)
-    end)
-end
-
 local telescope = require 'telescope'
+local fba = telescope.extensions.file_browser.actions
 telescope.setup {
     defaults = {
         layout_config = {
@@ -31,7 +24,7 @@ telescope.setup {
                 ['<c-s>'] = { '<esc>S', type = 'command' },
             },
             n = {
-                d = delete_file,
+                dd = fba.remove,
                 v = 'toggle_selection',
                 l = 'select_vertical',
                 h = 'select_horizontal',
@@ -54,6 +47,13 @@ telescope.setup {
         lsp_references = { initial_mode = 'normal' },
         colorscheme = { enable_preview = true, },
         builtin = { include_extensions = true, },
+        buffers = {
+            mappings = {
+                n = {
+                    dd = 'delete_buffer',
+                },
+            },
+        },
         help_tags = {
             mappings = {
                 i = {
@@ -78,6 +78,8 @@ telescope.setup {
     extensions = {
         file_browser = {
             hijack_netrw = true,
+            respect_gitignore = false,
+            auto_depth = 2,
             layout_config = {
                 preview_width = 0.5,
             },
