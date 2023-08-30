@@ -55,22 +55,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
         if capabilities.declarationProvider then
             vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
+            vim.keymap.set('n', '<leader>l[', t.lsp_definitions, options)
         end
         if capabilities.implementationProvider then
             vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, options)
         end
         if capabilities.documentSymbolProvider then
-            vim.keymap.set('n', '<leader>[', t.lsp_document_symbols, options)
+            vim.keymap.set('n', '<leader>ld', t.lsp_document_symbols, options)
         end
         if capabilities.workspaceSymbolProvider then
-            vim.keymap.set('n', '<leader>p', t.lsp_dynamic_workspace_symbols, options)
-            vim.keymap.set('n', '<leader>a', t.lsp_workspace_symbols, options)
+            vim.keymap.set('n', '<leader>ls', t.lsp_workspace_symbols)
+        end
+        if capabilities.dynamicWorkspaceSymbolProvider then
+            vim.keymap.set('n', '<leader>lf', t.lsp_dynamic_workspace_symbols)
         end
         if capabilities.referencesProvider then
             vim.keymap.set('n', '<leader>]', t.lsp_references, options)
         end
         if capabilities.codeActionProvider then
-            vim.keymap.set('n', '<leader><space>', function ()
+            vim.keymap.set('n', '<leader>ll', function ()
                 vim.lsp.buf.code_action {
                     filter = function(action) return action.isPreferred end,
                     apply = true,

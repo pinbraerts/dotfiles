@@ -1,8 +1,21 @@
-local a = require 'telescope.actions'
 local telescope = require 'telescope'
 local fba = telescope.extensions.file_browser.actions
+local a = require 'telescope.actions'
+local as = require 'telescope.actions.state'
+
+local function select_and_save(prompt_bufnr)
+    a.select_default(prompt_bufnr)
+    local file = io.open('C:/Users/pinbraerts/config/nvim/Lua/colorscheme.vim', 'w+')
+    if file == nil then
+        return
+    end
+    file:write('colorscheme '..as.get_selected_entry().value)
+    file:close()
+end
+
 telescope.setup {
     defaults = {
+        path_display = { 'smart', },
         layout_config = {
             preview_width = 80,
         },
@@ -45,7 +58,14 @@ telescope.setup {
             },
         },
         lsp_references = { initial_mode = 'normal' },
-        colorscheme = { enable_preview = true, },
+        colorscheme = {
+            enable_preview = true,
+            mappings = {
+                n = {
+                    ['<enter>'] = select_and_save,
+                },
+            },
+        },
         builtin = { include_extensions = true, },
         buffers = {
             mappings = {
