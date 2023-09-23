@@ -118,11 +118,13 @@ g.setup {
         vim.keymap.set('n', ']c', function()
             if vim.wo.diff then return ']c' end
             vim.schedule(g.next_hunk)
+            vim.schedule(g.preview_hunk_inline)
             return '<Ignore>'
         end, options)
         vim.keymap.set('n', '[c', function()
             if vim.wo.diff then return '[c' end
             vim.schedule(g.prev_hunk)
+            vim.schedule(g.preview_hunk_inline)
             return '<Ignore>'
         end, options)
     end

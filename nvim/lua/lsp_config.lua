@@ -65,8 +65,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
         if capabilities.workspaceSymbolProvider then
             vim.keymap.set('n', '<leader>ls', t.lsp_workspace_symbols)
-        end
-        if capabilities.dynamicWorkspaceSymbolProvider then
             vim.keymap.set('n', '<leader>lf', t.lsp_dynamic_workspace_symbols)
         end
         if capabilities.referencesProvider then
