@@ -37,6 +37,7 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline_exclude_filetypes = ["terminal"]
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -139,6 +140,22 @@ augroup single_file_launch
     au!
     au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
     au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
+augroup END
+
+function! TerminalSettings()
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal signcolumn=no
+    set ft=terminal
+    " setlocal w:airline_active=0
+    " setlocal laststatus=0
+endfunction
+
+augroup terminal
+    au!
+    au TermOpen * call TerminalSettings()
+    " au TermClose * setlocal laststatus=2
+    " au TermClose * let w:airline_active=0
 augroup END
 
 " window maps
