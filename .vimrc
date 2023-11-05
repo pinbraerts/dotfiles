@@ -29,6 +29,8 @@ set expandtab
 set scrolloff=10
 set signcolumn=yes
 set noshowmode
+set undofile
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчняж;abcdefghijklmnopqrstuvwxyz;
 nohls
 
 let g:netrw_banner = 0
