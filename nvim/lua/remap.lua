@@ -105,15 +105,6 @@ g.setup {
         vim.o.signcolumn = 'yes'
         local options = { buffer = buffer }
 
-        vim.keymap.set('n', '<esc>', function ()
-            for _, id in ipairs(vim.api.nvim_list_wins()) do
-                if vim.api.nvim_win_get_config(id).relative ~= "" then
-                    vim.api.nvim_win_close(id, false)
-                end
-            end
-            vim.cmd.nohls()
-        end, options)
-
         options.expr = true
         vim.keymap.set('n', ']c', function()
             if vim.wo.diff then return ']c' end

@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, options)
 		end
         if capabilities.declarationProvider then
-            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
+            -- vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
             vim.keymap.set('n', '<leader>l[', t.lsp_definitions, options)
         end
         if capabilities.implementationProvider then
