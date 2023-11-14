@@ -44,31 +44,30 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-        local options = { buffer = args.buf }
 		local capabilities = client.server_capabilities
 		if capabilities.completionProvider then
 			vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
 		if capabilities.definitionProvider then
 			vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
-            vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, options)
+            vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, { buffer = args.buf, desc = 'LSP go to definition' })
 		end
         if capabilities.declarationProvider then
-            -- vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, options)
-            vim.keymap.set('n', '<leader>l[', t.lsp_definitions, options)
+            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, { buffer = args.buf, desc = 'LSP go to declaration' })
+            vim.keymap.set('n', '<leader>l[', t.lsp_definitions, { buffer = args.buf, desc = '[L]SP list declarations' })
         end
         if capabilities.implementationProvider then
-            vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, options)
+            vim.keymap.set('n', '<c-p>', vim.lsp.buf.implementation, { buffer = args.buf, desc = 'LSP go to implementation' })
         end
         if capabilities.documentSymbolProvider then
-            vim.keymap.set('n', '<leader>ld', t.lsp_document_symbols, options)
+            vim.keymap.set('n', '<leader>ld', t.lsp_document_symbols, { buffer = args.buf, desc = '[L]SP document symbols' })
         end
         if capabilities.workspaceSymbolProvider then
-            vim.keymap.set('n', '<leader>ls', t.lsp_workspace_symbols)
-            vim.keymap.set('n', '<leader>lf', t.lsp_dynamic_workspace_symbols)
+            vim.keymap.set('n', '<leader>ls', t.lsp_workspace_symbols, { desc = '[L]SP workspace symbols' })
+            vim.keymap.set('n', '<leader>lf', t.lsp_dynamic_workspace_symbols, { desc = '[L]SP dynamic workspace symbols' })
         end
         if capabilities.referencesProvider then
-            vim.keymap.set('n', '<leader>]', t.lsp_references, options)
+            vim.keymap.set('n', '<leader>]', t.lsp_references, { buffer = args.buf, desc = '[L]SP references' })
         end
         if capabilities.codeActionProvider then
             vim.keymap.set('n', '<leader>ll', function ()
@@ -76,7 +75,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     filter = function(action) return action.isPreferred end,
                     apply = true,
                 }
-            end, options)
+            end, { buffer = args.buf, desc = 'LSP apply code action' })
         end
         if capabilities.hoverProvider then
             vim.keymap.set('n', 'K', function ()
@@ -85,58 +84,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 else
                     vim.lsp.buf.hover()
                 end
-            end, options)
+            end, { buffer = args.buf, desc = 'LSP or DAP hover' })
         end
         if capabilities.formattingProvider then
             vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
-            vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf })
+            vim.keymap.set({ 'n', 'v' }, '=', 'gq', { remap = true, buffer = args.buf, desc = 'LSP formatting' })
         end
 	end,
 })
-
-local luasnip = require('luasnip')
-local cmp = require('cmp')
-local function snip_next (fallback)
-    if cmp.visible() then
-        cmp.select_next_item()
-    elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-    else
-        fallback()
-    end
-end
-snip_next = cmp.mapping(snip_next)
-local function snip_prev (fallback)
-    if cmp.visible() then
-        cmp.select_prev_item()
-    elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    else
-        fallback()
-    end
-end
-snip_prev = cmp.mapping(snip_prev)
-cmp.setup {
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	},
-	mapping = cmp.mapping.preset.insert {
-		['<c-u>'] = cmp.mapping.scroll_docs(-4),
-		['<c-d>'] = cmp.mapping.scroll_docs(4),
-		['<c-n>'] = snip_next,
-		['<c-p>'] = snip_prev,
-		['<c-j>'] = snip_next,
-		['<c-k>'] = snip_prev,
-		['<c-space>'] = cmp.mapping.complete(),
-		['<cr>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
-    },
-}
+vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = '[L]SP rename' })
+vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = '[L]SP code [a]ction' })
