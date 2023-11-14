@@ -30,16 +30,8 @@ lspconfig.powershell_es.setup {
     single_file_support = true,
     bundle_path = 'D:/PowerShellEditorServices',
 }
-require 'rust-tools'.setup {
-    single_file_support = true,
-    server = {
-        standalone = true,
-    },
-}
 
 local t = require 'telescope.builtin'
-local d = require 'dap'
-local dui = require 'dap.ui.widgets'
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function(args)
@@ -53,7 +45,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, { buffer = args.buf, desc = 'LSP go to definition' })
 		end
         if capabilities.declarationProvider then
-            vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, { buffer = args.buf, desc = 'LSP go to declaration' })
+            -- vim.keymap.set('n', '<c-[>', vim.lsp.buf.declaration, { buffer = args.buf, desc = 'LSP go to declaration' })
             vim.keymap.set('n', '<leader>l[', t.lsp_definitions, { buffer = args.buf, desc = '[L]SP list declarations' })
         end
         if capabilities.implementationProvider then
@@ -77,14 +69,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 }
             end, { buffer = args.buf, desc = 'LSP apply code action' })
         end
-        if capabilities.hoverProvider then
-            vim.keymap.set('n', 'K', function ()
-                if d.status() ~= "" then
-                    dui.hover()
-                else
-                    vim.lsp.buf.hover()
-                end
-            end, { buffer = args.buf, desc = 'LSP or DAP hover' })
+        if capabilities.hoverProvider and not vim.fn.has('dap') then
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf, desc = 'LSP hover' })
         end
         if capabilities.formattingProvider then
             vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"

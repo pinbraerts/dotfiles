@@ -1,4 +1,11 @@
 local d = require 'dap'
+local dui = require 'dap.ui.widgets'
+require 'rust-tools'.setup {
+    single_file_support = true,
+    server = {
+        standalone = true,
+    },
+}
 -- d.set_log_level('trace')
 vim.keymap.set('n', '<leader>b', d.toggle_breakpoint, { desc = 'Toggle breakpoint' })
 vim.keymap.set('n', '<leader>dc', d.continue, { desc = '[D]ebug [c]ontinue' })
@@ -14,6 +21,13 @@ vim.keymap.set('n', '<leader>dx', d.terminate, { desc = '[D]ebug terminate' })
 vim.keymap.set('n', '<leader>j', d.step_over, { desc = 'Step over' })
 vim.keymap.set('n', '<leader>k', d.step_out, { desc = 'Step out' })
 vim.keymap.set('n', '<leader>l', d.step_into, { desc = 'Step into' })
+vim.keymap.set('n', 'K', function ()
+    if d.status() ~= "" then
+        dui.hover()
+    else
+        vim.lsp.buf.hover()
+    end
+end, { desc = 'LSP or DAP hover' })
 
 local function pre_launch (adapter)
    return function (callback, config)
