@@ -19,6 +19,7 @@ set smartindent
 set listchars=space:.,eol:$,trail:-,tab:\|\ 
 set nocompatible
 set noswapfile
+set undofile
 set nowrap
 set number
 set relativenumber
@@ -27,7 +28,6 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set scrolloff=10
-set signcolumn=yes
 set noshowmode
 set undofile
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчняж;abcdefghijklmnopqrstuvwxyz;
@@ -40,13 +40,6 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_exclude_filetypes = ["terminal"]
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1
-let g:NERDToggleCheckAllLines = 1
 
 " camel case word
 noremap <silent> <a-w> /\u<cr>
@@ -129,7 +122,7 @@ nnoremap \w  <cmd>w<cr>
 nnoremap \e  <cmd>e<cr>
 nnoremap \a  <cmd>30Lex!<cr>
 nnoremap \gs <cmd>vert G<cr>
-nnoremap  gc <cmd>G commit<cr>
+nnoremap \gc <cmd>G commit<cr>
 nnoremap \gp <cmd>G push<cr>
 nnoremap \gP <cmd>G push --force-with-lease<cr>
 nnoremap \gf <cmd>G fetch<cr>
