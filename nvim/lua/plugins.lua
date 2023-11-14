@@ -28,16 +28,12 @@ require 'lazy'.setup {
         end,
     },
 
-    -- 'pinbraerts/shell.vim',
-    'nvim-tree/nvim-web-devicons',
-
 	'folke/tokyonight.nvim',
     {
         'mtdl9/vim-log-highlighting',
         lazy = true,
         ft = 'log',
     },
-    'tpope/vim-fugitive',
 
     {
         'nvim-treesitter/nvim-treesitter',
@@ -67,35 +63,8 @@ require 'lazy'.setup {
         end,
     },
 
-    {
-        'neovim/nvim-lspconfig',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'simrat39/rust-tools.nvim',
-        },
-        ft = lsp_filetypes,
-        lazy = true,
-        config = function ()
-            require 'lsp_config'
-        end,
-        mappings = {
-            { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = 'Switch beetween source and header files by clangd' }, },
-        },
-    },
-
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'L3MON4D3/LuaSnip',
-            'hrsh7th/cmp-nvim-lsp',
-            'saadparwaiz1/cmp_luasnip',
-        },
-        ft = lsp_filetypes,
-        lazy = true,
-        config = function()
-            require 'completion_setup'
-        end,
-    },
+    -- 'pinbraerts/shell.vim',
+    'tpope/vim-fugitive',
 
     {
         'lewis6991/gitsigns.nvim',
@@ -129,6 +98,36 @@ require 'lazy'.setup {
             local ts = require('telescope.builtin')
             vim.keymap.set('n', '<leader>ts', ts.symbols, { desc = 'Open unicode symbols picker' })
             vim.keymap.set('i', '<c-s>', ts.symbols, { desc = 'Open unicode symbols picker' })
+        end,
+    },
+
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'simrat39/rust-tools.nvim',
+        },
+        ft = lsp_filetypes,
+        lazy = true,
+        config = function ()
+            require 'lsp_config'
+        end,
+        mappings = {
+            { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = 'Switch beetween source and header files by clangd' }, },
+        },
+    },
+
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'L3MON4D3/LuaSnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+        },
+        ft = lsp_filetypes,
+        lazy = true,
+        config = function()
+            require 'completion_setup'
         end,
     },
 
