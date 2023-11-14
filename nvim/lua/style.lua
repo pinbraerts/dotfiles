@@ -13,5 +13,3 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_command_line = false
     vim.o.guifont = 'FiraCode Nerd Font Mono:h14'
 end
-
-vim.cmd.source('~/config/nvim/lua/colorscheme.vim')
