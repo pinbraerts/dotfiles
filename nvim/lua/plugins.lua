@@ -11,7 +11,11 @@ return packer.startup(function(use)
 	use 'preservim/nerdcommenter'
 	use 'EdenEast/nightfox.nvim'
 	use 'folke/tokyonight.nvim'
-	use 'nvim-treesitter/nvim-treesitter'
+	use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        requires = { { 'nvim-treesitter/nvim-treesitter-textobjects' } },
+    }
 	use 'mtdl9/vim-log-highlighting'
 	use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
