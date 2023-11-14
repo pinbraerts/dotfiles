@@ -1,54 +1,161 @@
-vim.cmd [[packadd packer.nvim]]
-local packer = require 'packer'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.keymap.set('n', '\\p', packer.sync)
+local lsp_filetypes = { 'lua', 'python', 'c', 'cpp', 'rust', 'powershell' }
+local debuggable_filetypes = { 'python', 'c', 'cpp', 'rust' }
 
-return packer.startup(function(use)
-	use 'nvim-lua/plenary.nvim'
-	use 'wbthomason/packer.nvim'
-	use 'vim-airline/vim-airline'
-	use 'vim-airline/vim-airline-themes'
-	use 'preservim/nerdcommenter'
-	use 'EdenEast/nightfox.nvim'
-	use 'folke/tokyonight.nvim'
-	use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use {
+require 'lazy'.setup {
+	'vim-airline/vim-airline',
+	'vim-airline/vim-airline-themes',
+    {
+        'EdenEast/nightfox.nvim',
+        config = function()
+            vim.cmd.colorscheme('nightfox')
+        end,
+    },
+
+    -- 'pinbraerts/shell.vim',
+    'nvim-tree/nvim-web-devicons',
+
+	'folke/tokyonight.nvim',
+    {
+        'mtdl9/vim-log-highlighting',
+        lazy = true,
+        ft = 'log',
+    },
+    'tpope/vim-fugitive',
+
+    {
         'nvim-treesitter/nvim-treesitter',
-        requires = { { 'nvim-treesitter/nvim-treesitter-textobjects' } },
-    }
-	use 'mtdl9/vim-log-highlighting'
-	use 'neovim/nvim-lspconfig'
-    use 'simrat39/rust-tools.nvim'
-	use 'hrsh7th/nvim-cmp'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'saadparwaiz1/cmp_luasnip'
-	use 'L3MON4D3/LuaSnip'
-	use 'tpope/vim-fugitive'
-	use 'lewis6991/gitsigns.nvim'
-	use 'mfussenegger/nvim-dap'
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		requires = { { 'nvim-lua/plenary.nvim' } },
-	}
-	use 'nvim-telescope/telescope-symbols.nvim'
-	use {
+        dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+        lazy = true,
+        ft = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'vimdoc', 'html', 'css', 'javascript' },
+        build = ':TSUpdate',
+        config = function ()
+            require 'treesitter_setup'
+        end,
+    },
+
+    {
+        'numToStr/Comment.nvim',
+        config = function ()
+            require 'Comment'.setup {
+                padding = true,
+                sticky = true,
+                toggler = {
+                    line = 'gc',
+                },
+                mappings = {
+                    basic = true,
+                    extra = false,
+                },
+            }
+        end,
+    },
+
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'simrat39/rust-tools.nvim',
+        },
+        ft = lsp_filetypes,
+        lazy = true,
+        config = function ()
+            require 'lsp_config'
+        end,
+        mappings = {
+            { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = 'Switch beetween source and header files by clangd' }, },
+        },
+    },
+
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'L3MON4D3/LuaSnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+        },
+        ft = lsp_filetypes,
+        lazy = true,
+        config = function()
+            require 'completion_setup'
+        end,
+    },
+
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require 'gitsigns_setup'
+        end,
+    },
+
+    {
+		'nvim-telescope/telescope.nvim',
+        tag = '0.1.4',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function ()
+            require 'telescope_setup'
+        end,
+	},
+
+    {
+		'nvim-telescope/telescope-file-browser.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            local tf = require('telescope').load_extension('file_browser')
+            vim.keymap.set('n', '<leader>fb', tf.file_browser, { desc = '[F]ile [b]rowser' })
+        end,
+    },
+
+    {
+        'nvim-telescope/telescope-symbols.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            local ts = require('telescope.builtin')
+            vim.keymap.set('n', '<leader>ts', ts.symbols, { desc = 'Open unicode symbols picker' })
+            vim.keymap.set('i', '<c-s>', ts.symbols, { desc = 'Open unicode symbols picker' })
+        end,
+    },
+
+    {
+        'mfussenegger/nvim-dap',
+        lazy = true,
+        ft = debuggable_filetypes,
+        dependencies = {
+            'rcarriga/nvim-dap-ui',
+        },
+        config = function ()
+            require 'debugging'
+        end,
+    },
+
+    {
 		'nvim-telescope/telescope-dap.nvim',
-		requires = {
+        lazy = true,
+        ft = debuggable_filetypes,
+		dependencies = {
 			'nvim-telescope/telescope.nvim',
 			'mfussenegger/nvim-dap',
 			'nvim-treesitter/nvim-treesitter',
 		},
-	}
-    use 'pinbraerts/shell.vim'
-    use 'nvim-tree/nvim-web-devicons'
-    use {
-        'rcarriga/nvim-dap-ui',
-        requires = {
-            'mfussenegger/nvim-dap',
-        },
-    }
-    use {
-		'nvim-telescope/telescope-file-browser.nvim',
-        requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-    }
-end)
+        config = function()
+            local td = require('telescope').load_extension('dap')
+            vim.keymap.set('n', '<leader>db', td.list_breakpoints, { desc = '[L]ist [d]ebug [b]reakpoints' })
+            vim.keymap.set('n', '<leader>dd', td.configurations, { desc = '[L]ist [d]ebug [c]onfigurations' })
+            vim.keymap.set('n', '<leader>df', td.frames, { desc = '[List] [d]ebug [f]rames' })
+            vim.keymap.set('n', '<leader>dv', td.variables, { desc = '[L]ist [d]ebug [v]ariables' })
+        end,
+	},
+
+}
