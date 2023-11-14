@@ -75,7 +75,7 @@ require 'lazy'.setup {
 
     {
 		'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
+        branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' },
         config = function ()
             require 'telescope_setup'
@@ -105,12 +105,11 @@ require 'lazy'.setup {
         'neovim/nvim-lspconfig',
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
-            'simrat39/rust-tools.nvim',
         },
         ft = lsp_filetypes,
         lazy = true,
         config = function ()
-            require 'lsp_config'
+            require 'lsp_setup'
         end,
         mappings = {
             { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = 'Switch beetween source and header files by clangd' }, },
@@ -137,6 +136,7 @@ require 'lazy'.setup {
         ft = debuggable_filetypes,
         dependencies = {
             'rcarriga/nvim-dap-ui',
+            'simrat39/rust-tools.nvim',
         },
         config = function ()
             require 'debugging'
