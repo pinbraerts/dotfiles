@@ -15,8 +15,12 @@ local lsp_filetypes = { 'lua', 'python', 'c', 'cpp', 'rust', 'powershell' }
 local debuggable_filetypes = { 'python', 'c', 'cpp', 'rust' }
 
 require 'lazy'.setup {
-	'vim-airline/vim-airline',
-	'vim-airline/vim-airline-themes',
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = { },
+    },
+
     {
         'EdenEast/nightfox.nvim',
         config = function()

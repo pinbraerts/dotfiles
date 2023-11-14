@@ -35,11 +35,6 @@ nohls
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_exclude_filetypes = ["terminal"]
 
 " camel case word
 noremap <silent> <a-w> /\u<cr>
