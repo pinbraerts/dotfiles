@@ -13,6 +13,8 @@ set bind-tty-special-chars off
 set keymap vi-command
 set echo-control-characters off
 
+"\C-k": history-search-backwards
+"n": "in"
 "ciw": "bce"
 "diw": "bde"
 "ciW": "BcE"
