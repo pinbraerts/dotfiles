@@ -18,7 +18,11 @@ require 'lazy'.setup {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = { },
+        opts = {
+            options = {
+                disabled_filetypes = { 'terminal', },
+            },
+        },
     },
 
     {
