@@ -7,7 +7,7 @@ t.setup {
         path_display = { 'smart', },
         layout_config = {
             flex = {
-                flip_columns = 200,
+                flip_columns = 160,
             },
             horizontal = {
                 preview_cutoff = 0,
