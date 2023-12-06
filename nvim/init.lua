@@ -6,4 +6,5 @@ end
 require 'plugins'
 require 'style'
 require 'remap'
+require 'terminal_setup'
 

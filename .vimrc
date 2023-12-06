@@ -132,22 +132,6 @@ augroup single_file_launch
     au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
 augroup END
 
-function! TerminalSettings()
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal signcolumn=no
-    set ft=terminal
-    " setlocal w:airline_active=0
-    " setlocal laststatus=0
-endfunction
-
-augroup terminal
-    au!
-    au TermOpen * call TerminalSettings()
-    " au TermClose * setlocal laststatus=2
-    " au TermClose * let w:airline_active=0
-augroup END
-
 " window maps
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -159,12 +143,3 @@ cnoremap <c-h> <left>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 cnoremap <c-l> <right>
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
