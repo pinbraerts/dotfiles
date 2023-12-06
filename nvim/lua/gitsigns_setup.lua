@@ -14,7 +14,7 @@ vim.keymap.set('n', '<leader>gv', g.preview_hunk, { desc = '[G]it pre[v]iew' })
 
 g.setup {
     on_attach = function(buffer)
-        vim.o.signcolumn = 'yes'
+        vim.opt_local.signcolumn = 'yes'
 
         vim.keymap.set('n', '<esc>', function ()
             for _, id in ipairs(vim.api.nvim_list_wins()) do

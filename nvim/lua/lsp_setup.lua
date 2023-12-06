@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		local capabilities = client.server_capabilities
-        vim.o.signcolumn = 'yes'
+        vim.opt_local.signcolumn = 'yes'
 		if capabilities.completionProvider then
 			vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
