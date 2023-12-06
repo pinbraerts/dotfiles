@@ -40,6 +40,7 @@ if ! [[ "$LD_LIBRARY_PATH" =~ "/usr/local/lib" ]]; then
 fi
 export LD_LIBRARY_PATH
 export HISTCONTROL=ignoredups:ignorespace
+export HISTSIZE=10000
 export PROMPT_COMMAND=update_prompt
 
 # tools imports
