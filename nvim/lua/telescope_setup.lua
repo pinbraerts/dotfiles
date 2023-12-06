@@ -6,8 +6,17 @@ t.setup {
     defaults = {
         path_display = { 'smart', },
         layout_config = {
-            preview_width = 80,
+            flex = {
+                flip_columns = 200,
+            },
+            horizontal = {
+                preview_cutoff = 0,
+            },
+            vertical = {
+                preview_cutoff = 0,
+            },
         },
+        layout_strategy = 'flex',
         mappings = {
             i = {
                 ['<c-j>'] = {
