@@ -79,12 +79,15 @@ xnoremap iq i"
 function! ToggleStyle()
 	if &list
 		set colorcolumn=
+		set nocursorline
+		set nocursorcolumn
+		set nolist
 	else
 		set colorcolumn=80
+		set cursorline
+		set cursorcolumn
+		set list
 	endif
-	set invcursorline
-	set invcursorcolumn
-	set invlist
 endfunction
 
 let mapleader=" "
