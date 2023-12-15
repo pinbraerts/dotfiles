@@ -97,10 +97,10 @@ nnoremap <silent> <leader>; A;<c-c>
 nnoremap <silent> <leader>, A,<c-c>
 
 " clipboard maps
- noremap <leader>p "*p
- noremap <leader>P "*P
- noremap <leader>y "*y
- noremap <leader>Y "*Y
+ noremap <leader>p "+p
+ noremap <leader>P "+P
+ noremap <leader>y "+y
+ noremap <leader>Y "+Y
 
 " scroll buffers
 nnoremap <silent> [b <cmd>bp<cr>
