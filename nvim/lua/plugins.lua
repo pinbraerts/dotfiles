@@ -40,7 +40,7 @@ require 'lazy'.setup {
 						},
 					},
 				},
-				lualine_x = { 'diagnostics', },
+				lualine_x = { 'diff', 'diagnostics', },
 				lualine_y = { 'filetype', 'fileformat', 'encoding', },
 				lualine_z = { 'progress', 'location', },
 			},
