@@ -25,6 +25,26 @@ require 'lazy'.setup {
 				-- component_separators = { left = '', right = '' },
 				component_separators = { left = '|', right = '|' },
 			},
+			sections = {
+				lualine_a = { 'mode' },
+				lualine_b = { 'branch' },
+				lualine_c = {
+					{
+						'buffers',
+						icons_enabled = false,
+						section_separators = { left = '' },
+						component_separators = { left = '' },
+						mode = 2,
+						symbols = {
+							alternate_file = '',
+						},
+					},
+				},
+				lualine_x = { 'diagnostics', },
+				lualine_y = { 'filetype', 'fileformat', 'encoding', },
+				lualine_z = { 'progress', 'location', },
+			},
+		},
 		lazy = false,
 		},
         },
