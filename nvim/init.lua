@@ -7,4 +7,5 @@ require 'plugins'
 require 'style'
 require 'remap'
 require 'terminal_setup'
+vim.o.cmdheight = 0
 
