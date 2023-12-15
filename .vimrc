@@ -110,12 +110,6 @@ nnoremap <silent> ]b <cmd>bn<cr>
 nnoremap <silent> [q <cmd>cp<cr>
 nnoremap <silent> ]q <cmd>cn<cr>
 
-augroup single_file_launch
-	au!
-	au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
-	au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
-augroup END
-
 " window maps
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
