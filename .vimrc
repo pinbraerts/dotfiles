@@ -44,7 +44,7 @@ noremap <silent> <a-b> ?\u<cr>
 nnoremap Y yg$
 
 " disable highlight
-nnoremap <silent> <esc> <cmd>nohls<cr>
+nnoremap <esc> <cmd>nohls<cr>
 vnoremap <esc> <c-c>
 
 " paste from clipboard while typing
@@ -102,12 +102,12 @@ nnoremap <silent> <leader>, A,<c-c>
  noremap <leader>Y "+Y
 
 " scroll buffers
-nnoremap <silent> [b <cmd>bp<cr>
-nnoremap <silent> ]b <cmd>bn<cr>
+nnoremap [b <cmd>bp<cr>
+nnoremap ]b <cmd>bn<cr>
 
 " scroll quickfix
-nnoremap <silent> [q <cmd>cp<cr>
-nnoremap <silent> ]q <cmd>cn<cr>
+nnoremap [q <cmd>cp<cr>
+nnoremap ]q <cmd>cn<cr>
 
 " window maps
 nnoremap <c-j> <c-w>j
