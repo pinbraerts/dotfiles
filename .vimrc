@@ -36,10 +36,6 @@ nohls
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
-" camel case word
-noremap <silent> <a-w> /\u<cr>
-noremap <silent> <a-b> ?\u<cr>
-
 " yank to end of line
 nnoremap Y yg$
 
@@ -92,8 +88,6 @@ endfunction
 
 let mapleader=" "
 nnoremap <silent> <leader>= <cmd>call ToggleStyle()<cr>
-nnoremap <silent> <leader>; A;<c-c>
-nnoremap <silent> <leader>, A,<c-c>
 
 " clipboard maps
  noremap <leader>p "+p
