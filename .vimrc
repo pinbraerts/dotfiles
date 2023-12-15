@@ -26,7 +26,7 @@ set relativenumber
 set splitright
 set shiftwidth=4
 set tabstop=4
-set expandtab
+set noexpandtab
 set scrolloff=10
 set noshowmode
 set undofile
@@ -59,18 +59,18 @@ vnoremap R "_dP
 
 " enter maps
 nnoremap <enter> i<cr><c-c>
-nnoremap <silent> <s-enter>	       <cmd>call append(line('.')-1,'')<cr>
-nnoremap <silent> <c-enter>	       <cmd>call append(line('.')  ,'')<cr>
+nnoremap <silent> <s-enter>		   <cmd>call append(line('.')-1,'')<cr>
+nnoremap <silent> <c-enter>		   <cmd>call append(line('.')  ,'')<cr>
 inoremap <silent> <s-enter> <c-c>  <cmd>call append(line('.')-1,'')<cr>a
 inoremap <silent> <c-enter> <c-c>  <cmd>call append(line('.')  ,'')<cr>a
 vnoremap <silent> <s-enter> <c-c>`<<cmd>call append(line('.')-1,'')<cr>gv
 vnoremap <silent> <c-enter> <c-c>`><cmd>call append(line('.')  ,'')<cr>gv
 
 " move lines on alt
-nnoremap <silent> <a-k>      <cmd>m-2<cr>==
-nnoremap <silent> <a-j>      <cmd>m+1<cr>==
-vnoremap <silent> <a-j>      <cmd>m'>+1<cr>gv=gv
-vnoremap <silent> <a-k>      <cmd>m'<-2<cr>gv=gv
+nnoremap <silent> <a-k>		 <cmd>m-2<cr>==
+nnoremap <silent> <a-j>		 <cmd>m+1<cr>==
+vnoremap <silent> <a-j>		 <cmd>m'>+1<cr>gv=gv
+vnoremap <silent> <a-k>		 <cmd>m'<-2<cr>gv=gv
 inoremap <silent> <a-j> <c-c><cmd>m+1<cr>==a
 inoremap <silent> <a-k> <c-c><cmd>m-2<cr>==a
 
@@ -127,9 +127,9 @@ nnoremap \gr :G rebase
 nnoremap \go :G checkout 
 
 augroup single_file_launch
-    au!
-    au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
-    au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
+	au!
+	au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
+	au BufEnter *nvim/*.lua nnoremap <buffer> <silent> \s <cmd>so<cr>
 augroup END
 
 " window maps

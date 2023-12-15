@@ -43,9 +43,9 @@ config.keys = {
 }
 -- config.window_background_image = "c:/users/pinbraerts/pictures/1920x1080_samurai_tour_wallpaper.png"
 -- config.window_background_image_hsb = {
---   brightness = 0.3,
---   hue = 1.0,
---   saturation = 1.0,
+--	 brightness = 0.3,
+--	 hue = 1.0,
+--	 saturation = 1.0,
 -- }
 -- config.window_background_opacity = 0.8
 

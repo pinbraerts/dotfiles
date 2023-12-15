@@ -13,32 +13,32 @@ vim.keymap.set('n', '<leader>gk', g.toggle_current_line_blame, { desc = '[G]it t
 vim.keymap.set('n', '<leader>gv', g.preview_hunk, { desc = '[G]it pre[v]iew' })
 
 g.setup {
-    on_attach = function(buffer)
-        vim.opt_local.signcolumn = 'yes'
+	on_attach = function(buffer)
+		vim.opt_local.signcolumn = 'yes'
 
-        vim.keymap.set('n', '<esc>', function ()
-            for _, id in ipairs(vim.api.nvim_list_wins()) do
-                if vim.api.nvim_win_get_config(id).relative ~= "" then
-                    vim.api.nvim_win_close(id, false)
-                end
-            end
-            vim.cmd.nohls()
-        end, { buffer = buffer, desc = 'close relative window' })
+		vim.keymap.set('n', '<esc>', function ()
+			for _, id in ipairs(vim.api.nvim_list_wins()) do
+				if vim.api.nvim_win_get_config(id).relative ~= "" then
+					vim.api.nvim_win_close(id, false)
+				end
+			end
+			vim.cmd.nohls()
+		end, { buffer = buffer, desc = 'close relative window' })
 
-        vim.keymap.set('n', ']c', function()
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function ()
+		vim.keymap.set('n', ']c', function()
+			if vim.wo.diff then return ']c' end
+			vim.schedule(function ()
 				g.next_hunk { preview = true }
-            end)
-            return '<Ignore>'
-        end, { expr = true, buffer = buffer, desc = 'Go to next hunk' })
-        vim.keymap.set('n', '[c', function()
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function ()
+			end)
+			return '<Ignore>'
+		end, { expr = true, buffer = buffer, desc = 'Go to next hunk' })
+		vim.keymap.set('n', '[c', function()
+			if vim.wo.diff then return '[c' end
+			vim.schedule(function ()
 				g.prev_hunk { preview = true }
-            end)
-            return '<Ignore>'
-        end, { expr = true, buffer = buffer, desc = 'Go to previous hunk' })
-    end
+			end)
+			return '<Ignore>'
+		end, { expr = true, buffer = buffer, desc = 'Go to previous hunk' })
+	end
 }
 

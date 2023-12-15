@@ -1,7 +1,7 @@
 local config = vim.fn.stdpath('config')
 local vimrc = config .. '/../.vimrc'
 if vim.fn.filereadable(vimrc) ~= 0 then
-    vim.cmd.source(vimrc)
+	vim.cmd.source(vimrc)
 end
 require 'plugins'
 require 'style'

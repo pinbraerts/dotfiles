@@ -1,21 +1,21 @@
 local t = vim.api.nvim_create_augroup('terminal', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
-    group = t,
-    callback = function (args)
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt_local.signcolumn = 'no'
-        vim.bo[args.buf].filetype = 'terminal'
-        vim.cmd.startinsert()
-    end,
+	group = t,
+	callback = function (args)
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.opt_local.signcolumn = 'no'
+		vim.bo[args.buf].filetype = 'terminal'
+		vim.cmd.startinsert()
+	end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
-    pattern = 'term://*',
-    group = t,
-    callback = function (_)
-        vim.cmd.startinsert() -- automatically enter normal mode
-    end,
+	pattern = 'term://*',
+	group = t,
+	callback = function (_)
+		vim.cmd.startinsert() -- automatically enter normal mode
+	end,
 })
 
 vim.keymap.set('t', '<s-esc>', '<c-\\><c-n>', { desc = 'quit terminal mode' })

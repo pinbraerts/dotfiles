@@ -1,23 +1,23 @@
 local luasnip = require('luasnip')
 local cmp = require('cmp')
 local function snip_next (fallback)
-    if cmp.visible() then
-        cmp.select_next_item()
-    elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-    else
-        fallback()
-    end
+	if cmp.visible() then
+		cmp.select_next_item()
+	elseif luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	else
+		fallback()
+	end
 end
 snip_next = cmp.mapping(snip_next)
 local function snip_prev (fallback)
-    if cmp.visible() then
-        cmp.select_prev_item()
-    elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    else
-        fallback()
-    end
+	if cmp.visible() then
+		cmp.select_prev_item()
+	elseif luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	else
+		fallback()
+	end
 end
 snip_prev = cmp.mapping(snip_prev)
 cmp.setup {
@@ -42,5 +42,5 @@ cmp.setup {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
-    },
+	},
 }
