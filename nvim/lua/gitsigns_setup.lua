@@ -27,14 +27,16 @@ g.setup {
 
         vim.keymap.set('n', ']c', function()
             if vim.wo.diff then return ']c' end
-            vim.schedule(g.next_hunk)
-            vim.schedule(g.preview_hunk_inline)
+            vim.schedule(function ()
+				g.next_hunk { preview = true }
+            end)
             return '<Ignore>'
         end, { expr = true, buffer = buffer, desc = 'Go to next hunk' })
         vim.keymap.set('n', '[c', function()
             if vim.wo.diff then return '[c' end
-            vim.schedule(g.prev_hunk)
-            vim.schedule(g.preview_hunk_inline)
+            vim.schedule(function ()
+				g.prev_hunk { preview = true }
+            end)
             return '<Ignore>'
         end, { expr = true, buffer = buffer, desc = 'Go to previous hunk' })
     end
