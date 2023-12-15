@@ -10,10 +10,12 @@ t.setup {
                 flip_columns = 160,
             },
             horizontal = {
+                preview_width = { 0.5, min = 80, },
                 preview_cutoff = 0,
             },
             vertical = {
                 preview_cutoff = 0,
+                preview_height = 0.5,
             },
         },
         layout_strategy = 'flex',
@@ -92,9 +94,6 @@ t.setup {
         file_browser = {
             respect_gitignore = false,
             auto_depth = 2,
-            layout_config = {
-                preview_width = 0.5,
-            },
         },
     },
 }
