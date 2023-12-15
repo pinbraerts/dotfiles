@@ -59,18 +59,10 @@ t.setup {
 				},
 			},
 		},
-		lsp_references = { initial_mode = 'normal' },
 		colorscheme = {
 			enable_preview = true,
 		},
 		builtin = { include_extensions = true, },
-		buffers = {
-			mappings = {
-				n = {
-					dd = 'delete_buffer',
-				},
-			},
-		},
 		help_tags = {
 			mappings = {
 				i = {
@@ -87,7 +79,6 @@ t.setup {
 				n = {
 					s = 'git_staging_toggle',
 					u = 'git_staging_toggle',
-					c = { ':G commit<cr>', type = 'command', },
 				},
 			},
 		},
