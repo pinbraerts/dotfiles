@@ -40,7 +40,7 @@ require 'lazy'.setup {
 						},
 					},
 				},
-				lualine_x = { 'diff', 'diagnostics', },
+				lualine_x = { 'diagnostics', },
 				lualine_y = { 'filetype', 'fileformat', 'encoding', },
 				lualine_z = { 'progress', 'location', },
 			},
@@ -109,6 +109,16 @@ require 'lazy'.setup {
 		config = function()
 			require 'gitsigns_setup'
 		end,
+		keys = {
+			{ '\\gc', '<cmd>G commit<cr>', desc = '[G]it [c]ommit', silent = true },
+			{ '\\gf', '<cmd>G fetch<cr>', desc = '[G]it [f]etch', silent = true },
+			{ '\\gF', '<cmd>G fetch --all --prune<cr>', desc = '[G]it [F]etch all and prune', silent = true },
+			{ '\\gp', '<cmd>G push<cr>', desc = '[G]it [p]ush', silent = true },
+			{ '\\gP', '<cmd>G push --force-with-lease<cr>', desc = '[G]it [P]ush force with lease', silent = true },
+			{ '\\gu', '<cmd>G submodule update', desc = '[G]it [u]pdate submodules', silent = true },
+			{ '\\gU', '<cmd>G submodule update --init --recursive<cr>', desc = '[G]it [U]pdate submodules recursive init', silent = true },
+			{ '\\gl', '<cmd>G pull<cr>', desc = '[G]it pu[l]l', silent = true },
+		},
 	},
 
 	{

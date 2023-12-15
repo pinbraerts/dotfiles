@@ -110,22 +110,6 @@ nnoremap <silent> ]b <cmd>bn<cr>
 nnoremap <silent> [q <cmd>cp<cr>
 nnoremap <silent> ]q <cmd>cn<cr>
 
-" fastcmd maps
-nnoremap \\ :
-nnoremap \q  <cmd>q<cr>
-nnoremap \w  <cmd>w<cr>
-nnoremap \e  <cmd>e<cr>
-nnoremap \a  <cmd>30Lex!<cr>
-nnoremap \gs <cmd>vert G<cr>
-nnoremap \gc <cmd>G commit<cr>
-nnoremap \gp <cmd>G push<cr>
-nnoremap \gP <cmd>G push --force-with-lease<cr>
-nnoremap \gf <cmd>G fetch<cr>
-nnoremap \gF <cmd>G fetch --all --prune<cr>
-nnoremap \gu <cmd>G submodule update --recursive<cr>
-nnoremap \gr :G rebase 
-nnoremap \go :G checkout 
-
 augroup single_file_launch
 	au!
 	au BufEnter *.vimrc nnoremap <buffer> <silent> \s <cmd>source %<cr>
