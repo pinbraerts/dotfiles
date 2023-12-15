@@ -14,10 +14,11 @@ vim.keymap.set('n', 'cd', function ()
         vim.cmd.cd(vim.b.gitsigns_status_dict.root)
         return
     end
-    local clients = vim.lsp.get_active_clients()
-    if clients ~= nil and #clients and clients[1].config ~= nil and clients[1].config.root_dir ~= nil then
-        vim.cmd.cd(clients[1].config.root_dir)
-    else
-        vim.cmd.cd(vim.fs.dirname(vim.fn.bufname()))
-    end
+    local clients = vim.lsp and vim.lsp.get_active_clients() or nil
+	local lsp_root = clients and #clients > 0 and clients[1].root_dir or nil
+    if lsp_root ~= nil then
+        vim.cmd.cd(lsp_root)
+		return
+	end
+	vim.cmd.cd(vim.fs.dirname(vim.fn.bufname()))
 end, { desc = '[cd] git root or lsp root or current file directory' })
