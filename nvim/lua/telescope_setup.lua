@@ -1,6 +1,16 @@
 local t = require 'telescope'
-local fba = t.extensions.file_browser.actions
 local a = require 'telescope.actions'
+
+local next = {
+	a.move_selection_next,
+	type = 'action',
+	opts = { nowait = true, silent = true },
+}
+local previous = {
+	a.move_selection_previous,
+	type = 'action',
+	opts = { nowait = true, silent = true },
+}
 
 t.setup {
 	defaults = {
@@ -21,28 +31,20 @@ t.setup {
 		layout_strategy = 'flex',
 		mappings = {
 			i = {
-				['<c-j>'] = {
-					a.move_selection_next,
-					type = 'action',
-					opts = { nowait = true, silent = true },
-				},
-				['<c-k>'] = {
-					a.move_selection_previous,
-					type = 'action',
-					opts = { nowait = true, silent = true },
-				},
+				['<c-j>'] = next,
+				['<c-k>'] = previous,
 				['<c-l>'] = 'select_vertical',
 				['<c-v>'] = 'select_vertical',
 				['<c-h>'] = 'select_horizontal',
-				['<c-s>'] = { '<esc>S', type = 'command' },
 			},
 			n = {
-				dd = fba.remove,
 				v = 'toggle_selection',
 				l = 'select_vertical',
 				h = 'select_horizontal',
 				q = 'close',
 				['<c-c>'] = 'close',
+				['<c-j>'] = next,
+				['<c-k>'] = previous,
 			},
 		},
 	},
