@@ -61,8 +61,6 @@ vnoremap <silent> <s-enter> <c-c>`><cmd>call append(line('.')  ,'')<cr>gv
 " move lines on alt
 nnoremap <silent> <a-k>      <cmd>m-2<cr>==
 nnoremap <silent> <a-j>      <cmd>m+1<cr>==
-vnoremap <silent> <a-j>      <cmd>m'>+1<cr>gv=gv
-vnoremap <silent> <a-k>      <cmd>m'<-2<cr>gv=gv
 inoremap <silent> <a-j> <c-c><cmd>m+1<cr>==a
 inoremap <silent> <a-k> <c-c><cmd>m-2<cr>==a
 
