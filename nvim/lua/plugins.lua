@@ -115,8 +115,8 @@ require 'lazy'.setup {
         config = function ()
             require 'lsp_setup'
         end,
-        mappings = {
-            { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = 'Switch beetween source and header files by clangd' }, },
+        keys = {
+            { 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', silent = true, desc = 'Switch beetween source and header files by clangd', },
         },
     },
 
