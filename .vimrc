@@ -51,12 +51,12 @@ vnoremap R "_dP
 
 " enter maps
 nnoremap <enter> i<cr><c-c>
-nnoremap <silent> <s-enter>        <cmd>call append(line('.')-1,'')<cr>
-nnoremap <silent> <c-enter>        <cmd>call append(line('.')  ,'')<cr>
-inoremap <silent> <s-enter> <c-c>  <cmd>call append(line('.')-1,'')<cr>a
-inoremap <silent> <c-enter> <c-c>  <cmd>call append(line('.')  ,'')<cr>a
-vnoremap <silent> <s-enter> <c-c>`<<cmd>call append(line('.')-1,'')<cr>gv
-vnoremap <silent> <c-enter> <c-c>`><cmd>call append(line('.')  ,'')<cr>gv
+nnoremap <silent> <c-enter>        <cmd>call append(line('.')-1,'')<cr>
+nnoremap <silent> <s-enter>        <cmd>call append(line('.')  ,'')<cr>
+inoremap <silent> <c-enter> <c-c>  <cmd>call append(line('.')-1,'')<cr>a
+inoremap <silent> <s-enter> <c-c>  <cmd>call append(line('.')  ,'')<cr>a
+vnoremap <silent> <c-enter> <c-c>`<<cmd>call append(line('.')-1,'')<cr>gv
+vnoremap <silent> <s-enter> <c-c>`><cmd>call append(line('.')  ,'')<cr>gv
 
 " move lines on alt
 nnoremap <silent> <a-k>      <cmd>m-2<cr>==
