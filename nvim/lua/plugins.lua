@@ -102,13 +102,10 @@ require 'lazy'.setup {
 	},
 
 	-- 'pinbraerts/shell.vim',
-	'tpope/vim-fugitive',
 
 	{
-		'lewis6991/gitsigns.nvim',
-		config = function()
-			require 'gitsigns_setup'
-		end,
+		'tpope/vim-fugitive',
+		lazy = false,
 		keys = {
 			{ '\\gc', '<cmd>G commit<cr>', desc = '[G]it [c]ommit', silent = true },
 			{ '\\gf', '<cmd>G fetch<cr>', desc = '[G]it [f]etch', silent = true },
@@ -119,6 +116,13 @@ require 'lazy'.setup {
 			{ '\\gU', '<cmd>G submodule update --init --recursive<cr>', desc = '[G]it [U]pdate submodules recursive init', silent = true },
 			{ '\\gl', '<cmd>G pull<cr>', desc = '[G]it pu[l]l', silent = true },
 		},
+	},
+
+	{
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require 'gitsigns_setup'
+		end,
 	},
 
 	{
