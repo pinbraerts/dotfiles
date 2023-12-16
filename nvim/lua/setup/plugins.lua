@@ -20,7 +20,7 @@ require 'lazy'.setup {
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		lazy = false,
 		config = function ()
-			require 'lualine_setup'
+			require 'setup.lualine'
 		end,
 	},
 
@@ -45,7 +45,7 @@ require 'lazy'.setup {
 		ft = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'vimdoc', 'html', 'css', 'javascript' },
 		build = ':TSUpdate',
 		config = function ()
-			require 'treesitter_setup'
+			require 'setup.treesitter'
 		end,
 	},
 
@@ -86,7 +86,7 @@ require 'lazy'.setup {
 	{
 		'lewis6991/gitsigns.nvim',
 		config = function()
-			require 'gitsigns_setup'
+			require 'setup.gitsigns'
 		end,
 	},
 
@@ -95,7 +95,7 @@ require 'lazy'.setup {
 		branch = 'master',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function ()
-			require 'telescope_setup'
+			require 'setup.telescope'
 		end,
 	},
 
@@ -126,7 +126,7 @@ require 'lazy'.setup {
 		ft = lsp_filetypes,
 		lazy = true,
 		config = function ()
-			require 'lsp_setup'
+			require 'setup.lsp'
 		end,
 		keys = {
 			{ 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', silent = true, desc = 'Switch beetween source and header files by clangd', },
@@ -143,7 +143,7 @@ require 'lazy'.setup {
 		ft = lsp_filetypes,
 		lazy = true,
 		config = function()
-			require 'completion_setup'
+			require 'setup.completion'
 		end,
 	},
 
