@@ -18,45 +18,10 @@ require 'lazy'.setup {
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
-		opts = {
-			options = {
-				globalstatus = true,
-				section_separators = { left = '', right = '' },
-				-- component_separators = { left = '', right = '' },
-				component_separators = { left = '|', right = '|' },
-			},
-			sections = {
-				lualine_a = { 'mode' },
-				lualine_b = { 'branch' },
-				lualine_c = {
-					{
-						'buffers',
-						icons_enabled = false,
-						section_separators = { left = '' },
-						component_separators = { left = '' },
-						mode = 2,
-						symbols = {
-							alternate_file = '',
-						},
-					},
-				},
-				lualine_x = { 'diff', 'diagnostics', },
-				lualine_y = { 'filetype', 'fileformat', 'encoding', },
-				lualine_z = { 'progress', 'location', },
-			},
-		},
 		lazy = false,
-		keys = {
-			{ 'g1', '<cmd>LualineBuffersJump 1<cr>', silent = true, desc = 'Jump to buffer 1', },
-			{ 'g2', '<cmd>LualineBuffersJump 2<cr>', silent = true, desc = 'Jump to buffer 2', },
-			{ 'g3', '<cmd>LualineBuffersJump 3<cr>', silent = true, desc = 'Jump to buffer 3', },
-			{ 'g4', '<cmd>LualineBuffersJump 4<cr>', silent = true, desc = 'Jump to buffer 4', },
-			{ 'g5', '<cmd>LualineBuffersJump 5<cr>', silent = true, desc = 'Jump to buffer 5', },
-			{ 'g6', '<cmd>LualineBuffersJump 6<cr>', silent = true, desc = 'Jump to buffer 6', },
-			{ 'g7', '<cmd>LualineBuffersJump 7<cr>', silent = true, desc = 'Jump to buffer 7', },
-			{ 'g8', '<cmd>LualineBuffersJump 8<cr>', silent = true, desc = 'Jump to buffer 8', },
-			{ 'g9', '<cmd>LualineBuffersJump 9<cr>', silent = true, desc = 'Jump to buffer 9', },
-		},
+		config = function ()
+			require 'lualine_setup'
+		end,
 	},
 
 	{
