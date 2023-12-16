@@ -45,10 +45,11 @@ l.setup {
 					return vim.fn.reg_recording()
 				end,
 				icon = { '🔴' },
+				type = 'lua_expr',
 			},
 		},
 		lualine_y = { 'filetype', 'fileformat', 'encoding', },
-		lualine_z = { 'progress', 'location', },
+		lualine_z = { 'searchcount', 'progress', 'location', },
 	},
 }
 for i = 1, 9 do
