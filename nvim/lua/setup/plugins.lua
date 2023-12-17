@@ -156,7 +156,7 @@ require 'lazy'.setup {
 			'simrat39/rust-tools.nvim',
 		},
 		config = function ()
-			require 'debugging'
+			require 'setup.debugging'
 		end,
 	},
 
