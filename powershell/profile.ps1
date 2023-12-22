@@ -25,7 +25,7 @@ function realign() {
 
 function status($status, $exit_code) {
     $tick  = $([char]0x2713)
-    $cross = $([char]0x0058)
+    $cross = $([char]0x2717)
     if ($exit_code -eq 0 -or $status) {
         return $tick
     }
