@@ -37,21 +37,19 @@ function status($status, $exit_code) {
 }
 
 function format_duration($time) {
-    $format = ""
     if ($time.Days) {
-        $format += "d'd '"
+        return "d'd 'h'h 'm'm 's's 'fff'ms'"
     }
     if ($time.Hours) {
-        $format += "h'h '"
+        return "h'h 'm'm 's's 'fff'ms'"
     }
     if ($time.Minutes) {
-        $format += "m'm '"
+        return "m'm 's's 'fff'ms'"
     }
     if ($time.Seconds) {
-        $format += "s's '"
+        return "s's 'fff'ms'"
     }
-    $format += "fff'ms '"
-    return $time.ToString($format)
+	return "fff'ms'"
 }
 
 function prompt {
@@ -61,7 +59,8 @@ function prompt {
         $time = $command.EndExecutionTime - $command.StartExecutionTime
         $color = if ($succeded) { 'DarkGreen' } else { 'Red' }
         $status = status $succeded $LastExitCode
-        $message = $(format_duration $time)
+		$format = format_duration $time
+        $message = $time.ToString($format)
         right_align $($message.length + 5 + $status.length)
         Write-Host "$([char]0xe0b2)"  -NoNewLine -ForegroundColor $color
         Write-Host " $status"         -NoNewLine -BackgroundColor $color  -ForegroundColor 'White'
