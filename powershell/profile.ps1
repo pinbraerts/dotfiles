@@ -1,5 +1,14 @@
 $OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
+Import-Module PSReadLine
+Set-PSReadLineOption `
+    -EditMode vi `
+    -ViModeIndicator Cursor
+    # -ViModeChangeHandler $Function:OnViModeChange
+
+# Import-Module posh-git
+# $GitPromptSettings.BranchColor.BackgroundColor = [ConsoleColor]::Magenta
+
 function right_align($l) {
     $w = $Host.UI.RawUI.windowsize.width
     if ($l -lt $w / 2) {
@@ -62,12 +71,14 @@ function prompt {
     }
     $dir = "$(Get-Location)".replace($Home, "~").replace('\', '/')
     Write-Host " $dir "         -NoNewLine -BackgroundColor 'Blue' -ForegroundColor 'White'
-    Write-Host $([char]0xe0b0)  -NoNewLine -ForegroundColor 'Blue'
+	$branch = git rev-parse --abbrev-ref HEAD 2>$null
+	if ($? -and $branch) {
+		Write-Host $([char]0xe0b0) -NoNewLine -ForegroundColor 'Blue' -BackgroundColor 'Magenta'
+		Write-Host " $branch "     -NoNewLine -ForegroundColor 'White' -BackgroundColor 'Magenta'
+		Write-Host $([char]0xe0b0) -NoNewLine -ForegroundColor 'Magenta'
+	}
+	else {
+		Write-Host $([char]0xe0b0)  -NoNewLine -ForegroundColor 'Blue'
+	}
     return " "
 }
-
-Import-Module PSReadLine
-Set-PSReadLineOption `
-    -EditMode vi `
-    -ViModeIndicator Cursor
-    # -ViModeChangeHandler $Function:OnViModeChange
