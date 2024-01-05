@@ -25,6 +25,13 @@ require 'lazy'.setup {
 	},
 
 	{
+		'norcalli/nvim-colorizer.lua',
+		opts = {
+			"*",
+		},
+	},
+
+	{
 		'EdenEast/nightfox.nvim',
 		opts = {
 			options = {

@@ -30,6 +30,7 @@ set noexpandtab
 set scrolloff=10
 set noshowmode
 set undofile
+set termguicolors
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчняж;abcdefghijklmnopqrstuvwxyz;
 nohls
 
