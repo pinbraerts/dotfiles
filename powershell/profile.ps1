@@ -4,6 +4,20 @@ Import-Module PSReadLine
 Set-PSReadLineOption `
 	-EditMode vi `
 	-ViModeIndicator Cursor
+#
+# Set-PSReadLineKeyHandler `
+# 	-Chord Ctrl+k `
+# 	-Function HistorySearchBackward
+#
+# Set-PSReadLineKeyHandler `
+# 	-Chord Ctrl+j `
+# 	-Function AcceptLine
+
+Set-PSReadLineKeyHandler `
+	-Chord ';' `
+	-Function MenuComplete
+
+Set-Item -Path Env:RUSTC_WRAPPER -Value sccache
 
 # Import-Module posh-git
 # $GitPromptSettings.BranchColor.BackgroundColor = [ConsoleColor]::Magenta
@@ -60,7 +74,7 @@ function prompt {
 		$status = status $succeded $LastExitCode
 		$format = format_duration $time
 		$message = $time.ToString($format)
-		right_align $($message.length + 5 + $status.length)
+		right_align $($message.length + 6 + $status.length)
 		Write-Host "$([char]0xe0b2)" -NoNewLine -ForegroundColor $color
 		Write-Host " $status "		 -NoNewLine -BackgroundColor $color  -ForegroundColor 'White'
 		Write-Host "$([char]0xe0b2)" -NoNewLine -BackgroundColor $color  -ForegroundColor 'Blue'
