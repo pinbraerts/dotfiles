@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lsp_filetypes = { 'lua', 'python', 'c', 'cpp', 'rust', 'powershell' }
+local lsp_filetypes = { 'lua', 'python', 'c', 'cpp', 'rust', 'ps1', 'tex', 'plaintex', 'bib' }
 local debuggable_filetypes = { 'python', 'c', 'cpp', 'rust' }
 
 require 'lazy'.setup {

@@ -30,6 +30,35 @@ lspconfig.powershell_es.setup {
 	single_file_support = true,
 	bundle_path = 'D:/PowerShellEditorServices',
 }
+lspconfig.texlab.setup {
+	settings = {
+		texlab = {
+			build = {
+				executable = 'tectonic',
+				args = {
+					'-X',
+					'compile',
+					'%f',
+					'--synctex',
+					'--keep-logs',
+					'--keep-intermediates',
+				},
+				forwardSearchAfter = true,
+				onSave = true,
+			},
+			forwardSearch = {
+				executable = 'C:\\Users\\pinbraerts\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe',
+				args = {
+					'-reuse-instance',
+					'%p',
+					'-forward-search',
+					'%f',
+					'%l',
+				},
+			},
+		},
+	},
+}
 
 local t = require 'telescope.builtin'
 vim.api.nvim_create_autocmd('LspAttach', {
