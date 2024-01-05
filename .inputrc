@@ -1,8 +1,6 @@
-$include /etc/inputrc
-
 set show-mode-in-prompt on
-set vi-cmd-mode-string "\1\e\[2 q\2"
-set vi-ins-mode-string "\1\e\[6 q\2"
+set vi-cmd-mode-string "\1\033\[2 q\2"
+set vi-ins-mode-string "\1\033\[6 q\2"
 set colored-stats on
 set colored-completion-prefix on
 set completion-ignore-case on
@@ -12,8 +10,11 @@ set show-all-if-ambiguous on
 set bind-tty-special-chars off
 set keymap vi-command
 set echo-control-characters off
+set keyseq-timeout 1
 
-"\C-k": history-search-backwards
+Control-k: history-search-backward
+Control-j: history-search-forward
+Control-l: accept-line
 "n": "in"
 "ciw": "bce"
 "diw": "bde"
