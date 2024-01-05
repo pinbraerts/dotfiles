@@ -23,3 +23,11 @@ vim.keymap.set({ 't', 'i' }, '<c-h>', '<c-\\><c-n><c-w>h', { desc = 'focus left 
 vim.keymap.set({ 't', 'i' }, '<c-l>', '<c-\\><c-n><c-w>l', { desc = 'focus right window' })
 vim.keymap.set('i', '<c-j>', '<c-\\><c-n><c-w>j', { desc = 'focus down window' })
 vim.keymap.set('i', '<c-k>', '<c-\\><c-n><c-w>k', { desc = 'focus up window' })
+
+vim.keymap.set('t', '<c-j>', '<c-j>')
+vim.keymap.set('t', '<c-k>', '<c-k>')
+
+-- workaround CSI u
+vim.keymap.set('t', '<s-space>', '<space>')
+vim.keymap.set('t', '<s-enter>', '<enter>')
+vim.keymap.set('t', '<s-backspace>', '<backspace>')
