@@ -90,6 +90,16 @@ d.adapters.lldb = {
 	name = 'lldb',
 }
 
+d.adapters.delve = pre_launch {
+	type = 'server',
+	port = '${port}',
+	executable = {
+		command = 'dlv',
+		args = { 'dap', '-l', '${port}' },
+	},
+	preLaunchTask = 'go build -o output -p 12',
+}
+
 d.configurations.cpp = {
 	lldb_compiling('clang++ -O0 -g -o')
 }
@@ -112,3 +122,12 @@ d.configurations.python = {
 	},
 }
 
+d.configurations.go = {
+	{
+		type = 'delve',
+		request = 'launch',
+		name = 'Compile and run go project',
+		program = '${workspaceFolder}/output/wireguird',
+		cwd = '${workspaceFolder}',
+	},
+}

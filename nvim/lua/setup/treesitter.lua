@@ -1,4 +1,4 @@
-local languages = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'vimdoc', 'html', 'css', 'javascript' }
+local languages = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'vimdoc', 'html', 'css', 'javascript', 'go' }
 if vim.fn.has('win32') ~= 0 then
 	require 'nvim-treesitter.install'.compilers = { 'cl.exe' }
 end
