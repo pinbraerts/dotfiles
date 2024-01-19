@@ -1,7 +1,4 @@
-if ! [[ "$PATH" =~ "$HOME/bin:$HOME/.local/bin:" ]]; then
-	PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-fi
-export PATH
+export PATH="$HOME/bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
 
 if ! [[ "$MANPATH" =~ "$HOME/share/man:" ]]; then
 	MANPATH="$HOME/share/man:$MANPATH"

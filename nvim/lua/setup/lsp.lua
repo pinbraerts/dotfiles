@@ -47,17 +47,19 @@ lspconfig.texlab.setup {
 				onSave = true,
 			},
 			forwardSearch = {
-				executable = 'C:\\Users\\pinbraerts\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe',
+				onSave = true,
+				executable = 'zathura',
 				args = {
-					'-reuse-instance',
+					'--synctex-forward',
+					'%l:1:%f',
 					'%p',
-					'-forward-search',
-					'%f',
-					'%l',
 				},
 			},
 		},
 	},
+}
+
+lspconfig.gopls.setup {
 }
 
 local t = require 'telescope.builtin'
