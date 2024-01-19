@@ -50,10 +50,8 @@ require 'lazy'.setup {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
-		lazy = true,
-		ft = { 'rust', 'c', 'cpp', 'python', 'lua', 'cuda', 'vimdoc', 'html', 'css', 'javascript' },
 		build = ':TSUpdate',
-		config = function ()
+		config = function()
 			require 'setup.treesitter'
 		end,
 	},
