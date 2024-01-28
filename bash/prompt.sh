@@ -1,6 +1,6 @@
 if [[ $TERM == linux ]]; then
-	l='<'
-	r='>'
+	l=''
+	r=''
 	v='v'
 	x='x'
 else
