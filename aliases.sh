@@ -1,0 +1,9 @@
+alias cat=bat
+alias ls=exa
+alias ll="exa -ll"
+alias la="exa -la"
+alias m=make
+alias cd=z
+alias grep=rg
+alias v=$VISUAL
+alias e=$EDITOR
