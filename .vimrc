@@ -32,6 +32,7 @@ set noshowmode
 set undofile
 set termguicolors
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчняж;abcdefghijklmnopqrstuvwxyz;
+set title
 nohls
 
 let g:netrw_banner = 0
