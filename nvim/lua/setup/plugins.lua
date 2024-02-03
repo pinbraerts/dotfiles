@@ -155,12 +155,24 @@ require 'lazy'.setup {
 	},
 
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^4',
+		ft = { 'rust' },
+		config = function ()
+			vim.g.rustaceanvim = {
+				dap = {
+					autoload_configurations = true,
+				},
+			}
+		end,
+	},
+
+	{
 		'mfussenegger/nvim-dap',
 		lazy = true,
 		ft = debuggable_filetypes,
 		dependencies = {
 			'rcarriga/nvim-dap-ui',
-			'simrat39/rust-tools.nvim',
 		},
 		config = function ()
 			require 'setup.debugging'

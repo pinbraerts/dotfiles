@@ -1,11 +1,5 @@
 local d = require 'dap'
 local dui = require 'dap.ui.widgets'
-require 'rust-tools'.setup {
-	single_file_support = true,
-	server = {
-		standalone = true,
-	},
-}
 -- d.set_log_level('trace')
 vim.keymap.set('n', '<leader>b', d.toggle_breakpoint, { desc = 'Toggle breakpoint' })
 vim.keymap.set('n', '<leader>dc', d.continue, { desc = '[D]ebug [c]ontinue' })
@@ -73,22 +67,13 @@ d.adapters.python = pre_launch {
 	},
 }
 
-d.adapters.codelldb = pre_launch {
-	id = 'codelldb',
-	type = 'server',
-	port = '${port}',
-	executable = {
-		command = 'D:\\vscode\\codelldb\\extension\\adapter\\codelldb.exe',
-		args = { '--port', '${port}', },
-		detached = false,
-	},
-}
-
-d.adapters.lldb = {
-	type = 'executable',
-	command = '/usr/bin/lldb-vscode-11',
-	name = 'lldb',
-}
+local extension_path = '/home/pinbraerts/vscode/extension'
+local codelldb_path = extension_path .. '/adapter/codelldb'
+local liblldb_path =  extension_path .. '/lldb/lib/liblldb.so'
+d.adapters.codelldb = require 'rustaceanvim.config'.get_codelldb_adapter(
+	codelldb_path,
+	liblldb_path
+)
 
 d.adapters.delve = pre_launch {
 	type = 'server',
