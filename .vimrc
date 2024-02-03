@@ -8,6 +8,9 @@ let &t_SR = "\e[4 q"
 set t_RV=
 set t_u7=
 set autoindent
+set smartindent
+set cindent
+set cino=:0
 set encoding=utf-8
 set ff=unix
 set hlsearch
