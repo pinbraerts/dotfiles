@@ -1,21 +1,11 @@
 $OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 Import-Module PSReadLine
-Set-PSReadLineOption `
-	-EditMode vi `
-	-ViModeIndicator Cursor
-#
-# Set-PSReadLineKeyHandler `
-# 	-Chord Ctrl+k `
-# 	-Function HistorySearchBackward
-#
-# Set-PSReadLineKeyHandler `
-# 	-Chord Ctrl+j `
-# 	-Function AcceptLine
-
-Set-PSReadLineKeyHandler `
-	-Chord ';' `
-	-Function MenuComplete
+Set-PSReadLineOption -EditMode vi -ViModeIndicator Cursor
+Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Chord Ctrl+k -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Chord Ctrl+j -Function AcceptLine
+Set-PSReadLineKeyHandler -Chord ';' -Function MenuComplete
 
 Set-Item -Path Env:RUSTC_WRAPPER -Value sccache
 
