@@ -180,7 +180,7 @@ handle_mime() {
             exit 1 ;;
 
             ## Text
-        text/* | */xml)
+        application/javascript | text/* | */xml)
             bat --color=always --paging=never \
                 --style=plain \
                 --terminal-width="${PREVIEW_WIDTH}" \
@@ -196,7 +196,7 @@ handle_mime() {
             exit 1 ;;
 
             ## Image
-        image/png | image/jpeg)
+		image/png | image/jpeg | image/svg*)
 			meta_file=$(get_preview_meta_file "${FILE_PATH}")
 			information=$(exiftool "${FILE_PATH}" \
 				-s2 \

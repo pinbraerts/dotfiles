@@ -13,7 +13,7 @@ mimetype=$(file --mime-type -Lb "$path")
 extension=$(/bin/echo "${path##*.}" | awk '{print tolower($0)}')
 
 case "$mimetype" in
-    image/png | image/jpeg)
+	image/png | image/jpeg | image/svg*)
 		meta_file=$(get_preview_meta_file "$path")
 		y=$(($y + $(cat $meta_file)))
         show_image "$path" $x $y $width $height
