@@ -1,0 +1,5 @@
+[user]
+	name = Dmitry Shirshov
+	email = shirshov.da@phystech.edu
+[pull]
+	rebase = true
