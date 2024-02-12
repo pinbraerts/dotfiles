@@ -2,11 +2,12 @@
 set -e
 set -o pipefail
 INITIAL_QUERY="${*:-}"
-nvim --headless -u NONE -c oldfiles\|q 2>&1 \
-| cut --delimiter ' ' --fields 2 \
-| fzf \
+q="nvim --headless -u NONE -c oldfiles\|q 2>&1 | cut --delimiter ' ' --fields 2"
+: | fzf \
 	--ansi \
 	--query "$INITIAL_QUERY" \
+	--bind "start:reload($q)" \
+	--bind "ctrl-r:reload($q)" \
 	--bind "ctrl-d:preview-half-page-down" \
 	--bind "ctrl-u:preview-half-page-up" \
 	--bind "enter:become($EDITOR {1})" \
