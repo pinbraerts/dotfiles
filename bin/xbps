@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+XBPS_PREFIX="xbps-query -Rs '' | cut --delimiter ' ' --fields 1,2"
+INITIAL_QUERY="${*:-}"
+: | fzf \
+	--query "$INITIAL_QUERY" \
+	--bind "start:reload($XBPS_PREFIX)" \
+	--bind "ctrl-i:execute(sudo xbps-install -y {2})+reload($XBPS_PREFIX)" \
+	--bind "ctrl-x:execute(sudo xbps-remove -oy {2})+reload($XBPS_PREFIX)" \
+	--bind "ctrl-r:reload($XBPS_PREFIX)" \
+	--bind "ctrl-d:preview-half-page-down" \
+	--bind "ctrl-u:preview-half-page-up" \
+	--bind 'ctrl-f:preview(xbps-query -Rf {2})' \
+	--bind 'enter:become(sudo xbps-install {2})' \
+	--preview "xbps-query -R {2}" 

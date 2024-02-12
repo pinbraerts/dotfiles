@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+INITIAL_QUERY="${*:-}"
+nvim --headless -u NONE -c oldfiles\|q 2>&1 \
+| cut --delimiter ' ' --fields 2 \
+| fzf \
+	--ansi \
+	--query "$INITIAL_QUERY" \
+	--bind "ctrl-d:preview-half-page-down" \
+	--bind "ctrl-u:preview-half-page-up" \
+	--bind "enter:become($EDITOR {1})" \
+	--preview "bat --color=always {1}" \
+	--preview-window 'up,60%,border-bottom,+{2}+3/3,~3'

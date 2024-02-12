@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+prompt="${1:->} "
+shift
+if [ $# -eq 0 ]; then
+	param="-i"
+else
+	param="-w $1"
+	shift
+fi
+st $param -g 100x1 -e ${SHELL:-/bin/sh} -c "read -p \"$prompt\" && echo \$REPLY >/proc/$$/fd/1"
