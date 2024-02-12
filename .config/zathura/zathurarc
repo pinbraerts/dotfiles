@@ -1,0 +1,6 @@
+set guioptions ""
+set window-title-page true
+set default-bg "rgba(0, 0, 0, 0.7)"
+set default-fg "#aaaaaa"
+set recolor-lightcolor "rgba(0, 0, 0, 0)"
+set recolor true
