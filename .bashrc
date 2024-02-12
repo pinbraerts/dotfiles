@@ -1,6 +1,5 @@
 [ -f /etc/bashrc ] && source /etc/bashrc
 
-export INPUTRC=~/.config/.inputrc
 export EDITOR=nvim
 export VISUAL=nvim
 export HISTCONTROL=ignoreboth
@@ -17,14 +16,13 @@ export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig
 export LD_LIBRARY_PATH=/usr/local/lib64
 source "$HOME/.cargo/env"
 
-[ -f ~/.config/bash/path.sh ] && . ~/.config/bash/path.sh
+[ -f ${XDG_CONFIG_DIR:-$HOME/.config}/bash/path.sh ] && . ${XDG_CONFIG_DIR:-$HOME/.config}/bash/path.sh
+[ -f ${XDG_CONFIG_DIR:-$HOME/.config}/aliases.sh   ] && . ${XDG_CONFIG_DIR:-$HOME/.config}/aliases.sh
 [[ $- != *i* ]] && return
-# [ -f ~/.local/share/blesh/ble.sh ] && . ~/.local/share/blesh/ble.sh --noattach
-[ -f ~/.config/bash/setup.sh ] && . ~/.config/bash/setup.sh
+set -o vi
+[ -f ${XDG_CONFIG_DIR:-$HOME/.config}/bash/prompt.sh ] && . ${XDG_CONFIG_DIR:-$HOME/.config}/bash/prompt.sh
 
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 eval "$(zoxide init bash)"
-
-# [[ ${BLE_VERSION-} ]] && ble-attach

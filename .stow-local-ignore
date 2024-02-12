@@ -12,7 +12,6 @@ _darcs
 .git
 .gitignore
 .gitmodules
-aliases.sh
 
 .+~
 \#.*\#
