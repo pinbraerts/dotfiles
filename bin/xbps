@@ -1,16 +1,34 @@
 #!/usr/bin/env bash
 set -e
 set -o pipefail
-XBPS_PREFIX="xbps-query -Rs '' | cut --delimiter ' ' --fields 1,2"
+t=$(mktemp -d /tmp/fzf-xbps.XXXX)
+trap "rm -r $t" EXIT
+echo $t >> ~/log.txt
+printf 'S' > $t/p
+printf 'R' > $t/r
+tr="[[ -n \$(cat $t/r) ]] && printf '' > $t/r || printf 'R' > $t/r"
+tp="case \$(cat $t/p) in \
+	S) printf 'x' > $t/p ;; \
+	x) printf 'X' > $t/p ;; \
+	*) printf 'S' > $t/p ;; \
+esac"
+q="xbps-query -\$(cat $t/r)s {q} | cut -d ' ' -f 1,2"
+p="xbps-query -\$(cat $t/r)\$(cat $t/p) {2}"
+i="sudo xbps-install  -\$(cat $t/r)y {2}"
+r="sudo xbps-install -o\$(cat $t/r)y {2}"
+u="sudo xbps-install -u\$(cat $t/r)y {2}"
+
 INITIAL_QUERY="${*:-}"
 : | fzf \
 	--query "$INITIAL_QUERY" \
-	--bind "start:reload($XBPS_PREFIX)" \
-	--bind "ctrl-i:execute(sudo xbps-install -y {2})+reload($XBPS_PREFIX)" \
-	--bind "ctrl-x:execute(sudo xbps-remove -oy {2})+reload($XBPS_PREFIX)" \
-	--bind "ctrl-r:reload($XBPS_PREFIX)" \
 	--bind "ctrl-d:preview-half-page-down" \
 	--bind "ctrl-u:preview-half-page-up" \
-	--bind 'ctrl-f:preview(xbps-query -Rf {2})' \
-	--bind 'enter:become(sudo xbps-install {2})' \
-	--preview "xbps-query -R {2}" 
+	--bind "start:reload($q)" \
+	--bind "ctrl-r:reload($q)" \
+	--bind "ctrl-o:execute($u)+reload($q)" \
+	--bind "ctrl-i:execute($i)+reload($q)" \
+	--bind "ctrl-x:execute($r)+reload($q)" \
+	--bind "ctrl-s:execute($tr)+reload($q)" \
+	--bind "ctrl-n:execute($tp)+preview($p)" \
+	--bind "enter:become($i)" \
+	--preview "$p" 
