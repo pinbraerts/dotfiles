@@ -1,5 +1,28 @@
 [user]
 	name = Dmitry Shirshov
 	email = shirshov.da@phystech.edu
+
 [pull]
 	rebase = true
+
+[alias]
+	x = restore
+	a = add
+	o = checkout
+	b = branch
+	bc = checkout -B
+	bd = branch -d
+	s = status
+	c = commit
+	p = push
+	r = rebase
+	ri = rebase -i
+	d = diff
+	f = fetch
+	fa = fetch --all --prune
+	u = submodule update --init --recursive
+	adog = log --all --decorate --oneline --graph
+	adogs = log --all --decorate --oneline --graph --stat
+	l = adog
+	ls = adogs
+
