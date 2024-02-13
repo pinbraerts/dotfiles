@@ -27,3 +27,4 @@ set -o vi
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 eval "$(zoxide init bash)"
+eval "$(joshuto completions bash)"
