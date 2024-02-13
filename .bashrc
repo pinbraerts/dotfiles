@@ -22,6 +22,7 @@ source "$HOME/.cargo/env"
 set -o vi
 [ -f ${XDG_CONFIG_DIR:-$HOME/.config}/bash/prompt.sh ] && . ${XDG_CONFIG_DIR:-$HOME/.config}/bash/prompt.sh
 
+[ -f ${HOME}/.dircolors ] && source ${HOME}/.dircolors
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
