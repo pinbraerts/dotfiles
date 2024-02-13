@@ -11,7 +11,7 @@
 	o = checkout
 	b = branch
 	bc = checkout -B
-	bd = branch -d
+	bd = branch -D
 	s = status
 	c = commit
 	p = push
