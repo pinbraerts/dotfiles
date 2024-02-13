@@ -1,0 +1,57 @@
+:root {
+	--background-secondary: #00000044;
+	--background-accent:    #55555577;
+	--theme-col-bg-ui: var(--background-accent) !important;
+	--nav-bg:          var(--background-secondary) !important;
+	--sidebar-bg:      var(--background-accent) !important;
+}
+
+html,body,fieldset,main,
+.pun,.punwrap,.mw-page-container,.vector-header-container,.vector-toc::after,
+.site-wrapper,
+#content,#brdmenu,#main
+{
+	color: lightgray !important;
+	background: none !important;
+}
+
+form,table,
+.header-wrap,.navbar,.table-of-contents-section,
+#void-nav,#header,#archnavbar,#sidebar
+{
+	background: var(--background-secondary) !important;
+	/* border-bottom: 1px solid #333333 !important; */
+}
+
+button,pre,code,p,div,dd,dl,dt,tr,td,input,h1,h2,h3,h4,strong,a,em,
+div.box,.vector-pinned-container,
+#catlinks
+{
+	color: lightgray !important;
+}
+
+pre>code,input[type="search"] {
+	background: none !important;
+}
+
+pre,code,em,input[type="submit"],
+.callout
+{
+	background: var(--background-accent) !important;
+}
+
+dd,dl,dt,tr,td {
+	border-top: 1px solid grey !important;
+}
+
+tr:nth-child(even),th {
+	background: #55555533 !important;
+}
+
+tr:nth-child(odd) {
+	background: none !important;
+}
+
+tr:hover {
+	background: #555555aa !important;
+}
