@@ -30,6 +30,10 @@ div.box,.vector-pinned-container,
 	color: lightgray !important;
 }
 
+dt {
+	background: grey !important;
+}
+
 pre>code,input[type="search"] {
 	background: none !important;
 }
