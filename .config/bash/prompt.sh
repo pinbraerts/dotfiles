@@ -26,7 +26,12 @@ function prompt() {
 	if [ -n "$branch" ]; then
 		printf " $(c '47;01;34' 1) $branch$(c '0;37' 1)"
 	else
-		printf "$(c '0;34' 1)"
+		branch=$(git rev-parse --short HEAD 2>/dev/null)
+		if [ -n "$branch" ]; then
+			printf " $(c '47;01;34' 1) $branch$(c '0;37' 1)"
+		else
+			printf "$(c '0;34' 1)"
+		fi
 	fi
 	printf "$r$(c '0' 1) "
 }
