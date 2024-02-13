@@ -1,0 +1,110 @@
+set nohlsearch
+set ignorecase
+set incsearch
+set smartcase
+set nowrap
+set number
+set relativenumber
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set scrolloff=10
+nohls
+
+" camel case word
+noremap <a-w> /\u<cr>
+noremap <a-b> ?\u<cr>
+
+" start, end = 0, -
+noremap - $
+vnoremap - g_
+
+" yank to end of line
+nnoremap Y yg$
+
+nnoremap <enter> i<cr><c-c>
+
+" disable highlight
+nnoremap <esc> :nohls<cr>
+vnoremap <esc> <c-c>
+
+" paste from clipboard while typing
+inoremap <c-v> <c-c>"*pa
+
+" replace without overriding register
+vnoremap R "_dP
+
+" select double quotes
+onoremap aq a"
+onoremap iq i"
+xnoremap aq a"
+xnoremap iq i"
+
+let mapleader="\<Space>"
+nnoremap <leader>; A;<c-c>
+nnoremap <leader>, A,<c-c>
+nnoremap <leader>1 :e C:\Users\shirshov\.vsvimrc<cr>
+nnoremap <leader>f :vsc Edit.GotoAll<cr>
+nnoremap <leader>r :vsc Refactor.Rename<cr>
+nnoremap <leader>k :vsc Edit.PeekDefinition<cr>
+nnoremap <leader>= :set invlist<cr>
+nnoremap <leader>z :vsc EditorContextMenus.CodeWindow.Rescan.RescanFile<cr>
+nnoremap <leader>v :vsc Debug.RunToCursor<cr>
+nnoremap <leader>c :vsc Edit.ToggleLineComment<cr>
+vnoremap <leader>c :vsc Edit.ToggleBlockComment<cr>
+nnoremap <leader>] :vsc Edit.FindAllReferences<cr>
+nnoremap gh        :vsc EditorContextMenus.CodeWindow.ToggleHeaderCodeFile<cr>
+" nnoremap <c-[>     :vsc Edit.GoToDeclaration<cr>
+nnoremap [w        :vsc Edit.GoToPreviousIssueInFile<cr>:vsc Edit.QuickInfo<cr>
+nnoremap ]w        :vsc Edit.GoToNextIssueInFile    <cr>:vsc Edit.QuickInfo<cr>
+nnoremap [e        :vsc View.PreviousError          <cr>:vsc Edit.QuickInfo<cr>
+nnoremap ]e        :vsc View.NextError              <cr>:vsc Edit.QuickInfo<cr>
+nnoremap <C-o>     :vsc View.NavigateBackward<cr>
+nnoremap <C-i>     :vsc View.NavigateForward<cr>
+nnoremap K         :vsc Edit.QuickInfo<cr>
+" nmap <leader>d :vsc GitDiffMargin.ShowPopup<cr>
+" nnoremap ]c :vsc GitDiffMargin.NextChange<cr>
+" nnoremap [c :vsc GitDiffMargin.PreviousChange<cr>
+
+" clipboard maps
+ noremap <leader>p "*p
+ noremap <leader>P "*P
+ noremap <leader>y "*y
+ noremap <leader>Y "*Y
+
+" scroll buffers
+nnoremap [b gT
+nnoremap ]b gt
+
+" scroll quickfix
+nnoremap [q :cp<cr>
+nnoremap ]q :cn<cr>
+
+" fastcmd maps
+nnoremap \\ :
+nnoremap \s  :source C:\Users\shirshov\.vsvimrc<cr>
+nnoremap \q  :q<cr>
+nnoremap \w  :w<cr>
+nnoremap \e  :e<cr>
+nnoremap \a  :30Lex!<cr>
+nnoremap \gg :vert G<cr>
+nnoremap  gc :G commit<cr>
+nnoremap \gp :G push<cr>
+nnoremap \gP :G push --force-with-lease<cr>
+nnoremap \gf :G fetch --all --prune<cr>
+nnoremap \gr :G rebase 
+
+" window maps
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+nnoremap gr gT
+" inoremap <c-c> <esc>
+
+" command line remaps
+cnoremap <c-h> <left>
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-l> <right>
