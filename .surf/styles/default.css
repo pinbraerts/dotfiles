@@ -13,6 +13,7 @@ html,body,fieldset,main,
 {
 	color: lightgray !important;
 	background: none !important;
+	min-width: 950px !important;
 }
 
 form,table,
