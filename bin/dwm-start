@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -eo pipefail
+log_file=$(mktemp /tmp/dwm-XXXX.log)
+trap "rm $log_file" EXIT
+while true; do
+	dwm 2>$log_file
+done

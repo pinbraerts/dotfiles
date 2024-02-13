@@ -9,4 +9,4 @@ xautolock -time 5 -locker slock &
 /usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
 /home/pinbraerts/opt/Bluetooth-Menu/bluetooth-menu &
 xbindkeys &
-dbus-launch dwm
+dbus-launch dwm-start
