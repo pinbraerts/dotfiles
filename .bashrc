@@ -11,7 +11,7 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[43;34m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[33m'
-export RUSTC_WRAPPER=sccache
+which >/dev/null 2>&1 sccache && export RUSTC_WRAPPER=sccache
 export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig
 export LD_LIBRARY_PATH=/usr/local/lib64
 source "$HOME/.cargo/env"
@@ -24,7 +24,7 @@ set -o vi
 
 [ -f ${HOME}/.dircolors ] && source ${HOME}/.dircolors
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
-eval "$(zoxide init bash)"
-eval "$(joshuto completions bash)"
+[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/completion.bash ] && . /usr/share/fzf/completion.bash
+which >/dev/null 2>&1 zoxide  && eval "$(zoxide init --cmd cd bash)"
+which >/dev/null 2>&1 joshuto && eval "$(joshuto completions bash)"
