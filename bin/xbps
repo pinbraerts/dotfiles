@@ -8,7 +8,8 @@ printf 'S' > $t/p
 printf 'R' > $t/r
 tr="[[ -n \$(cat $t/r) ]] && printf '' > $t/r || printf 'R' > $t/r"
 tp="case \$(cat $t/p) in \
-	S) printf 'x' > $t/p ;; \
+	S) printf 'f' > $t/p ;; \
+	f) printf 'x' > $t/p ;; \
 	x) printf 'X' > $t/p ;; \
 	*) printf 'S' > $t/p ;; \
 esac"
