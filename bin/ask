@@ -7,4 +7,4 @@ else
 	param="-w $1"
 	shift
 fi
-st $param -g 100x1 -e ${SHELL:-/bin/sh} -c "read -p \"$prompt\" && echo \$REPLY >/proc/$$/fd/1"
+st $param -g 100x1 -e bash -c "read -p \"$prompt\" && echo \$REPLY >/proc/$$/fd/1"
