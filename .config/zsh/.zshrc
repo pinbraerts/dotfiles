@@ -1,4 +1,3 @@
-setopt prompt_subst
 setopt autocd
 setopt interactive_comments
 setopt inc_append_history
@@ -23,15 +22,6 @@ bindkey -M menuselect h vi-backward-char
 bindkey -M menuselect j vi-down-line-or-history
 bindkey -M menuselect k vi-up-line-or-history
 bindkey -M menuselect l vi-forward-char
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' get-revision true
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' %F{yellow}*%f'
-# zstyle ':vcs_info:*' stagedstr ' %F{yellow}+%f'
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats ' %f%F{magenta} %b%u'
-zstyle ':vcs_info:git:*' actionformats ' %f%F{magenta} %b|%a%u'
 
 bindkey -v
 export KEYTIMEOUT=1

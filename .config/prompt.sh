@@ -29,7 +29,6 @@ precmd() {
 		elapsed=$(format_time $(($(milliseconds) - $timer)))
 		unset timer
 	fi
-	
 }
 
 case $(ls -l /proc/$$/exe) in
@@ -78,6 +77,15 @@ case $(ls -l /proc/$$/exe) in
 		;;
 
 	*zsh)
+		setopt prompt_subst
+		autoload -Uz vcs_info
+		zstyle ':vcs_info:*' get-revision true
+		zstyle ':vcs_info:*' check-for-changes true
+		zstyle ':vcs_info:*' unstagedstr ' %F{yellow}*%f'
+		# zstyle ':vcs_info:*' stagedstr ' %F{yellow}+%f'
+		zstyle ':vcs_info:*' enable git
+		zstyle ':vcs_info:git:*' formats ' %f%F{magenta} %b%u'
+		zstyle ':vcs_info:git:*' actionformats ' %f%F{magenta} %b|%a%u'
 		PS1='%F{cyan}%~$vcs_info_msg_0_ %(?.%F{green}.%F{red})%#%f '
 		RPROMPT='$elapsed %(?.%F{green}✓.%F{red}%? ✗)%f'
 		;;
