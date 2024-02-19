@@ -4,11 +4,11 @@ function safe_source {
 safe_source /etc/bashrc
 safe_source $HOME/.env
 safe_source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/path.sh
-safe_source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
 
 [[ $- != *i* ]] && return
 set -o vi
-safe_source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/prompt.sh
+safe_source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
+safe_source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
 
 safe_source /usr/share/bash-completion/bash_completion
 safe_source /usr/share/fzf/key-bindings.bash
