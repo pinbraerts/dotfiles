@@ -55,34 +55,41 @@ function format_duration($time) {
 	return "fff'ms'"
 }
 
+function vcs_info {
+	$branch = git branch --show-current 2>$null
+	if (!$branch) {
+		$branch = git rev-parse --short HEAD 2>$null
+	}
+	if (!$branch) {
+		return
+	}
+	Write-Host " $branch " -NoNewline -ForegroundColor Magenta
+	$changes = git diff --shortstat 2>$null
+	if (!$changes) {
+		Write-Host "* " -NoNewline -ForegroundColor Yellow
+	}
+}
+
 function prompt {
 	$succeded = $?
+	$color = if ($succeded) { 'DarkGreen' } else { 'Red' }
 	$command = Get-History -Count 1
 	if ($command) {
 		$time = $command.EndExecutionTime - $command.StartExecutionTime
-		$color = if ($succeded) { 'DarkGreen' } else { 'Red' }
 		$status = status $succeded $LastExitCode
 		$format = format_duration $time
 		$message = $time.ToString($format)
-		right_align $($message.length + 6 + $status.length)
-		Write-Host "$([char]0xe0b2)" -NoNewLine -ForegroundColor $color
-		Write-Host " $status "		 -NoNewLine -BackgroundColor $color  -ForegroundColor 'White'
-		Write-Host "$([char]0xe0b2)" -NoNewLine -BackgroundColor $color  -ForegroundColor 'Blue'
-		Write-Host " $message "		 -NoNewline -ForegroundColor 'White' -BackgroundColor 'Blue'
+		right_align $($message.length + $status.length + 1)
+		Write-Host "$message " -NoNewline
+		Write-Host $status -NoNewline -ForegroundColor $color
 		realign
 	}
-	$dir = "$(Get-Location)".replace($Home, "~").replace('\', '/')
-	Write-Host " $dir "			-NoNewLine -BackgroundColor 'Blue' -ForegroundColor 'White'
-	$branch = git rev-parse --abbrev-ref HEAD 2>$null
-	if ($? -and $branch) {
-		Write-Host $([char]0xe0b0) -NoNewLine -ForegroundColor 'Blue' -BackgroundColor 'Magenta'
-		Write-Host " $branch "	   -NoNewLine -ForegroundColor 'White' -BackgroundColor 'Magenta'
-		Write-Host $([char]0xe0b0) -NoNewLine -ForegroundColor 'Magenta'
-	}
-	else {
-		Write-Host $([char]0xe0b0)	-NoNewLine -ForegroundColor 'Blue'
-	}
-	return " "
+	$dir = "$(Get-Location) ".replace($Home, "~").replace('\', '/')
+	Write-Host $dir -NoNewline -ForegroundColor Cyan
+	vcs_info
+	if ($Host.UI.RawUI.windowsize.width -lt 80) { Write-Host }
+	Write-Host % -NoNewLine -ForegroundColor $color
+	return ' '
 }
 
 Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
