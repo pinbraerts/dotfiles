@@ -29,6 +29,11 @@ precmd() {
 		elapsed=$(format_time $(($(milliseconds) - $timer)))
 		unset timer
 	fi
+	if [ ${COLUMNS:-$(tput cols)} -lt 80 ]; then
+		newline=$'\n'
+	else
+		newline=' '
+	fi
 }
 
 case $(ls -l /proc/$$/exe) in
@@ -63,7 +68,7 @@ case $(ls -l /proc/$$/exe) in
 			width=${COLUMNS:-$(tput cols)}
 			length=${#RPROMPT}
 			RPROMPT="\033[s\033[${width}C\033[${length}D$elapsed $mod$tick\033[u"
-			PS1="\[$RPROMPT$(tput setf 3)\]\\w$vcs_info_msg_0_ "
+			PS1="\[$RPROMPT$(tput setf 3)\]\\w$vcs_info_msg_0_$newline"
 			if [ $EUID -eq 0 ]; then
 				PS1="$PS1\[$mod\]#"
 			else
@@ -86,7 +91,7 @@ case $(ls -l /proc/$$/exe) in
 		zstyle ':vcs_info:*' enable git
 		zstyle ':vcs_info:git:*' formats ' %f%F{magenta} %b%u'
 		zstyle ':vcs_info:git:*' actionformats ' %f%F{magenta} %b|%a%u'
-		PS1='%F{cyan}%~$vcs_info_msg_0_ %(?.%F{green}.%F{red})%#%f '
+		PS1='%F{cyan}%~$vcs_info_msg_0_$newline%(?.%F{green}.%F{red})%#%f '
 		RPROMPT='$elapsed %(?.%F{green}✓.%F{red}%? ✗)%f'
 		;;
 esac
