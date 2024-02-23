@@ -10,3 +10,4 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 eval "$(zoxide init --cmd cd bash)"
 eval "$(joshuto completions bash)"
+. "$HOME/.cargo/env"
