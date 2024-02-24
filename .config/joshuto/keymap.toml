@@ -13,7 +13,7 @@ keymap = [
 
 	{ keys = ["R"], commands = ["reload_dirlist"] },
 	{ keys = ["z", "h"], commands = ["toggle_hidden"] },
-	{ keys = ["ctrl+h"], commands = ["toggle_hidden"] },
+	{ keys = ["v"], commands = ["toggle_hidden"] },
 	{ keys = ["\t"], commands = ["tab_switch 1"] },
 	{ keys = ["backtab"], commands = ["tab_switch -1"] },
 
