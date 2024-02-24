@@ -65,7 +65,7 @@ function vcs_info {
 	}
 	Write-Host " $branch " -NoNewline -ForegroundColor Magenta
 	$changes = git diff --shortstat 2>$null
-	if (!$changes) {
+	if ($changes) {
 		Write-Host "* " -NoNewline -ForegroundColor Yellow
 	}
 }
