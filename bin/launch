@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
-set -o pipefail
 program=$(path | st -i -g 50x20 -t Launch -n Launch \
 		fzf \
 		--bind "tab:replace-query" \
