@@ -19,13 +19,16 @@ set $term foot tmux new-session -A -s work
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
+font FiraCodeNerdFontMono 12
+default_border pixel 2
+focus_wrapping no
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/wallpapers/waves.png fill
 #
 # Example configuration:
 #
