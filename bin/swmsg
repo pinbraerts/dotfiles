@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+SWAYSOCK=$(lsof /run/user/1000/sway-ipc.* 2>/dev/null | awk '{print $9}' | tail -n 1)
+swaymsg $@
+exit $?

@@ -45,3 +45,5 @@ bindkey '^Y' autosuggest-accept
 }
 # unsetopt xtrace
 # exec 2>&3 3>&-
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
