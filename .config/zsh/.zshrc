@@ -32,13 +32,9 @@ eval "$(joshuto completions zsh)"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 
+source $ZDOTDIR/plugins.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
-source $HOME/opt/zsh-vi-mode/zsh-vi-mode.zsh
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^ ' autosuggest-accept
 
