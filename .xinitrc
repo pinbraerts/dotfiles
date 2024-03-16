@@ -7,6 +7,6 @@ Telegram -startintray &
 xautolock -time 5 -locker slock &
 # xrandr --auto --output HDMI1 --right-of eDP1
 /usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
-/home/pinbraerts/opt/Bluetooth-Menu/bluetooth-menu &
+bluetooth-menu &
 dex -a &
 dbus-launch dwm-start
