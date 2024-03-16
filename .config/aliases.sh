@@ -9,5 +9,6 @@ alias la="ls -la"
 which >/dev/null 2>&1 make && alias m=make
 which >/dev/null 2>&1 rg && alias grep=rg
 which >/dev/null 2>&1 tree-sitter && alias ts=tree-sitter
+which >/dev/null 2>&1 micromamba && alias mm=micromamba
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR

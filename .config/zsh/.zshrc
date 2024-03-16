@@ -28,6 +28,7 @@ export KEYTIMEOUT=1
 
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(joshuto completions zsh)"
+eval "$(${MAMBA_EXE} shell hook -s zsh -p $MAMBA_ROOT_PREFIX)"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true

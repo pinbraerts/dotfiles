@@ -10,4 +10,6 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 eval "$(zoxide init --cmd cd bash)"
 eval "$(joshuto completions bash)"
+eval "$(\"$MAMBA_EXE\" shell hook --shell bash --root-prefix \"$MAMBA_ROOT_PREFIX\" 2> /dev/null)"
+
 . "$HOME/.cargo/env"
