@@ -13,7 +13,7 @@ export ueberzug_pid=""
 
 function start_ueberzugpp {
     ## Adapt Überzug++ options here. For example, remove the '--no-opencv' or set another output method.
-    ueberzugpp layer --no-stdin --pid-file "$ueberzug_pid_file" &>/dev/null
+    ueberzugpp layer --no-cache --no-stdin --pid-file "$ueberzug_pid_file" &>/dev/null
     export ueberzug_pid="$(cat "$ueberzug_pid_file")"
     export ueberzug_socket=/tmp/ueberzugpp-"$ueberzug_pid".socket
     mkdir -p "$joshuto_wrap_preview_meta"

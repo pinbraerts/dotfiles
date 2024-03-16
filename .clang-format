@@ -1,7 +1,7 @@
 Language:        Cpp
 AlignAfterOpenBracket: BlockIndent
 AccessModifierOffset: -4
-AlignArrayOfStructures: Left
+AlignArrayOfStructures: Right
 AlignConsecutiveAssignments:
   Enabled:         true
   AcrossEmptyLines: false
@@ -61,7 +61,7 @@ BraceWrapping:
   AfterUnion:      false
   AfterExternBlock: false
   BeforeCatch:     false
-  BeforeElse:      false
+  BeforeElse:      true
   BeforeLambdaBody: false
   BeforeWhile:     false
   IndentBraces:    false
@@ -70,7 +70,7 @@ BraceWrapping:
   SplitEmptyNamespace: true
 BreakBeforeBinaryOperators: All
 BreakBeforeConceptDeclarations: Always
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Custom
 BreakBeforeInheritanceComma: false
 BreakInheritanceList: BeforeColon
 BreakBeforeTernaryOperators: true
@@ -209,7 +209,7 @@ StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
 TabWidth:        4
-UseTab:          ForIndentation
+UseTab:          AlignWithSpaces
 UseCRLF:         false
 WhitespaceSensitiveMacros:
   - STRINGIZE
