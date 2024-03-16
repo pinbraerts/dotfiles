@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+function try_tmux() {
+	available=$(tmux display -p "#{pane_at_$1}" 2>/dev/null)
+	[ $available -eq 0 ] && exit 1
+	PANE=$(echo ${1:0:1} | tr '[:lower:]' '[:upper:]')
+	tmux select-pane -$PANE
+}
+
+function try_nvim() {
+	
+}
+
+function try_sway() {
+	SWAYSOCK=$(lsof /run/user/1000/sway-ipc.* 2>/dev/null | awk '{print $9}' | tail -n 1)
+	[ -z $SWAYSOCK ] && exit 1
+
+}
+
+PARENT=$(ps -o ppid= $$)
+[ -z $PARENT ] && exit
+COMMAND=$(ps -o comm= $PARENT)
+case "$COMMAND" in
+	*vim*)
+		echo VIM
+		;;
+	*tmux*)
+		tmux if -F "#{pane_at_$1}" "run swaymsg focus $1" "select-pane $PANE"
+		;;
+	**)
+		;;
+esac
+exit 0
+SWAYSOCK=$(lsof /run/user/1000/sway-ipc.* 2>/dev/null | awk '{print $9}' | tail -n 1)
+[ -z $SWAYSOCK ] && exit 1
+FOOT=$(swaymsg -t get_tree | jq '.nodes[].nodes[].nodes[]|select(.focused)|select(.name=="foot").pid')
+[ -z $FOOT ] && exit 2
+TMUX=$(pgrep -P $FOOT)
+[[ "$(ps -o comm= $TMUX)" == "tmux: client" ]] || swaymsg focus $1
+echo $TMUX
