@@ -1,26 +1,16 @@
 #!/usr/bin/env sh
 
-not_exists() {
-	exit $(grep -c "$URL" ~/.surf/bookmarks)
-}
-
-bm_delete() {
-	URL=$(echo "$URL" | sed -e 's/[]\/\$*.^[]/\\&/g')
-	sed --ollow-symlinks -i "/$URL/d" ~/.surf/bookmarks
-}
-
-bm_add() {
-	echo $URL >> ~/.surf/bookmarks
-}
-
 if [ $# -gt 1 ]; then
 	URL=$(xprop -id $1 $2 | cut -d '"' -f2 | sed 's/.*https*:\/\/\(www\.\)\?//')
 else
 	URL=$1
 fi
 
-if $(not_exists "$URL"); then
-	bm_add "$URL"
+ESCAPED=$(echo "$URL" | sed -e 's/[]\/\$*.^[]/\\&/g')
+ESCAPED="^$ESCAPED$"
+
+if grep -q "$ESCAPED" "$HOME/.surf/bookmarks"; then
+	sed --follow-symlinks -i "/$ESCAPED/d" ~/.surf/bookmarks
 else
-	bm_delete "$URL"
+	echo $URL >> ~/.surf/bookmarks
 fi
