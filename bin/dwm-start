@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -eo pipefail
+#!/usr/bin/env sh
+set -e
 log_file=$(mktemp /tmp/dwm-XXXX.log)
 trap "rm $log_file" EXIT
 while true; do

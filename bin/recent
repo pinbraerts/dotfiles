@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
-set -o pipefail
 INITIAL_QUERY="${*:-}"
 q="nvim --headless -u NONE -c oldfiles\|q 2>&1 | cut --delimiter ' ' --fields 2"
 : | fzf \

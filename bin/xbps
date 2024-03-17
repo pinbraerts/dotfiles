@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
-set -o pipefail
 t=$(mktemp -d /tmp/fzf-xbps.XXXX)
 trap "rm -r $t" EXIT
 printf 'S' > $t/p

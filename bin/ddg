@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -eo pipefail
+#!/usr/bin/env sh
+set -e
 curl 2>/dev/null \
 	--get \
 	--data-urlencode "type=list" \
