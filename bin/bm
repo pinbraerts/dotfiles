@@ -6,7 +6,7 @@ not_exists() {
 
 bm_delete() {
 	URL=$(echo "$URL" | sed -e 's/[]\/\$*.^[]/\\&/g')
-	sed -i "/$URL/d" ~/.surf/bookmarks
+	sed --ollow-symlinks -i "/$URL/d" ~/.surf/bookmarks
 }
 
 bm_add() {
