@@ -37,7 +37,11 @@ source $ZDOTDIR/plugins.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
 
-bindkey '^ ' autosuggest-accept
+zvm_after_init() {
+bindkey '^Y' autosuggest-accept
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
 # unsetopt xtrace
 # exec 2>&3 3>&-
