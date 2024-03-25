@@ -13,3 +13,5 @@ eval "$(joshuto completions bash)"
 eval "$(\"$MAMBA_EXE\" shell hook --shell bash --root-prefix \"$MAMBA_ROOT_PREFIX\" 2> /dev/null)"
 
 . "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
