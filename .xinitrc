@@ -1,5 +1,5 @@
-setxkbmap -option ctrl:swapcaps,grp:toggle -layout us,ru
-xcape -e 'Control_L=Escape' &
+# setxkbmap -option ctrl:swapcaps,grp:toggle -layout us,ru
+# xcape -e 'Control_L=Escape' &
 picom &
 feh --no-fehbg --bg-center /home/pinbraerts/wallpapers/lake.jpg &
 pipewire &
