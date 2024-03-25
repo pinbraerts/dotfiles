@@ -6,6 +6,7 @@ else
 fi
 alias ll="ls -ll"
 alias la="ls -la"
+alias ccache=sccache
 which >/dev/null 2>&1 make && alias m=make
 which >/dev/null 2>&1 rg && alias grep=rg
 which >/dev/null 2>&1 tree-sitter && alias ts=tree-sitter
