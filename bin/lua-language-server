@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+exec "$HOME/opt/lua-language-server/bin/lua-language-server" "$@"
+exit $?
