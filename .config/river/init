@@ -178,6 +178,8 @@ riverctl set-repeat 50 300
 # Set app-ids and titles of views which should use client side decorations
 # riverctl csd-filter-add app-id "gedit"
 
+riverctl rule-add ssd
+
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
