@@ -1,4 +1,4 @@
-. ~/.profile
+. ~/autostart.sh
 # setxkbmap -option ctrl:swapcaps,grp:toggle -layout us,ru
 # xcape -e 'Control_L=Escape' &
 picom &

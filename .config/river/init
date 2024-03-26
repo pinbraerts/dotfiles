@@ -8,7 +8,7 @@
 # See the river(1), riverctl(1), and rivertile(1) man pages for complete
 # documentation.
 
-pidof >/dev/null pipewire || . ~/.profile
+# pidof >/dev/null pipewire || . ~/autostart.sh
 pidof >/dev/null swww-daemon || swww-daemon &
 pidof >/dev/null waybar || waybar &
 swww img $HOME/wallpapers/lake.jpg
