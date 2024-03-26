@@ -6,7 +6,7 @@ program=$(path | st -i -g 50x20 -t Launch -n Launch \
 		--bind "enter:replace-query+print-query")
 desktop_entry=$(find ${XDG_DATA_HOME:-$HOME/.local/share}/applications /usr/share/applications /usr/local/share/applications -name "*${program% *}.desktop")
 if [ -z "$desktop_entry" ] || grep -q -e "Terminal=true" -e "Terminal=1" "$desktop_entry"; then
-	st -e $program
+	echo st -e $program
 else
-	$program
+	echo $program
 fi
