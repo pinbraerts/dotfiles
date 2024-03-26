@@ -8,15 +8,22 @@
 # See the river(1), riverctl(1), and rivertile(1) man pages for complete
 # documentation.
 
-waybar &
+pidof >/dev/null pipewire || . ~/.profile
+pidof >/dev/null swww-daemon || swww-daemon &
+pidof >/dev/null waybar || waybar &
+swww img $HOME/wallpapers/lake.jpg
 
 # Note: the "$SUPER" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 SUPER=Mod1
 
-riverctl map normal $SUPER r 
+riverctl map normal $SUPER r spawn ". ~/.config/river/init"
 
-# $SUPER+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal $SUPER Grave spawn "foot -e tmux new-session -A -s workspace"
+riverctl map normal $SUPER f spawn firefox-wayland
+riverctl map normal $SUPER u spawn "st -i -g 150x40 -t Packages -n Packages xbps"                 
+riverctl map normal $SUPER p spawn "st -i -g 50x20  -t Launch   -n Launch   launch     | sh"      
+riverctl map normal $SUPER s spawn "st -i -g 50x20  -t Surf     -n Surf     ddg_fzf.sh | xargs -r surf"
+
+riverctl map normal $SUPER Grave spawn "st -e tmux new-session -A -s workspace"
 
 # $SUPER+Q to close the focused view
 riverctl map normal $SUPER Q close
@@ -81,6 +88,13 @@ riverctl map-pointer normal $SUPER BTN_RIGHT resize-view
 # $SUPER + Middle Mouse Button to toggle float
 riverctl map-pointer normal $SUPER BTN_MIDDLE toggle-float
 
+riverctl input "*Touchpad*" natural-scroll enabled
+riverctl input "*Touchpad*" tap enabled
+riverctl input "*Touchpad*" drag enabled
+riverctl input "*Touchpad*" disable-while-typing enabled
+riverctl input "*Touchpad*" tap-button-map left-right-middle
+riverctl input "*Touchpad*" scroll-method two-finger
+
 for i in $(seq 1 9)
 do
     tags=$((1 << ($i - 1)))
@@ -108,7 +122,7 @@ riverctl map normal $SUPER+Shift 0 set-view-tags $all_tags
 riverctl map normal $SUPER Space toggle-float
 
 # $SUPER+F to toggle fullscreen
-riverctl map normal $SUPER F toggle-fullscreen
+# riverctl map normal $SUPER F toggle-fullscreen
 
 # $SUPER+{Up,Right,Down,Left} to change layout orientation
 riverctl map normal $SUPER Up    send-layout-cmd rivertile "main-location top"
@@ -167,4 +181,4 @@ riverctl set-repeat 50 300
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 2 -outer-padding 6 &
+rivertile -view-padding 2 -outer-padding 0 &
