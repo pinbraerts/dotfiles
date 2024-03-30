@@ -29,7 +29,7 @@ export KEYTIMEOUT=1
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(joshuto completions zsh)"
 eval "$(${MAMBA_EXE} shell hook -s zsh -p $MAMBA_ROOT_PREFIX)"
-[ -d .env ] && micromamba activate -p "$(pwd)/.env"
+[ -d .venv ] && micromamba activate -p "$(pwd)/.env"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
