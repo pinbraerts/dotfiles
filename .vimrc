@@ -40,6 +40,7 @@ nohls
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+let g:netrw_fastbrowse = 0
 
 " yank to end of line
 nnoremap Y yg$
@@ -138,4 +139,9 @@ augroup NotModifiableBuffer
 	au!
 	au BufAdd,BufNew,VimEnter * call ProcessModifiable()
 	au OptionSet modifiable     call ProcessModifiable()
+augroup END
+
+augroup CloseNetrw
+	au!
+	au FileType netrw setl bufhidden=wipe
 augroup END
