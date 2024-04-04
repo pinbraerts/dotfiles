@@ -8,6 +8,7 @@ html,
 
 .w-gl__result-title:focus {
 	outline: none;
+	text-decoration: underline !important;
 }
 
 .w-gl__result {
