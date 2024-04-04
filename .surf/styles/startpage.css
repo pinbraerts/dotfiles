@@ -1,0 +1,19 @@
+html,
+.layout-web,
+.layout-web__body,
+.w-gl
+{
+	background: none !important;
+}
+
+.w-gl__result-title:focus {
+	outline: none;
+}
+
+.w-gl__result {
+	border-radius: 20px !important;
+}
+
+.w-gl__result:has(> .w-gl__result__main > .w-gl__result-second-line-container > .w-gl__result-title:focus) {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+}

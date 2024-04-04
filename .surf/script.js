@@ -40,6 +40,43 @@ function bottom() {
 	window.scroll(0, document.body.scrollHeight);
 }
 
+if (window.location.hostname == "www.startpage.com") {
+	var answers = document.querySelectorAll(".w-gl__result-title");
+	var index = 0
+	answers[index].focus()
+
+	up = function () {
+		if (index == 0) {
+			return;
+		}
+		index -= 1;
+		answers[index].focus()
+	}
+
+	down = function () {
+		if (index >= answers.length - 1) {
+			return;
+		}
+		index += 1;
+		answers[index].focus()
+	}
+
+	right = function() {
+		answers[index].click()
+	}
+
+	var search_field = document.getElementById('q')
+	search = function() {
+		search_field.focus()
+	}
+
+	search_field.addEventListener('keypress', (ev) => {
+		if (ev.key == "Escape") {
+			answers[index].focus()
+		}
+	})
+}
+
 // If you don't like default key bindings, customize here.
 // if you want to use the combination 'Ctrl + b' (for example), use '^b'
 var bindings = {
