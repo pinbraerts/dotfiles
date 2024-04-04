@@ -116,14 +116,23 @@ if (up === undefined) {
 		if (element.nodeName.toLowerCase() != "input") {
 			return;
 		}
-		var i = element.selectionEnd;
-		while (i > 0 && element.value[i] != ' ') {
+		var i = element.selectionEnd - 1;
+		var word_delimiters = '`~!?@#$%^&*()[]{}<>-_=+ \t\n\r|\\//;:\'\",.';
+		while (i > 0 && element.value[i] == ' ') {
 			i -= 1;
 		}
-		while (i > 0 && element.value[i - 1] == ' ') {
+		if (word_delimiters.includes(element.value[i])) {
 			i -= 1;
 		}
-		element.value = element.value.slice(0, i)
+		else {
+			while (i >= 0 && !word_delimiters.includes(element.value[i])) {
+				i -= 1;
+			}
+		}
+		while (i >= 0 && element.value[i] == ' ') {
+			i -= 1;
+		}
+		element.value = element.value.slice(0, i + 1)
 	}
 
 	function keypress(evt) {
