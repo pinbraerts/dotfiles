@@ -42,8 +42,14 @@ if (up === undefined) {
 		window.scroll(0, document.body.scrollHeight);
 	}
 
-	if (window.location.hostname == "www.startpage.com") {
-		var answers = document.querySelectorAll(".w-gl__result-title");
+	var queries = {
+		"www.startpage.com": ".w-gl__result-title",
+		"www.google.com": "a[jsname='UWckNb']",
+		"search.brave.com": ".h",
+	};
+	var answers = document.querySelectorAll(queries[window.location.hostname]);
+
+	if (answers) {
 		var index = 0
 		answers[index].focus()
 
@@ -67,7 +73,7 @@ if (up === undefined) {
 			answers[index].click()
 		}
 
-		var search_field = document.getElementById('q')
+		var search_field = document.querySelector('#q,#searchbox,textarea[name="q"]')
 		search = function() {
 			search_field.focus()
 		}
