@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 bookmarks=~/.surf/bookmarks
-reload="cat $bookmarks && ddg {q}"
+reload="cat $bookmarks && autocomplete {q}"
 
 query=$(cat $bookmarks | fzf \
 	--bind "change:reload-sync:$reload" \
