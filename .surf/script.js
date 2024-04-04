@@ -112,12 +112,29 @@ if (up === undefined) {
 		return false;
 	}
 
+	function deleteWord(element) {
+		if (element.nodeName.toLowerCase() != "input") {
+			return;
+		}
+		var i = element.selectionEnd;
+		while (i > 0 && element.value[i] != ' ') {
+			i -= 1;
+		}
+		while (i > 0 && element.value[i - 1] == ' ') {
+			i -= 1;
+		}
+		element.value = element.value.slice(0, i)
+	}
+
 	function keypress(evt) {
 		var target = evt.target;
 
 		// if we're on a editable element, we probably don't want to catch
 		// keypress, we just want to write the typed character.
 		if (isEditable(target)) {
+			if (evt.ctrlKey && String.fromCharCode(evt.charCode) == 'w') {
+				deleteWord(evt.target);
+			}
 			return;
 		}
 
