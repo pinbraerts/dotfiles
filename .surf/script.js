@@ -22,6 +22,8 @@ var pagedown = window.scrollByPages
 	: function () { window.scrollBy(0, -page_percent(95)); }
 ;
 
+var search = null
+
 function right() {
 	window.scrollBy(page_percent(10), 0);
 }
@@ -49,6 +51,7 @@ var bindings = {
 	'G': bottom,
 	'd': pageup,
 	'u': pagedown,
+	'/': search,
 }
 
 function isEditable(element) {
@@ -86,6 +89,7 @@ function keypress(evt) {
 
 	var fun = bindings[key];
 	if (fun) {
+		evt.preventDefault()
 		fun();
 	}
 }
