@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
-set -e
 curl 2>/dev/null \
 	--get \
-	--data-urlencode "type=list" \
 	--data-urlencode "q=$1" \
-	https://ac.duckduckgo.com/ac/ \
+	"https://www.startpage.com/osuggestions" \
 	| jq -r '.[1][]'
