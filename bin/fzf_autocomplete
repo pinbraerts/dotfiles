@@ -12,5 +12,8 @@ query=$(cat $bookmarks | fzf \
 if echo "$query" | grep -q -v -e "\."; then
 	query=$(urlencode "$query")
 	query="https://www.startpage.com/do/search?q=$query"
+	# query="https://search.brave.com/search?q=$query"
+	# query="https://www.google.com/search?q=$query"
+	# query="https://duckduckgo.com/?q=$query"
 fi
 echo $query
