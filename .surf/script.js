@@ -145,26 +145,26 @@ if (up === undefined) {
 		element.selectionEnd = i + 1
 	}
 
-	function keypress(evt) {
-		var target = evt.target;
+	function keypress(event) {
+		var target = event.target;
 
 		// if we're on a editable element, we probably don't want to catch
 		// keypress, we just want to write the typed character.
 		if (isEditable(target)) {
-			if (evt.ctrlKey && String.fromCharCode(evt.charCode) == 'w') {
-				deleteWord(evt.target);
+			if (event.ctrlKey && String.fromCharCode(event.charCode) == 'w') {
+				deleteWord(event.target);
 			}
 			return;
 		}
 
-		var key = String.fromCharCode(evt.charCode);
-		if (evt.ctrlKey) {
+		var key = String.fromCharCode(event.charCode);
+		if (event.ctrlKey) {
 			key = '^' + key;
 		}
 
 		var fun = bindings[key];
 		if (fun) {
-			evt.preventDefault()
+			event.preventDefault()
 			fun();
 		}
 	}
