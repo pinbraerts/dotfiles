@@ -54,7 +54,7 @@ if (up === undefined) {
 	}
 
 	var answers = get_answers()
-	if (answers) {
+	if (answers && answers.length) {
 		var index = 0
 		answers[index].focus()
 
