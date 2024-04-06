@@ -1,0 +1,12 @@
+a.gs-title {
+	text-decoration: none !important;
+	outline: none;
+}
+
+a.gs-title:focus {
+	text-decoration: underline !important;
+}
+
+.gsc-result:has(a.gs-title:focus) {
+	background: rgba(255, 255, 255, 0.1) !important;
+}
