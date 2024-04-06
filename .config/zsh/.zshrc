@@ -17,6 +17,8 @@ zstyle ':completion:*' cache-path $ZSH_COMPDUMP
 zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+. "$ZDOTDIR/.zprofile"
 zmodload zsh/complist
 bindkey -M menuselect h vi-backward-char
 bindkey -M menuselect j vi-down-line-or-history
@@ -28,9 +30,6 @@ export KEYTIMEOUT=1
 
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(joshuto completions zsh)"
-eval "$(${MAMBA_EXE} shell hook -s zsh -p $MAMBA_ROOT_PREFIX)"
-[ -d .venv ] && micromamba activate -p "$(pwd)/.env"
-
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 
@@ -39,10 +38,11 @@ source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
 
 zvm_after_init() {
-bindkey '^Y' autosuggest-accept
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+	bindkey '^Y' autosuggest-accept
+	zle     -N            fzf-history-widget
+	bindkey -M emacs '^R' fzf-history-widget
+	bindkey -M vicmd '^R' fzf-history-widget
+	bindkey -M viins '^R' fzf-history-widget
 }
 # unsetopt xtrace
 # exec 2>&3 3>&-
