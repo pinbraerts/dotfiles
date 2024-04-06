@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 curl 2>/dev/null \
 	--get \
 	--data-urlencode "q=$1" \

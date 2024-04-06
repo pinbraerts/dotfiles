@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 bookmarks=~/.surf/bookmarks
 reload="cat $bookmarks && autocomplete {q}"
 

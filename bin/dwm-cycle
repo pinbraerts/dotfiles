@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 log_file=$(mktemp /tmp/dwm-XXXX.log)
 trap "rm $log_file" EXIT
 while [ $? -eq 0 ]; do

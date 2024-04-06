@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 function try_tmux() {
 	available=$(tmux display -p "#{pane_at_$1}" 2>/dev/null)

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -e
 t=$(mktemp -d /tmp/fzf-xbps.XXXX)
 trap "rm -r $t" EXIT

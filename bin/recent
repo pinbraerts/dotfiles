@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -e
 INITIAL_QUERY="${*:-}"
 q="nvim --headless -u NONE -c oldfiles\|q 2>&1 | cut --delimiter ' ' --fields 2"

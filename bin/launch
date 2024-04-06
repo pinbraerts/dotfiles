@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -e
 program=$(path | st -i -g 50x20 -t Launch -n Launch \
 		fzf \

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 if [ $# -gt 1 ]; then
 	URL=$(xprop -id $1 $2 | cut -d '"' -f2 | sed 's/.*https*:\/\/\(www\.\)\?//')

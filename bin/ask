@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 prompt="${1:->} "
 shift
 if [ $# -eq 0 ]; then
