@@ -1,7 +1,5 @@
 #!/bin/sh
-set -e
-directory=$(zoxide query ${1:--i})
-cd $directory
+directory=$1
 basename=$(basename $directory)
 if ! tmux has-session -t "$basename" 2>/dev/null; then
 	tmux new-session -s "$basename" -c "$directory" -d "nvim; zsh"
@@ -11,3 +9,4 @@ if [ -z "$TMUX" ]; then
 else
 	tmux switch-client -t "$basename"
 fi
+exit $?

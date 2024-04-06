@@ -23,7 +23,7 @@ riverctl map normal $SUPER u spawn "st -i -g 150x40 -t Packages -n Packages xbps
 riverctl map normal $SUPER p spawn "st -i -g 50x20  -t Launch   -n Launch   launch     | sh"      
 riverctl map normal $SUPER s spawn "st -i -g 50x20  -t Surf     -n Surf     ddg_fzf.sh | xargs -r surf"
 riverctl map normal $SUPER t spawn st
-riverctl map normal $SUPER Grave spawn "st td"
+riverctl map normal $SUPER Grave spawn "st tmux-select"
 
 # $SUPER+Q to close the focused view
 riverctl map normal $SUPER Q close
