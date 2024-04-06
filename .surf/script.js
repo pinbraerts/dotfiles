@@ -47,8 +47,12 @@ if (up === undefined) {
 		"www.google.com": "a[jsname='UWckNb']",
 		"search.brave.com": ".h",
 	};
-	var answers = document.querySelectorAll(queries[window.location.hostname]);
 
+	function get_answers() {
+		return document.querySelectorAll(queries[window.location.hostname]);
+	}
+
+	var answers = get_answers()
 	if (answers) {
 		var index = 0
 		answers[index].focus()
@@ -58,10 +62,11 @@ if (up === undefined) {
 				return;
 			}
 			index -= 1;
-			answers[index].focus()
+			get_answers()[index].focus()
 		}
 
 		down = function () {
+			answers = get_answers();
 			if (index >= answers.length - 1) {
 				return;
 			}
@@ -70,7 +75,7 @@ if (up === undefined) {
 		}
 
 		right = function() {
-			answers[index].click()
+			get_answers()[index].click()
 		}
 
 		var search_field = document.querySelector('#q,#searchbox,textarea[name="q"]')
@@ -80,7 +85,7 @@ if (up === undefined) {
 
 		search_field.addEventListener('keypress', (ev) => {
 			if (ev.key == "Escape") {
-				answers[index].focus()
+				get_answers()[index].focus()
 			}
 		})
 	}
