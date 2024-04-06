@@ -125,7 +125,7 @@ if (up === undefined) {
 	}
 
 	function deleteWord(element) {
-		if (element.nodeName.toLowerCase() != "input") {
+		if (!element.selectionEnd || !element.value) {
 			return;
 		}
 		var i = element.selectionEnd - 1;
@@ -141,10 +141,8 @@ if (up === undefined) {
 				i -= 1;
 			}
 		}
-		while (i >= 0 && element.value[i] == ' ') {
-			i -= 1;
-		}
-		element.value = element.value.slice(0, i + 1)
+		element.value = element.value.slice(0, i + 1) + element.value.slice(element.selectionEnd, element.value.length)
+		element.selectionEnd = i + 1
 	}
 
 	function keypress(evt) {
