@@ -46,6 +46,7 @@ if (up === undefined) {
 		"www.startpage.com": ".w-gl__result-title",
 		"www.google.com": "a[jsname='UWckNb']",
 		"search.brave.com": ".h",
+		"search.disroot.org": ".result > h3 > a",
 	};
 
 	function get_answers() {
