@@ -112,7 +112,7 @@ if (up === undefined) {
 
 		// we don't get keypress events for text input, but I don't known
 		// if it's a bug, so let's test that
-		if (element.nodeName.toLowerCase() == "input" && element.type == "text") {
+		if (element.nodeName.toLowerCase() == "input") {
 			return true;
 		}
 
@@ -146,11 +146,9 @@ if (up === undefined) {
 	}
 
 	function keypress(event) {
-		var target = event.target;
-
 		// if we're on a editable element, we probably don't want to catch
 		// keypress, we just want to write the typed character.
-		if (isEditable(target)) {
+		if (isEditable(event.target)) {
 			if (event.ctrlKey && String.fromCharCode(event.charCode) == 'w') {
 				deleteWord(event.target);
 			}
