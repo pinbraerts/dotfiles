@@ -361,7 +361,7 @@ label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = 󰍃
-menu-0-0-exec = pkill dwm
+menu-0-0-exec = loginctl kill-session self
 menu-0-1 = 󰤄
 menu-0-1-exec = loginctl suspend-then-hibernate
 menu-0-2 = 󰑓
