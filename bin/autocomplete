@@ -2,5 +2,5 @@
 curl 2>/dev/null \
 	--get \
 	--data-urlencode "q=$1" \
-	"https://www.startpage.com/osuggestions" \
+	"https://duckduckgo.com/ac/" \
 	| jq -r '.[1][]'
