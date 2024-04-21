@@ -9,4 +9,5 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 eval "$(${MAMBA_EXE} shell hook -s zsh -p $MAMBA_ROOT_PREFIX)"
 [ -d .venv ] && micromamba activate -p "$(pwd)/.venv"
+[ -f ".env" ] && . "$(pwd)/.env"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
