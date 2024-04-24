@@ -42,6 +42,16 @@ if (up === undefined) {
 		window.scroll(0, document.body.scrollHeight);
 	}
 
+	if (document.head.innerHTML.includes("Book generated using mdBook")) {
+		left = function () {
+			document.querySelector(".previous").click()
+		}
+
+		right = function () {
+			document.querySelector(".next").click()
+		}
+	}
+
 	var queries = {
 		"www.startpage.com": ".w-gl__result-title",
 		"www.google.com": "a[jsname='UWckNb']",
