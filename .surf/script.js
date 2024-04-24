@@ -59,34 +59,42 @@ if (up === undefined) {
 		"search.disroot.org": ".result > h3 > a",
 	};
 
-	function get_answers() {
-		return document.querySelectorAll(queries[window.location.hostname]);
-	}
-
-	var answers = get_answers()
-	if (answers && answers.length) {
-		var index = 0
-		answers[index].focus()
+	var query = queries[window.location.hostname]
+	if (query) {
+		document.querySelector(query).focus()
 
 		up = function () {
-			if (index == 0) {
+			let elements = document.querySelectorAll(query)
+			if (!elements) {
 				return;
 			}
-			index -= 1;
-			get_answers()[index].focus()
+			let index = Array.prototype.indexOf.call(elements, document.activeElement);
+			if (index < 0) {
+				index = 0;
+			}
+			if (index >= 1) {
+				index -= 1;
+			}
+			elements[index].focus()
 		}
 
 		down = function () {
-			answers = get_answers();
-			if (index >= answers.length - 1) {
+			let elements = document.querySelectorAll(query)
+			if (!elements) {
 				return;
 			}
-			index += 1;
-			answers[index].focus()
+			let index = Array.prototype.indexOf.call(elements, document.activeElement);
+			if (index < 0) {
+				index = 0;
+			}
+			if (index < elements.length - 1) {
+				index += 1;
+			}
+			elements[index].focus()
 		}
 
 		right = function() {
-			get_answers()[index].click()
+			document.activeElement.click()
 		}
 
 		var search_field = document.querySelector('#q,#searchbox,textarea[name="q"]')
@@ -95,10 +103,12 @@ if (up === undefined) {
 		}
 
 		search_field.addEventListener('keypress', (ev) => {
+			console.log(ev.key)
 			if (ev.key == "Escape") {
-				get_answers()[index].focus()
+				document.querySelector(query).focus()
 			}
 		})
+
 	}
 
 	// If you don't like default key bindings, customize here.
