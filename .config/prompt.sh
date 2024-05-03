@@ -48,9 +48,9 @@ case $(ls -l /proc/$$/exe) in
 				return
 			fi
 			if [[ -n $(git diff --shortstat) ]]; then
-				vcs_info_msg_0_="$vcs_info_msg_0_ \[$(tput setf 6)\]*"
+				vcs_info_msg_0_="$vcs_info_msg_0_ \[$(tput setaf 3)\]*"
 			fi
-			vcs_info_msg_0_="\[$(tput setf 5)\]  $vcs_info_msg_0_"
+			vcs_info_msg_0_="\[$(tput setaf 5)\]  $vcs_info_msg_0_"
 			export vcs_info_msg_0_
 		}
 
@@ -58,19 +58,19 @@ case $(ls -l /proc/$$/exe) in
 			status=$?
 			precmd
 			if [ $status -eq 0 ]; then
-				mod=$(tput setf 2)
+				mod=$(tput setaf 2)
 				tick="✓"
 			else
-				mod=$(tput setf 4)
+				mod=$(tput setaf 1)
 				tick="$status ✗"
 			fi
 			RPROMPT="$elapsed $tick"
 			width=${COLUMNS:-$(tput cols)}
 			length=${#RPROMPT}
 			RPROMPT="\033[s\033[${width}C\033[${length}D$elapsed $mod$tick\033[u"
-			PS1="\[$RPROMPT$(tput setf 3)\]\\w$vcs_info_msg_0_$newline"
+			PS1="\[$RPROMPT$(tput setaf 6)\]\\w$vcs_info_msg_0_$newline"
 			if [ $EUID -eq 0 ]; then
-				PS1="$PS1\[$mod\]#"
+				PS1="$PS1\[$mod\]\#"
 			else
 				PS1="$PS1\[$mod\]%"
 			fi
