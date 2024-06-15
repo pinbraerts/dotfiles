@@ -52,6 +52,16 @@ if (up === undefined) {
 		}
 	}
 
+	if (document.head.innerHTML.includes("Docusaurus")) {
+		right = function () {
+			document.querySelector("a.pagination-nav__link--next").click()
+		}
+
+		left = function () {
+			document.querySelector("a.pagination-nav__link--prev").click()
+		}
+	}
+
 	var queries = {
 		"www.startpage.com": ".w-gl__result-title",
 		"www.google.com": "a[jsname='UWckNb']",
