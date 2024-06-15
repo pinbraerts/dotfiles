@@ -1,7 +1,7 @@
 alias_exists() {
 	target=$1
 	shift
-	which >/dev/null 2>&1 $1 && alias $target="$*"
+	command -v >/dev/null 2>&1 $1 && alias $target="$*"
 }
 alias_exists cat bat
 alias_exists ls exa || alias ls="ls --color=auto"
