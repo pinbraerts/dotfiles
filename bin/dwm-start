@@ -4,7 +4,6 @@ Telegram -startintray &
 bluetooth-menu &
 dex -a & # autostart
 /usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
-picom & # compositor
 feh --no-fehbg --bg-center /home/pinbraerts/wallpapers/lake.jpg & # wallpapers
 xautolock -time 5 -locker "slock" &
 dbus-launch dwm-cycle
