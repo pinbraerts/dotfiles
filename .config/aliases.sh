@@ -1,15 +1,18 @@
-which >/dev/null 2>&1 bat && alias cat=bat
-if which >/dev/null 2>&1 exa; then
-	alias ls=exa
-else
-	alias ls="ls --color=auto"
-fi
+alias_exists() {
+	target=$1
+	shift
+	which >/dev/null 2>&1 $1 && alias $target="$*"
+}
+alias_exists cat bat
+alias_exists ls exa || alias ls="ls --color=auto"
 alias ll="ls -ll"
 alias la="ls -la"
-alias ccache=sccache
-which >/dev/null 2>&1 make && alias m=make
-which >/dev/null 2>&1 rg && alias grep=rg
-which >/dev/null 2>&1 tree-sitter && alias ts=tree-sitter
-which >/dev/null 2>&1 micromamba && alias mm=micromamba
+alias_exists cp rsync --info=progress2 --info=name0
+alias_exists ccache sccache
+alias_exists m make
+alias_exists grep rg
+alias_exists ts tree-sitter
+alias_exists mm micromamba
+alias_exists sv systemctl
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR
