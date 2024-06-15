@@ -5,5 +5,6 @@ bluetooth-menu &
 dex -a & # autostart
 /usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
 feh --no-fehbg --bg-center /home/pinbraerts/wallpapers/lake.jpg & # wallpapers
-xautolock -time 5 -locker "slock" &
+xset +dpms dpms 0 300 300 &
+xss-lock -l -- i3lock-fancy -n -f FiraCode-Nerd-Font-Mono-Reg -p -- scrot &
 dbus-launch dwm-cycle
