@@ -2,8 +2,6 @@ setopt autocd
 setopt interactive_comments
 setopt inc_append_history
 setopt histignorealldups
-export HISTFILE=${XDG_CONFIG_CACHE:-$HOME/.cache}/zsh/.history
-export ZSH_COMPDUMP=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.complete
 # PS4='+$EPOCHREALTIME %N:%i> '
 # logfile=$(mktemp zsh_profile.XXXXXX)
 # exec 3>&2 2>$logfile
@@ -18,7 +16,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-. "$ZDOTDIR/.zprofile"
 zmodload zsh/complist
 bindkey -M menuselect h vi-backward-char
 bindkey -M menuselect j vi-down-line-or-history
@@ -26,7 +23,6 @@ bindkey -M menuselect k vi-up-line-or-history
 bindkey -M menuselect l vi-forward-char
 
 bindkey -v
-export KEYTIMEOUT=1
 
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(joshuto completions zsh)"
