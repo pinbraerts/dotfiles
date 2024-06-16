@@ -2,10 +2,9 @@ setopt autocd
 setopt interactive_comments
 setopt inc_append_history
 setopt histignorealldups
-# PS4='+$EPOCHREALTIME %N:%i> '
-# logfile=$(mktemp zsh_profile.XXXXXX)
-# exec 3>&2 2>$logfile
-# setopt xtrace
+if test -n "${TRACE+x}"; then
+	zmodload zsh/zprof
+fi
 
 autoload -U +X compinit && compinit -d $ZSH_COMPDUMP
 zstyle ':completion:*' verbose yes
@@ -40,5 +39,7 @@ zvm_after_init() {
 	bindkey -M vicmd '^R' fzf-history-widget
 	bindkey -M viins '^R' fzf-history-widget
 }
-# unsetopt xtrace
-# exec 2>&3 3>&-
+
+if test -n "${TRACE+x}"; then
+	zprof
+fi
