@@ -2,7 +2,7 @@
 directory=$1
 basename=$(basename $directory)
 if ! tmux has-session -t "$basename" 2>/dev/null; then
-	tmux new-session -s "$basename" -c "$directory" -d "nvim; zsh"
+	tmux new-session -s "$basename" -c "$directory"
 fi
 if [ -z "$TMUX" ]; then
 	tmux attach-session -t "$basename"
