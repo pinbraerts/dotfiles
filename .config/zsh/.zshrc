@@ -6,7 +6,12 @@ if test -n "${TRACE+x}"; then
 	zmodload zsh/zprof
 fi
 
-autoload -U +X compinit && compinit -d $ZSH_COMPDUMP
+autoload -U +X compinit
+if test -b "${ZSH_COMPDUMP}(#qN.mh+24)"; then
+	compinit -d "${ZSH_COMPDUMP}"
+else
+	compinit -C -d "${ZSH_COMPDUMP}"
+fi
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
