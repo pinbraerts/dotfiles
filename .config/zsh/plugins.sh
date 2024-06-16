@@ -1,12 +1,6 @@
-ZPLUG_HOME=$HOME/.local/share/zplug
-if ! [ -d "$ZPLUG_HOME" ]; then
-	git clone git@github.com:zplug/zplug.git "$ZPLUG_HOME"
+ANTIDOTE_PATH=$HOME/.local/share/antidote
+if ! [ -d "$ANTIDOTE_PATH" ]; then
+	git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_PATH"
 fi
-source "$ZPLUG_HOME/init.zsh"
-zplug "jeffreytse/zsh-vi-mode", from:github
-zplug "zsh-users/zsh-autosuggestions", from:github
-zplug "zsh-users/zsh-syntax-highlighting", from:github
-if ! zplug check; then
-	zplug install
-fi
-zplug load
+source "$ANTIDOTE_PATH/antidote.zsh"
+antidote load
