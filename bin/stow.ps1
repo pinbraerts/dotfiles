@@ -149,6 +149,11 @@ function Link-Symbolic ([string]$Item, $Target) {
 		-Value $Item
 }
 
+function IsLink([string]$path) {
+	$file = Get-Item $path -Force -ea SilentlyContinue
+	return [bool]($file.Attributes -band [IO.FileAttributes]::ReparsePoint)
+}
+
 function stow ($Item) {
 
 	if (ShouldIgnore $Item) {
@@ -161,8 +166,8 @@ function stow ($Item) {
 
 	if (Test-Path -Path $TargetItem) {
 
-		if (-not $NoFolding -and (Test-Path -Path $Item -PathType Container)) {
-			if (Test-Path -Path $TargetItem -PathType Container) {
+		if (-not $NoFolding -and (Test-Path -Path $Item -PathType Container) -and -not (IsLink $TargetItem)) {
+			if ((Test-Path -Path $TargetItem -PathType Container)) {
 				Write-Verbose "directory '$TargetItem' exists, stowing recursive"
 				Get-ChildItem $Item `
 					| % Name
