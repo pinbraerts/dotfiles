@@ -207,7 +207,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid:0:10%
+label-connected = %essid:0:16%
 
 ramp-signal-font = 2
 ramp-signal-0 = 󰤯
@@ -303,7 +303,7 @@ format-charging-underline = #00cc00
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = #ffcc66
 
-format-full = <ramp-capacity><label-full>
+format-full = <ramp-capacity> <label-full>
 
 # 󰂎󰁺󰁻󰁼󰁽󰁾󰁿󰂀󰂁󰂂󰁹
 ramp-capacity-0 = 󰂎
