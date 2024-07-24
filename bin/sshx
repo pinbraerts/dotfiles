@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -Y -C -t $@ "tmux-select || tmux -u new -A -s session"
+exit $?
