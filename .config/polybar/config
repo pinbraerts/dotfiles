@@ -33,7 +33,7 @@ width = 100%
 height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+;radius = 6.0
 fixed-center = false
 
 background = ${colors.background}
@@ -51,7 +51,7 @@ font-0 = FiraCode Nerd Font Mono:pixelsize=16;antialias=false;3
 font-1 = flags color world:pixelsize=16;3
 font-2 = Noto Color Emoji:scale=8;3
 
-modules-left = dwm xwindow
+modules-left = i3 xwindow
 modules-center =
 modules-right = pulseaudio cpu memory wlan battery date xbacklight xkeyboard powermenu
 
@@ -93,37 +93,15 @@ label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
-[module/dwm]
-type = internal/dwm
-format = <label-tags>
-; Path to dwm socket (default: /tmp/dwm.sock)
-; socket-path = /tmp/dwm.sock
-
-; Left-click to view tag, right-click to toggle tag view
-enable-tags-click = true
-; Scroll to cycle between available tags
-enable-tags-scroll = false
-; If true and enable-tags-scroll = true, scrolling will view all tags regardless if occupied
-tags-scroll-empty = false
-; If true and enable-tags-scroll = true, scrolling will cycle through tags backwards
-tags-scroll-reverse = false
-; If true and enable-tags-scroll = true, wrap active tag when scrolling
-tags-scroll-wrap = false
-; Left-click to set secondary layout, right-click to switch to previous layout
-enable-layout-click = false
-; Scroll to cycle between available layouts
-enable-layout-scroll = false
-; Wrap when scrolling and reaching begining/end of layouts
-layout-scroll-wrap = false
-; Reverse scroll direction
-layout-scroll-reverse = false
-
-; Separator in between shown tags
-; label-separator = |
-
-; States: focused, unfocused, visible, urgent, empty
-; Available tokens:
-;   %name%
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+pin-workspaces = true
+show-urgent = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = true
 
 ; focused = Selected tag on focused monitor
 label-focused = %name%
@@ -139,9 +117,9 @@ label-unfocused-padding = 1
 
 ; visible = Unselected tag, but occupied tag on any monitor
 label-visible = %name%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-unfocused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-background = ${self.label-unfocused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 1
 
 ; urgent = Unselected tag with window that has urgency hint set
 label-urgent = %name%
