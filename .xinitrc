@@ -1,7 +1,6 @@
 #!/bin/sh
 sxhkd &
 pipewire &
-Telegram -startintray &
 bluetooth-menu &
 dex -a & # autostart
 setxkbmap -option grp:toggle -layout us,ru
