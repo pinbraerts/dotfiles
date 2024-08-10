@@ -1,5 +1,13 @@
 #!/bin/sh
-# setxkbmap -option ctrl:swapcaps,grp:toggle -layout us,ru
-# xcape -e 'Control_L=Escape' &
-# xrandr --auto --output HDMI1 --right-of eDP1
-dbus-launch --exit-with-x11 dwm-start
+sxhkd &
+pipewire &
+Telegram -startintray &
+bluetooth-menu &
+dex -a & # autostart
+setxkbmap -option grp:toggle -layout us,ru
+/usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
+feh --no-fehbg --bg-center /home/pinbraerts/wallpapers/lake.jpg & # wallpapers
+xset +dpms dpms 0 300 300 &
+lock enable &
+bar.sh &
+rxbanish -i all >/dev/null 2>&1 &
