@@ -1,0 +1,29 @@
+alt+grave
+  st tmux-select
+
+alt+t
+  st
+
+alt+u
+  st -i -t xbps -n xbps xbps
+
+alt+y
+  maim -s | xclip -selection clipboard -t img/png
+
+alt+shift+y
+  maim | xclip -selection clipboard -t img/png
+
+alt+shift+y
+  maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t img/png
+
+alt+w
+  xcolor --selection clipboard
+
+alt+s
+  st -i -t Surf -n Surf fzf_autocomplete | xargs -r surf
+
+alt+p
+  sh $(st -i -t Launch -n Launch launch)
+
+alt+q
+  xdotool getactivewindow windowkill
