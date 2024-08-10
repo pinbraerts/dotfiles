@@ -26,4 +26,7 @@ alt+p
   sh $(st -i -t Launch -n Launch launch)
 
 alt+q
+  xdotool getactivewindow windowquit
+
+alt+shift+q
   xdotool getactivewindow windowkill
