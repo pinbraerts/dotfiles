@@ -4,8 +4,8 @@ set $down j
 set $up k
 set $right l
 font pango: FiraCode Nerd Font Mono 12
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 4
+default_floating_border pixel 4
 focus_wrapping no
 smart_borders on
 
