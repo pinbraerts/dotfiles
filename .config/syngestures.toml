@@ -1,0 +1,6 @@
+[[device]]
+device = "/dev/input/by-path/pci-0000:00:15.2-platform-i2c_designware.1-event-mouse"
+gestures = [
+	{ type = "swipe", direction = "right", fingers = 3, execute = "xdotool key ctrl+i" },
+	{ type = "swipe", direction = "left",  fingers = 3, execute = "xdotool key ctrl+o" },
+]
