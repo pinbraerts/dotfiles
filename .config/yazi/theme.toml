@@ -1,0 +1,18 @@
+[manager]
+border_style = { fg = "#719cd6" }
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = { bg = "#2f4159", fg = "#cccccc", bold = false }
+
+mode_normal = { bg = "#719cd6", fg = "#000000", bold = true }
+mode_select = { bg = "#9d79d6", fg = "#000000", bold = true }
+mode_unset  = { bg = "#81b29a", fg = "#000000", bold = true }
+
+[filetype]
+rules = [
+  { name = "*",  is = "link", fg = "#cccccc" },
+  { name = "*/", fg = "#719cd6" },
+  { name = "*",  fg = "#cccccc" }
+]
