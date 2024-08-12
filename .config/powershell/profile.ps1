@@ -1,3 +1,4 @@
+$env:POWERSHELL_TELEMETRY_OPTOUT = "true"
 $OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 Import-Module PSReadLine
