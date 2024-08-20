@@ -1,52 +1,52 @@
 local wezterm = require("wezterm")
-
-local config = {}
 local a = wezterm.action
+local config = {}
 
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+  config = wezterm.config_builder()
 end
 
-local function tm(key, mods)
-	return { key = key, mods = mods, action = a.SendKey({ key = key, mods = mods }) }
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.default_prog = { "pwsh.exe", "-nologo" }
 end
 
+config.colors = {
+  split = "#719cd6",
+}
 config.force_reverse_video_cursor = true
--- config.color_scheme = 'Vaughn'
-config.color_scheme = "AdventureTime"
-config.default_prog = { "powershell.exe", "-nologo" }
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font_size = 12
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
-config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
+config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+
+if os.getenv("TMUX") ~= nil then
+  config.leader = { key = "b", mods = "CTRL" }
+else
+  config.leader = { key = "q", mods = "CTRL" }
+end
+
 config.keys = {
-	{ key = "\\", mods = "WIN", action = a.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "-", mods = "WIN", action = a.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "[", mods = "WIN", action = a.ActivatePaneDirection("Prev") },
-	{ key = "]", mods = "WIN", action = a.ActivatePaneDirection("Next") },
-	{ key = "Delete", mods = "WIN", action = a.CloseCurrentPane({ confirm = true }) },
-	tm("Enter", "SHIFT"),
-	tm("Enter", "ALT"),
-	tm("Enter", "CTRL"),
-	tm("Enter", "SHIFT|ALT"),
-	tm("Enter", "ALT|CTRL"),
-	tm("Enter", "CTRL|SHIFT"),
-	tm("Enter", "SHIFT|ALT|CTRL"),
-	tm("j", "CTRL"),
-	tm("k", "CTRL"),
+  { key = "r", mods = "LEADER", action = a.ReloadConfiguration },
+  { key = "c", mods = "LEADER", action = a.SpawnTab("CurrentPaneDomain") },
+  { key = "v", mods = "LEADER", action = a.SplitHorizontal },
+  { key = "s", mods = "LEADER", action = a.SplitVertical },
+  { key = "n", mods = "LEADER", action = a.ActivateTabRelative(1) },
+  { key = "p", mods = "LEADER", action = a.ActivateTabRelative(-1) },
+  { key = "0", mods = "LEADER", action = a.ActivateTab(10) },
+  { key = "z", mods = "LEADER", action = a.TogglePaneZoomState },
+  { key = "h", mods = "LEADER", action = a.ActivatePaneDirection("Left") },
+  { key = "j", mods = "LEADER", action = a.ActivatePaneDirection("Down") },
+  { key = "k", mods = "LEADER", action = a.ActivatePaneDirection("Up") },
+  { key = "l", mods = "LEADER", action = a.ActivatePaneDirection("Right") },
 }
--- config.window_background_image = "c:/users/pinbraerts/pictures/1920x1080_samurai_tour_wallpaper.png"
--- config.window_background_image_hsb = {
---	 brightness = 0.3,
---	 hue = 1.0,
---	 saturation = 1.0,
--- }
--- config.window_background_opacity = 0.8
+for i = 1, 9, 1 do
+  table.insert(
+    config.keys,
+    { key = tostring(i), mods = "LEADER", action = a.ActivateTab(i - 1) }
+  )
+end
 
 return config
