@@ -1,0 +1,36 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = "$directory$git_branch$git_status$git_state$username$status"
+# right_format = "$cmd_duration$status"
+
+[username]
+style_root = "red"
+style_user = "yellow"
+show_always = true
+format = "[$user]($style) "
+aliases = { pinbraerts = "%", dima = "%", root = "$", wheel = "$", admin = "$" }
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style)"
+style = "purple"
+
+[git_status]
+modified = "[*](yellow)"
+staged = "[+](green)"
+deleted = "[-](red)"
+untracked = "?"
+conflicted = "[=](red)"
+ahead = "[↑](green)"
+behind = "[↓](red)"
+renamed = "[→](yellow)"
+format = "$all_status$ahead_behind "
+
+[directory]
+use_os_path_sep = false
+truncate_to_repo = false
+style = "cyan"
+
+[status]
+format = "$symbol$status "
+success_symbol = "[✓](green)"
+symbol = "[✗](red)"
