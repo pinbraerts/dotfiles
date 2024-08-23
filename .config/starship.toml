@@ -8,7 +8,7 @@ style_root = "red"
 style_user = "yellow"
 show_always = true
 format = "[$user]($style) "
-aliases = { pinbraerts = "%", dima = "%", root = "$", wheel = "$", admin = "$" }
+aliases = { shirshov = "%", pinbraerts = "%", dima = "%", root = "$", wheel = "$", admin = "$" }
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style)"
