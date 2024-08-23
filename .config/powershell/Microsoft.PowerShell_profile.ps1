@@ -1,4 +1,6 @@
-$env:POWERSHELL_TELEMETRY_OPTOUT = "true"
+$env:POWERSHELL_TELEMETRY_OPTOUT = 1
+$env:POWERSHELL_UPDATECHECK_OPTOUT = 1
+$env:POWERSHELL_UPDATECHECK = "Off"
 $OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 Import-Module PSReadLine
