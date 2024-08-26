@@ -1,7 +1,6 @@
 [[ $- != *i* ]] && return
 set -o vi
 source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/activate.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/tools.sh
 

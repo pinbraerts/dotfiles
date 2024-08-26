@@ -33,7 +33,6 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 
 source $ZDOTDIR/plugins.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/prompt.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/activate.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/tools.sh
 
