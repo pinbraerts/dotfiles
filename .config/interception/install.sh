@@ -12,11 +12,11 @@ elif test -x pacman; then
 elif test -x apt; then
 	sudo add-apt-repository ppa:deafmute/interception
     sudo apt update
-	sudo apt install interception-tools
+	sudo apt install interception-tools interception-tools-compat
 elif test -x apt-get; then
 	sudo add-apt-repository ppa:deafmute/interception
     sudo apt-get update
-	sudo apt-get install interception-tools
+	sudo apt-get install interception-tools interception-tools-compat
 elif test -x dnf; then
 	sudo dnf copr enable fszymanski/interception-tools
 	sudo dnf install interception-tools
@@ -36,6 +36,7 @@ make
 sudo make install
 cd /tmp
 rm -rf /tmp/dual-function-keys
+sudo mkdir -p "/etc/interception/dual-function-keys/"
 sudo cp "${directory}/caps.yaml"   "/etc/interception/dual-function-keys/"
 sudo cp "${directory}/devmon.yaml" "/etc/interception/udevmon.d/"
 
