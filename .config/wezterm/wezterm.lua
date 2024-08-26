@@ -16,18 +16,13 @@ config.colors = {
 config.force_reverse_video_cursor = true
 config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font_size = 12
--- config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_background_opacity = 0.5
 config.window_decorations = "RESIZE"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 
-if os.getenv("TMUX") ~= nil then
-  config.leader = { key = "b", mods = "CTRL" }
-else
-  config.leader = { key = "q", mods = "CTRL" }
-end
-
+config.leader = { key = "q", mods = "CTRL|SHIFT" }
 config.keys = {
   { key = "r", mods = "LEADER", action = a.ReloadConfiguration },
   { key = "c", mods = "LEADER", action = a.SpawnTab("CurrentPaneDomain") },
