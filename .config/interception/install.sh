@@ -4,18 +4,20 @@ directory=$(readlink -f $(dirname $0))
 
 if test -x xbps-install; then
 	sudo xbps-install -S interception-tools
-else if test -x nala; then
+elif test -x nala; then
 	sudo add-apt-repository ppa:deafmute/interception
 	sudo nala install interception-tools
-else if test -x pacman; then
+elif test -x pacman; then
 	sudo pacman -S interception-tools
-else if test -x apt; then
+elif test -x apt; then
 	sudo add-apt-repository ppa:deafmute/interception
+    sudo apt update
 	sudo apt install interception-tools
-else if test -x apt-get; then
+elif test -x apt-get; then
 	sudo add-apt-repository ppa:deafmute/interception
+    sudo apt-get update
 	sudo apt-get install interception-tools
-else if test -x dnf; then
+elif test -x dnf; then
 	sudo dnf copr enable fszymanski/interception-tools
 	sudo dnf install interception-tools
 else
