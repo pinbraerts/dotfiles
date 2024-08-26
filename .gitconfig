@@ -2,6 +2,9 @@
 	name = Dmitry Shirshov
 	email = shirshov.da@phystech.edu
 
+[core]
+  autocrlf = input
+
 [pull]
 	rebase = true
 
