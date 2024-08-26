@@ -19,10 +19,10 @@ config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_background_opacity = 0.5
-config.window_decorations = "RESIZE"
-config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+config.window_decorations = "NONE"
+config.window_padding = { left = 0, right = 0, top = 5, bottom = 0 }
 
-config.leader = { key = "q", mods = "CTRL|SHIFT" }
+config.leader = { key = "Tab", mods = "CTRL" }
 config.keys = {
   { key = "r", mods = "LEADER", action = a.ReloadConfiguration },
   { key = "c", mods = "LEADER", action = a.SpawnTab("CurrentPaneDomain") },
