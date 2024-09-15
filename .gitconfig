@@ -1,31 +1,39 @@
 [user]
-	name = Dmitry Shirshov
-	email = shirshov.da@phystech.edu
+  name = Dmitry Shirshov
+  email = shirshov.da@phystech.edu
 
 [core]
   autocrlf = input
 
 [pull]
-	rebase = true
+  rebase = true
 
 [alias]
-	x = restore
-	a = add
-	o = checkout
-	b = branch
-	bc = checkout -B
-	bd = branch -D
-	s = status
-	c = commit
-	p = push
-	r = rebase
-	ri = rebase -i
-	d = diff
-	f = fetch
-	fa = fetch --all --prune
-	u = submodule update --init --recursive
-	adog = log --all --decorate --oneline --graph
-	adogs = log --all --decorate --oneline --graph --stat
-	l = adog
-	ls = adogs
-
+  x = restore
+  a = add
+  o = checkout
+  b = branch
+  bc = checkout -b
+  bC = checkout -B
+  br = branch --move
+  bR = branch -M
+  bd = branch --delete
+  bD = branch -D
+  s = status
+  c = commit
+  cm = commit -m
+  ca = commit --amend
+  p = push
+  pf = push --force
+  r = rebase
+  ri = rebase --interactive
+  rc = rebase --continue
+  ra = rebase --abort
+  d = diff
+  f = fetch
+  fa = fetch --all --prune
+  u = submodule update --init --recursive
+  adog = log --all --decorate --oneline --graph
+  adogs = log --all --decorate --oneline --graph --stat
+  l = adog
+  ls = adogs
