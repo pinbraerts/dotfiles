@@ -18,8 +18,8 @@ config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
-config.window_background_opacity = 0.5
-config.window_decorations = "NONE"
+config.window_background_opacity = 0.8
+config.window_decorations = "RESIZE"
 config.window_padding = { left = 0, right = 0, top = 5, bottom = 0 }
 
 config.leader = { key = "Tab", mods = "CTRL" }
