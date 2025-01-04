@@ -1,3 +1,6 @@
 .zsh_plugins.zsh
+.config/yazi/plugins
 .config/tmux/plugins
+.zcompdump
+.zsh_history
 *.log
