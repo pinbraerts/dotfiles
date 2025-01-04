@@ -9,6 +9,7 @@ alias ll="ls -ll"
 alias la="ls -la"
 alias_exists cp rsync --info=progress2 --info=name0
 alias_exists ccache sccache
+alias_exists xclip xclip -selection clipboard
 alias_exists m make
 alias_exists grep rg
 alias_exists ts tree-sitter
