@@ -3,7 +3,7 @@
   email = shirshov.da@phystech.edu
 
 [core]
-  autocrlf = input
+  autocrlf = true
 
 [pull]
   rebase = true
