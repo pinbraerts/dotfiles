@@ -41,3 +41,11 @@ format = "[$status]($symbol) "
 disabled = false
 success_symbol = "green"
 symbol = "red"
+
+[character]
+success_symbol = "[%](yellow)"
+error_symbol = "[%](yellow)"
+vimcmd_symbol = "[%](yellow)"
+vimcmd_visual_symbol = "[%](yellow)"
+vimcmd_replace_one_symbol = "[%](yellow)"
+vimcmd_replace_symbol = "[%](yellow)"
