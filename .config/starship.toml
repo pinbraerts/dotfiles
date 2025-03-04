@@ -1,6 +1,6 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
-format = "$directory$git_branch$git_status$git_state$cmd_duration$status$username"
+format = "$directory$git_branch$git_status$git_state$cmd_duration$status$custom\n$character"
 # right_format = "$cmd_duration$status"
 add_newline = false
 
@@ -49,3 +49,11 @@ vimcmd_symbol = "[%](yellow)"
 vimcmd_visual_symbol = "[%](yellow)"
 vimcmd_replace_one_symbol = "[%](yellow)"
 vimcmd_replace_symbol = "[%](yellow)"
+
+[custom.arc_branch]
+command = """cat ~/.arc/store/.arc/HEAD | sed -n 's/.*"\\([^"]*\\)".*/\\1/p'"""
+description = "show current arc branch"
+when = """ expr "$(pwd)" : "$HOME/arcadia/" && test -f ~/.arc/store/.arc/HEAD """
+symbol = "\ue0a0 "
+style = "purple"
+format = "[$symbol$output]($style) "
