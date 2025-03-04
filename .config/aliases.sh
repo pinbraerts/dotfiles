@@ -31,5 +31,22 @@ alias_exists ts tree-sitter
 alias_exists mm micromamba
 alias_exists sv systemctl
 alias_exists sudo doas
+alias_exists tt ya tool tt
+alias_exists tm ya tool tt make
+alias_exists am arc mount ~/arcadia
+alias_exists as arc status
+alias_exists apr arc pr select
+alias_exists ao arc checkout
+alias_exists ari arc rebase --interactive
+alias_exists ara arc rebase --abort
+alias_exists ar arc rebase
+alias_exists ac arc commit
+alias_exists acm arc commit --message
+alias_exists aca arc commit --amend
+alias_exists ap arc push
+alias_exists apl arc pull
+alias_exists al arc log
+alias_exists af arc fetch
+alias_exists a. arc add .
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR
