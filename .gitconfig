@@ -1,6 +1,7 @@
 [user]
   name = Dmitry Shirshov
   email = shirshov.da@phystech.edu
+	signingkey = /home/pinbraerts/.skotty/pubs/ssh_yubikey_legacy.pub
 
 [core]
   autocrlf = input
@@ -37,3 +38,5 @@
   adogs = log --all --decorate --oneline --graph --stat
   l = adog
   ls = adogs
+[gpg]
+	format = ssh
