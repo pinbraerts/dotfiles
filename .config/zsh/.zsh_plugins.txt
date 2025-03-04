@@ -1,3 +1,6 @@
 jeffreytse/zsh-vi-mode
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
+junegunn/fzf kind:clone
+junegunn/fzf path:shell kind:zsh
+junegunn/fzf path:bin kind:path
