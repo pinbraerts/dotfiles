@@ -5,3 +5,5 @@ source ${XDG_CONFIG_HOME:-$HOME/.config}/activate.sh
 source ${XDG_CONFIG_HOME:-$HOME/.config}/tools.sh
 
 [ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion || true
+
+complete -o nospace -C '~/.taxitool_last_used completion' tt
