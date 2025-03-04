@@ -19,7 +19,7 @@ config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_background_opacity = 0.8
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 config.window_padding = { left = 0, right = 0, top = 5, bottom = 0 }
 
 config.leader = { key = "Tab", mods = "CTRL" }
@@ -43,5 +43,10 @@ for i = 1, 9, 1 do
     { key = tostring(i), mods = "LEADER", action = a.ActivateTab(i - 1) }
   )
 end
+
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = wezterm.mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 
 return config
