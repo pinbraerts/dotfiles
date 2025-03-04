@@ -38,10 +38,7 @@ config.keys = {
   { key = "l", mods = "LEADER", action = a.ActivatePaneDirection("Right") },
 }
 for i = 1, 9, 1 do
-  table.insert(
-    config.keys,
-    { key = tostring(i), mods = "LEADER", action = a.ActivateTab(i - 1) }
-  )
+  table.insert(config.keys, { key = tostring(i), mods = "LEADER", action = a.ActivateTab(i - 1) })
 end
 
 wezterm.on("gui-startup", function(cmd)
