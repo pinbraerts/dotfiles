@@ -1,8 +1,0 @@
-#!/bin/sh
-
-session_id=$(tmux ls -F '#{session_id}' -f "#{==:#{session_name},$(basename $1)}" 2>/dev/null)
-if test -z "$session_id"; then
-	ls --color=always -la "$1"
-else
-	tmux capture-pane -ept "$session_id"
-fi

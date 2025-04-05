@@ -1,7 +1,0 @@
-div:has(> .h:focus) {
-	background: rgba(255, 255, 255, 0.1) !important;
-}
-
-.h {
-	border: none !important;
-}

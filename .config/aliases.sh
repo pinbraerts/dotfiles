@@ -31,5 +31,6 @@ alias_exists ts tree-sitter
 alias_exists mm micromamba
 alias_exists sv systemctl
 alias_exists sudo doas
+alias mc="mc --nosubshell"
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR

@@ -41,6 +41,13 @@ for i = 1, 9, 1 do
   table.insert(config.keys, { key = tostring(i), mods = "LEADER", action = a.ActivateTab(i - 1) })
 end
 
+for i = 0, 9, 1 do
+  table.insert(
+    config.keys,
+    { key = tostring(i), mods = "CTRL", action = a.SendKey({ key = tostring(i), mods = "CTRL" }) }
+  )
+end
+
 wezterm.on("gui-startup", function(cmd)
   local _, _, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():maximize()

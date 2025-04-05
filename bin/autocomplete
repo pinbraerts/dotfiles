@@ -1,6 +1,0 @@
-#!/bin/sh
-curl 2>/dev/null \
-	--get \
-	--data-urlencode "q=$1" \
-	"https://duckduckgo.com/ac/" \
-	| jq -r '.[1][]'
