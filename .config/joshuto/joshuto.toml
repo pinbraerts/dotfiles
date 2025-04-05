@@ -1,9 +1,0 @@
-xdg_open = true
-
-[display]
-show_icons = true
-
-[preview]
-preview_script = "~/.config/joshuto/preview.sh"
-preview_shown_hook_script = "~/.config/joshuto/on_preview_shown"
-preview_removed_hook_script = "~/.config/joshuto/on_preview_removed"

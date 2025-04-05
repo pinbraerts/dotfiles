@@ -1,5 +1,6 @@
 .zsh_plugins.zsh
 .config/yazi/plugins
+.config/yazi/package.toml
 .config/tmux/plugins
 .zcompdump
 .zsh_history

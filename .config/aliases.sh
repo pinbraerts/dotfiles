@@ -48,5 +48,6 @@ alias_exists apl arc pull
 alias_exists al arc log
 alias_exists af arc fetch
 alias_exists a. arc add .
+alias mc="mc --nosubshell"
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR
