@@ -53,7 +53,7 @@ vimcmd_replace_symbol = "[%](yellow)"
 [custom.arc_branch]
 command = """cat ~/.arc/store/.arc/HEAD | sed -n 's/.*"\\([^"]*\\)".*/\\1/p'"""
 description = "show current arc branch"
-when = """ expr "$(pwd)" : "$HOME/arcadia/" && test -f ~/.arc/store/.arc/HEAD """
+when = """ expr "$(pwd)" : "$HOME/arcadia" && test -f ~/.arc/store/.arc/HEAD """
 symbol = "\ue0a0 "
 style = "purple"
 format = "[$symbol$output]($style) "
