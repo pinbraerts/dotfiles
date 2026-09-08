@@ -1,0 +1,2 @@
+#!/bin/sh
+ip -4 -o addr show scope global | tail -n 1 | awk '{print $4}' | cut -d/ -f1 | tr -d '\n'
