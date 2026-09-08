@@ -11,7 +11,6 @@ alias_exists cp rsync --info=progress2 --info=name0
 alias_exists ccache sccache
 alias_exists xclip xclip -selection clipboard
 alias_exists m make
-alias_exists grep rg
 alias_exists gs git status
 alias_exists gl git log --all --decorate --oneline --graph
 alias_exists gcm git commit --message
@@ -36,6 +35,20 @@ alias_exists ap arc push
 alias_exists apl arc pull
 alias_exists al arc log
 alias_exists a. arc add .
+alias_exists oc ya code oc
+alias_exists codex ya code codex
+alias_exists claude ya code claude
+# alias_exists oc opencode
+alias_exists wt ya tool arc-wt
+alias_exists ai ya tool aisuite
 alias mc="mc --nosubshell"
 [ -n $VISUAL ] && alias v=$VISUAL
 [ -n $EDITOR ] && alias e=$EDITOR
+alias tf="terraform"
+alias tfi="terraform init --reconfigure"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfaa="terraform apply --auto-approve"
+alias tfv="terraform validate"
+
+alias i="ya tool infractl"
