@@ -2,6 +2,6 @@
 .config/yazi/plugins
 .config/yazi/package.toml
 .config/tmux/plugins
-.zcompdump
+.zcompdump*
 .zsh_history
 *.log
