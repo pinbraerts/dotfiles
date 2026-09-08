@@ -6,16 +6,29 @@ if test -n "${TRACE+x}"; then
 	zmodload zsh/zprof
 fi
 
-autoload -U +X compinit
-if test -b "${ZSH_COMPDUMP}(#qN.mh+24)"; then
-	compinit -d "${ZSH_COMPDUMP}"
-else
-	compinit -C -d "${ZSH_COMPDUMP}"
-fi
+
+source "$ZDOTDIR/plugins.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/activate.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/tools.sh"
+
+autoload -Uz compinit
+load-completions() {
+    if [[ -n "${ZSH_COMPDUMP}(#qN.mh+24)" ]]; then
+        echo one
+        compinit -D -d "${ZSH_COMPDUMP}"
+    else
+        echo two
+        compinit -C -d "${ZSH_COMPDUMP}"
+    fi
+    zle -D load-completions
+}
+zle -N load-completions
+
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path $ZSH_COMPDUMP
+zstyle ':completion:*' cache-path "$ZSH_COMPDUMP"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -31,11 +44,6 @@ bindkey -v
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 
-source $ZDOTDIR/plugins.sh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/aliases.sh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/activate.sh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/tools.sh
-
 zvm_after_init() {
 	bindkey '^Y' autosuggest-accept
 	zle     -N            fzf-history-widget
@@ -47,3 +55,6 @@ zvm_after_init() {
 if test -n "${TRACE+x}"; then
 	zprof
 fi
+
+# bun completions
+[ -s "/home/pinbraerts/.bun/_bun" ] && source "/home/pinbraerts/.bun/_bun"
