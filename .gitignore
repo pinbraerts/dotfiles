@@ -4,4 +4,16 @@
 .config/tmux/plugins
 .zcompdump*
 .zsh_history
+.config/zsh/.zsh_sessions/
 *.log
+
+# added automatically by ya tool
+.aisuite/setup_log.jsonl
+.aisuite/setup_state.json
+.aisuite/setup.lock
+.opencode
+opencode.json
+opencode.jsonc
+.claude
+.codex
+.agents/
