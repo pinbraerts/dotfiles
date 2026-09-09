@@ -1,0 +1,43 @@
+config-version = 2
+start-at-login = true
+auto-reload-config = true
+
+# One tiling window fills the usable screen without entering macOS fullscreen.
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+gaps.inner.horizontal = 0
+gaps.inner.vertical = 0
+gaps.outer.left = 0
+gaps.outer.right = 0
+gaps.outer.top = 0
+gaps.outer.bottom = 0
+
+# Keep the primary Dock applications in predictable workspaces.
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = ru.yandex.desktop.yandex-browser'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = ru.yandex.yamb'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
+run = 'move-node-to-workspace 4'
+
+# Other applications keep the one-window-per-workspace behavior.
+[[on-window-detected]]
+if = 'test-not %{app-bundle-id} = com.apple.finder'
+run = 'exec-and-forget /opt/homebrew/bin/aerospace move-node-to-workspace --focus-follows-window window-$AEROSPACE_WINDOW_ID'
+
+[mode.main.binding]
+cmd-1 = 'workspace 1'
+cmd-2 = 'workspace 2'
+cmd-3 = 'workspace 3'
+cmd-4 = 'workspace 4'
