@@ -1,4 +1,4 @@
 # Match WezTerm's translucent terminal surface with a slightly larger font.
 font-family = FiraCode Nerd Font Mono
-font-size = 14
+font-size = 16
 background-opacity = 0.8
