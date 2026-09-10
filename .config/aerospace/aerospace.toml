@@ -14,13 +14,8 @@ gaps.outer.right = 0
 gaps.outer.top = 0
 gaps.outer.bottom = 0
 
-# Keep the primary Dock applications in predictable workspaces.
-# Keep Touch ID and passkey prompts out of workspace assignment. macOS already
-# presents this agent as a dialog, so it should remain a floating window.
-[[on-window-detected]]
-if = 'test %{app-bundle-id} = com.apple.LocalAuthentication.UIAgent'
-run = 'layout floating'
-
+# Only the primary Dock applications participate in tiling, each in a
+# predictable workspace.
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = ru.yandex.desktop.yandex-browser'
 run = 'move-node-to-workspace 1'
@@ -37,10 +32,10 @@ run = 'move-node-to-workspace 3'
 if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
 run = 'move-node-to-workspace 4'
 
-# Other applications keep the one-window-per-workspace behavior.
+# Everything outside the whitelist stays on the current workspace and floats.
 [[on-window-detected]]
-if = 'test-not %{app-bundle-id} = com.apple.finder'
-run = 'exec-and-forget /opt/homebrew/bin/aerospace move-node-to-workspace --focus-follows-window window-$AEROSPACE_WINDOW_ID'
+if = 'true'
+run = 'layout floating'
 
 [mode.main.binding]
 cmd-1 = 'exec-and-forget open -a Yandex'
