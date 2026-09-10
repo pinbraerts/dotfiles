@@ -1,0 +1,15 @@
+#!/bin/sh
+
+session_id=$1
+window_id=$2
+
+[ -n "$session_id" ] && [ -n "$window_id" ] || exit 0
+
+window_name=$(tmux display-message -p -t "$window_id" '#{window_name}' 2>/dev/null) || exit 0
+window_name=$(printf '%s' "$window_name" | tr '\000-\037\177;' ' ' | cut -c 1-120)
+
+tmux list-clients -t "$session_id" -F '#{client_tty}' 2>/dev/null |
+while IFS= read -r client_tty; do
+    [ -n "$client_tty" ] || continue
+    printf '\033]777;notify;tmux;%s needs attention\007' "$window_name" >"$client_tty"
+done

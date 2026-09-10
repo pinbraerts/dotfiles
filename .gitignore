@@ -12,6 +12,7 @@
 .opencode
 opencode.json
 opencode.jsonc
-.claude
+.claude/*
+!.claude/settings.json
 .codex
 .agents/

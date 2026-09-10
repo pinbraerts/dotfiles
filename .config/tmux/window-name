@@ -1,0 +1,22 @@
+#!/bin/sh
+
+pane_path=${1:-.}
+
+ya tool arc-wt list --porcelain 2>/dev/null | awk -v pane_path="$pane_path" '
+    /^worktree / {
+        worktree = substr($0, 10)
+        next
+    }
+    /^name / {
+        name = substr($0, 6)
+        if ((pane_path == worktree || index(pane_path, worktree "/") == 1) && length(worktree) > best_length) {
+            best_name = name
+            best_length = length(worktree)
+        }
+    }
+    END {
+        if (best_name != "") {
+            print best_name
+        }
+    }
+'
