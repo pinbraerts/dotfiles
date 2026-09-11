@@ -2,4 +2,5 @@
 font-family = FiraCode Nerd Font Mono
 font-size = 16
 background-opacity = 0.8
+macos-titlebar-style = hidden
 bell-features = no-system,no-audio,attention,title
