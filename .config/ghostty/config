@@ -1,6 +1,12 @@
-# Match WezTerm's translucent terminal surface with a slightly larger font.
+# Use bright text and wide-gamut colors without a post-processing shader.
 font-family = FiraCode Nerd Font Mono
-font-size = 16
+font-size = 15
+foreground = #ffffff
 background-opacity = 0.8
+faint-opacity = 0.85
+alpha-blending = linear-corrected
+window-colorspace = display-p3
 macos-titlebar-style = hidden
+command = /bin/zsh -lc 'tmux a || tmux'
+
 bell-features = no-system,no-audio,attention,title
